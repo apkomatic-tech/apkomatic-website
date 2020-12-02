@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Apkomatic`,
+    description: `Apkomatic is a Los Angeles based web development company specializing in building websites and web applications.`,
+    author: `@apkomatic-tech`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
