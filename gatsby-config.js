@@ -28,5 +28,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-web-font-loader`,
+      options: {
+        google: {
+          families: ["Montserrat:400,600", "Open Sans:400"],
+        },
+      },
+    },
   ],
 }
