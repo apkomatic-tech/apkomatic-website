@@ -1,30 +1,30 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React, { useState } from "react"
-import styled from "styled-components"
-import { HiOutlineMenu, HiOutlineX } from "react-icons/hi"
-import { minDesktopWidth } from "../config/styles"
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi'
+import { headerHeight, minDesktopWidth } from '../config/styles'
 
 const links = [
   {
-    title: "Home",
-    url: "/",
+    title: 'Home',
+    url: '/',
   },
   {
-    title: "Services",
-    url: "/services",
+    title: 'Services',
+    url: '/services',
   },
   {
-    title: "About Us",
-    url: "/about",
+    title: 'About Us',
+    url: '/about',
   },
   {
-    title: "FAQ",
-    url: "/faq",
+    title: 'FAQ',
+    url: '/faq',
   },
   {
-    title: "Contact Us",
-    url: "/contact",
+    title: 'Contact Us',
+    url: '/contact',
   },
 ]
 
@@ -100,8 +100,9 @@ const StyledBaseHamburgerButton = styled.button`
 `
 
 const StyledHamburgerMenuButton = styled(StyledBaseHamburgerButton)`
-  border: 2px solid var(--baseTextColor);
+  border: 1px solid var(--secondaryColor);
   border-radius: 3px;
+  &,
   &:hover,
   &:focus {
     background-color: var(--secondaryColor);
@@ -120,6 +121,7 @@ const StyledHamburgerMenu = styled.nav`
   width: 100vw;
   height: 100vh;
   background: var(--secondaryColor);
+  z-index: 999;
 
   ul {
     list-style: none;
@@ -131,6 +133,13 @@ const StyledHamburgerMenu = styled.nav`
     text-decoration: none;
     font-size: 1.8rem;
     line-height: 2;
+    color: var(--baseTextColor);
+    display: block;
+    padding: 0.5rem;
+    &:hover,
+    &:focus {
+      background: rgba(0, 0, 0, 0.05);
+    }
   }
 
   @media screen and (min-width: ${minDesktopWidth}) {
