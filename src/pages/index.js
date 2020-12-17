@@ -1,33 +1,37 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import styled from 'styled-components'
-import { HiOutlineChevronRight } from 'react-icons/hi'
-import SEO from '../components/seo'
+import React from 'react';
+import { Link } from 'gatsby';
+import styled from 'styled-components';
+import { HiOutlineChevronRight } from 'react-icons/hi';
+import SEO from '../components/seo';
 import {
   StyledPrimaryButtonWithArrow,
   StyledSecondaryButtonWithArrow,
-} from '../components/Button'
-import { minDesktopWidth, minDesktopWidthLarge } from '../config/styles'
+} from '../components/Button';
+import { minDesktopWidth } from '../config/styles';
 
-import DesignImage from '../images/home/featured-design.svg'
-import CodeImage from '../images/home/featured-code.svg'
-import EthicsImage from '../images/home/featured-relationship.svg'
+// external components
+import Testimonials from '../components/Testimonials';
+
+// images
+import DesignImage from '../images/home/featured-design.svg';
+import CodeImage from '../images/home/featured-code.svg';
+import EthicsImage from '../images/home/featured-relationship.svg';
 
 const StyledHero = styled.div`
   background-color: var(--grey);
   margin-bottom: 5rem;
-`
+`;
 const StyledHeroContainer = styled.div`
   max-width: var(--desktopContainerWidth);
   padding: 7rem 2rem;
   margin: auto;
-`
+`;
 const StyledHeroCopy = styled.div`
   width: 100%;
   @media screen and (min-width: ${minDesktopWidth}) {
     max-width: 60vw;
   }
-`
+`;
 const StyledHeroTextTop = styled.p`
   color: var(--primaryColor);
   font-size: 2rem;
@@ -36,21 +40,21 @@ const StyledHeroTextTop = styled.p`
   font-family: var(--headingFont);
   opacity: 0.8;
   font-weight: 600;
-`
+`;
 const StyledHeroH1 = styled.h1`
   font-size: clamp(3rem, 5vw, 5rem);
   margin: 0;
   font-weight: 600;
   letter-spacing: -0.15rem;
   line-height: 1.1;
-`
+`;
 
-const maxFeaturedImgW = '320px'
+const maxFeaturedImgW = '320px';
 const StyledFeatureRow = styled.div`
   &:last-of-type {
     margin-bottom: 0;
   }
-`
+`;
 const StyledFeatureRowContainer = styled.div`
   max-width: var(--desktopContainerWidth);
   margin: auto;
@@ -70,13 +74,13 @@ const StyledFeatureRowContainer = styled.div`
   @media screen and (max-width: ${minDesktopWidth}) {
     grid-template-columns: 1fr;
   }
-`
+`;
 
 const StyledGetStartedCallout = styled.div`
   text-align: center;
   background: var(--secondaryColor);
   padding: 8rem 2rem;
-`
+`;
 
 const IndexPage = () => {
   return (
@@ -154,7 +158,7 @@ const IndexPage = () => {
           <img src={EthicsImage} alt="Work Ethics" />
         </StyledFeatureRowContainer>
       </StyledFeatureRow>
-      {/* TODO: testimonials */}
+      <Testimonials />
       <StyledGetStartedCallout>
         <div className="h1">Ready to Get Started?</div>
         <p>
@@ -170,7 +174,7 @@ const IndexPage = () => {
         </StyledPrimaryButtonWithArrow>
       </StyledGetStartedCallout>
     </>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
