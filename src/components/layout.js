@@ -88,7 +88,9 @@ const Layout = ({ children }) => {
         <StyledFooter>
           <StyledFooterContainer>
             <StyledFooterCompanyCopy>
-              <div className="h2">Apkomatic</div>
+              <div className="h2">
+                {data.site.siteMetadata?.title || `Apkomatic`}
+              </div>
               <p>
                 We are a group of passionate web designers and developers. We
                 design and develop high quality and affordable web applications
