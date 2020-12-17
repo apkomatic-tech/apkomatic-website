@@ -1,8 +1,7 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { HiOutlineChevronRight } from 'react-icons/hi'
-// TODO: need to use SEO component
 import SEO from '../components/seo'
 import {
   StyledPrimaryButtonWithArrow,
