@@ -102,7 +102,7 @@ const IndexPage = () => {
                 marginTop: '2rem',
                 minWidth: '200px',
               }}
-              to="/"
+              to="/contact"
             >
               Contact Us
               <HiOutlineChevronRight />
@@ -169,6 +169,8 @@ const IndexPage = () => {
           style={{
             width: '220px',
           }}
+          to="/contact"
+          as={Link}
         >
           Get a Quote <HiOutlineChevronRight />
         </StyledPrimaryButtonWithArrow>
