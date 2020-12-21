@@ -32,9 +32,9 @@ module.exports = {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
-          families: ['Montserrat:400,700', 'Open Sans:400'],
+          families: ['Poppins:400,700', 'Open Sans:400'],
         },
       },
     },
   ],
-}
+};
