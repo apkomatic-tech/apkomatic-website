@@ -9,8 +9,8 @@ const AboutPage = () => {
       <Wrapper
         wrapperWidth="small"
         style={{
-          marginTop: '4rem',
-          marginBottom: '4rem',
+          marginTop: '7rem',
+          marginBottom: '7rem',
         }}
       >
         <h2>Who We Are</h2>
