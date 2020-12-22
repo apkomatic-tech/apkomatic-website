@@ -10,21 +10,25 @@ import { minDesktopWidth } from '../config/styles';
 const StyledCardGrid = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 2rem;
-  row-gap: 2rem;
+  column-gap: 3.5rem;
+  row-gap: 3rem;
   @media screen and (max-width: ${minDesktopWidth}) {
     grid-template-columns: 1fr;
   }
 `;
 
 const StyledCard = styled.article`
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   background: var(--white);
   display: grid;
   grid-template-rows: 1fr 2fr 1fr;
   overflow: hidden;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 1px;
+  border: 3px solid var(--darkColor);
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  * {
+    box-sizing: inherit;
+  }
 `;
 
 const StyledCardHeader = styled.div`
@@ -37,7 +41,6 @@ const StyledCardHeader = styled.div`
   line-height: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
   background-color: var(--grey);
 `;
 const StyledCardBody = styled.div`
@@ -46,7 +49,10 @@ const StyledCardBody = styled.div`
 const StyledCardFooter = styled.div`
   padding: 2rem;
   text-align: center;
-  border-top: 2px solid var(--grey);
+  a {
+    display: block;
+    width: 100%;
+  }
 `;
 
 const ServicesPage = () => {
@@ -69,14 +75,7 @@ const ServicesPage = () => {
               <p>We offer clean and aesthetically pleasing designs.</p>
             </StyledCardBody>
             <StyledCardFooter>
-              <StyledSecondaryButton
-                as={Link}
-                style={{
-                  width: '210px',
-                  display: 'block',
-                  margin: 'auto',
-                }}
-              >
+              <StyledSecondaryButton as={Link}>
                 Contact for Quote
               </StyledSecondaryButton>
             </StyledCardFooter>
@@ -90,14 +89,7 @@ const ServicesPage = () => {
               </p>
             </StyledCardBody>
             <StyledCardFooter>
-              <StyledSecondaryButton
-                as={Link}
-                style={{
-                  width: '210px',
-                  display: 'block',
-                  margin: 'auto',
-                }}
-              >
+              <StyledSecondaryButton as={Link}>
                 Contact for Quote
               </StyledSecondaryButton>
             </StyledCardFooter>
