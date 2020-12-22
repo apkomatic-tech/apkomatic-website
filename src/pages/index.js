@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { HiOutlineChevronRight } from 'react-icons/hi';
+import { motion } from 'framer-motion';
+
 import SEO from '../components/seo';
 import {
   StyledPrimaryButtonWithArrow,
@@ -20,6 +22,7 @@ import EthicsImage from '../images/home/featured-relationship.svg';
 const StyledHero = styled.div`
   background-color: var(--grey);
   margin-bottom: 5rem;
+  overflow: hidden;
 `;
 const StyledHeroContainer = styled.div`
   max-width: var(--desktopContainerWidth);
@@ -32,7 +35,7 @@ const StyledHeroCopy = styled.div`
     max-width: 60vw;
   }
 `;
-const StyledHeroTextTop = styled.p`
+const StyledHeroTextTop = styled(motion.p)`
   color: var(--primaryColor);
   font-size: 2rem;
   margin-top: 0;
@@ -41,7 +44,7 @@ const StyledHeroTextTop = styled.p`
   opacity: 0.8;
   font-weight: 600;
 `;
-const StyledHeroH1 = styled.h1`
+const StyledHeroH1 = styled(motion.h1)`
   font-size: clamp(3rem, 5vw, 5rem);
   margin: 0;
   font-weight: 600;
@@ -89,24 +92,54 @@ const IndexPage = () => {
       <StyledHero>
         <StyledHeroContainer>
           <StyledHeroCopy>
-            <StyledHeroTextTop>
+            <StyledHeroTextTop
+              transition={{
+                delay: 0.1,
+                stiffness: 80,
+              }}
+              initial={{
+                y: -25,
+              }}
+              animate={{
+                y: 0,
+              }}
+            >
               We're <span className="text-uppercase">Apkomatic</span>
             </StyledHeroTextTop>
-            <StyledHeroH1>
+            <StyledHeroH1
+              transition={{
+                delay: 0.5,
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
               We can build you a smart and beautiful website.
             </StyledHeroH1>
-            <StyledSecondaryButtonWithArrow
-              as={Link}
-              large
-              style={{
-                marginTop: '2rem',
-                minWidth: '200px',
+            <motion.div
+              transition={{
+                delay: 0.5,
+                stiffness: 80,
               }}
-              to="/contact"
+              initial={{
+                y: '100vh',
+              }}
+              animate={{
+                y: 0,
+              }}
             >
-              Contact Us
-              <HiOutlineChevronRight />
-            </StyledSecondaryButtonWithArrow>
+              <StyledSecondaryButtonWithArrow
+                as={Link}
+                large
+                style={{
+                  marginTop: '2rem',
+                  minWidth: '200px',
+                }}
+                to="/contact"
+              >
+                Contact Us
+                <HiOutlineChevronRight />
+              </StyledSecondaryButtonWithArrow>
+            </motion.div>
           </StyledHeroCopy>
         </StyledHeroContainer>
       </StyledHero>
