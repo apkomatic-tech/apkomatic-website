@@ -1,95 +1,24 @@
 import React, { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
+
+import processContactRequest from '../api/processContactRequest';
+
 import Modal from '../components/Modal';
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
+import CharacterCount from '../components/contact/CharacterCount';
+import useInputTouched from '../components/contact/useInputTouched';
+import requestStates from '../components/contact/requestStates';
 
 import { MESSAGE_THRESHOLD, CONTACT_FORM_NAME } from '../config/site';
 import { encode, validateEmail, validateName } from '../utils/index';
-
-const requestStates = {
-  INITIAL_REQUEST_STATE: {
-    processing: false,
-    success: false,
-    fail: false,
-  },
-  PROCESS_REQUEST_STATE: {
-    processing: true,
-    success: false,
-    fail: false,
-  },
-  SUCCESS_REQUEST_STATE: {
-    processing: false,
-    success: true,
-    fail: false,
-  },
-  FAIL_REQUEST_STATE: {
-    processing: false,
-    success: false,
-    fail: true,
-  },
-};
 
 const errorMsgAnimateProps = {
   initial: { y: 5 },
   animate: { y: 0 },
   transition: { type: 'tween', duration: 0.25 },
 };
-
-function useInputTouched(initialValue) {
-  const [state, setState] = useState(() => {
-    if (typeof initialValue === 'function') {
-      return initialValue();
-    }
-
-    return initialValue;
-  });
-  function handleFocus(e: any) {
-    try {
-      setState({ ...state, [e.target.name]: true });
-    } catch (ex) {
-      console.error(ex);
-    }
-  }
-  function handleBlur(e: any) {
-    try {
-      setState({
-        ...state,
-        [e.target.name]: e.target.value.trim() === '' ? false : true,
-      });
-    } catch (ex) {
-      console.error(ex);
-    }
-  }
-  function resetTouchedInputs() {
-    setState(initialValue);
-  }
-  return {
-    touchedInputs: state,
-    handleFocus,
-    handleBlur,
-    resetTouchedInputs,
-  };
-}
-
-function CharacterCount({ count, threshold }) {
-  const charactersAllowed = threshold - count;
-  const limitExceeded = charactersAllowed <= 0;
-  return (
-    <div
-      className="character-count"
-      style={{
-        fontSize: '1.2rem',
-        color: limitExceeded ? '#b9003e' : 'rgba(0,0,0,.7)',
-        fontStyle: 'italic',
-        textAlign: 'right',
-      }}
-    >
-      <strong>{charactersAllowed}</strong> of {threshold} characters
-    </div>
-  );
-}
 
 const ContactPage = () => {
   const [requestState, setRequestState] = useState(
@@ -109,38 +38,38 @@ const ContactPage = () => {
   const formNode = useRef(null);
   const [messageCount, setMessageCount] = useState(0);
 
-  const processContactRequest = async (data: {
-    email: string;
-    fullName: string;
-    message?: string;
-  }) => {
-    try {
-      // display processing
-      setRequestState(requestStates.PROCESS_REQUEST_STATE);
-      // send email request
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: encode({ 'form-name': CONTACT_FORM_NAME, ...data }),
-      });
-      if (response.ok) {
-        setRequestState(requestStates.SUCCESS_REQUEST_STATE);
-        formNode.current.reset();
-      } else {
-        setRequestState(requestStates.FAIL_REQUEST_STATE);
-      }
-      // track submissions
-      // TODO: add React GA dependency
-      // ReactGA.event({
-      //   category: 'Contact',
-      //   action: 'Submit-Contact-Form',
-      // });
-    } catch (e) {
-      setRequestState(requestStates.FAIL_REQUEST_STATE);
-    }
-  };
+  // const processContactRequest = async (data: {
+  //   email: string;
+  //   fullName: string;
+  //   message?: string;
+  // }) => {
+  //   try {
+  //     // display processing
+  //     setRequestState(requestStates.PROCESS_REQUEST_STATE);
+  //     // send email request
+  //     const response = await fetch('/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/x-www-form-urlencoded',
+  //       },
+  //       body: encode({ 'form-name': CONTACT_FORM_NAME, ...data }),
+  //     });
+  //     if (response.ok) {
+  //       setRequestState(requestStates.SUCCESS_REQUEST_STATE);
+  //       formNode.current.reset();
+  //     } else {
+  //       setRequestState(requestStates.FAIL_REQUEST_STATE);
+  //     }
+  //     // track submissions
+  //     // TODO: add React GA dependency
+  //     // ReactGA.event({
+  //     //   category: 'Contact',
+  //     //   action: 'Submit-Contact-Form',
+  //     // });
+  //   } catch (e) {
+  //     setRequestState(requestStates.FAIL_REQUEST_STATE);
+  //   }
+  // };
 
   function resetRequestState() {
     // reset request state to initial
@@ -193,7 +122,24 @@ const ContactPage = () => {
             name={CONTACT_FORM_NAME}
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            onSubmit={handleSubmit(processContactRequest)}
+            onSubmit={handleSubmit(
+              (data: { email: string; fullName: string; message: string }) => {
+                setRequestState(requestStates.PROCESS_REQUEST_STATE);
+                processContactRequest(data)
+                  .then(res => {
+                    if (res.ok) {
+                      setRequestState(requestStates.SUCCESS_REQUEST_STATE);
+                      formNode.current.reset();
+                      return;
+                    }
+
+                    setRequestState(requestStates.FAIL_REQUEST_STATE);
+                  })
+                  .catch(() => {
+                    setRequestState(requestStates.FAIL_REQUEST_STATE);
+                  });
+              }
+            )}
             className="contact-form form"
             ref={formNode}
           >
