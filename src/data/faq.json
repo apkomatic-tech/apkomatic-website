@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "heading": "How long will it take to build my website or app?",
+      "content": "We estimate project timeframe based on the client's requirements. A common reason for project delay would be waiting for content (images and text) from the client. Depending on the project's complexity we generally take about 3-6 weeks to complete the project.",
+      "collapsed": true
+    },
+    {
+      "id": 2,
+      "heading": "Do we need to meet face to face before starting?",
+      "content": "For most projects it would be enough to communicate via email or telephone. We will keep you updated (frequently) via email.",
+      "collapsed": true
+    },
+    {
+      "id": 3,
+      "heading": "I would like a demo of my website during development. Is that possible?",
+      "content": "YES. We can deploy work-in-progress demo to a staging server for your feedback.",
+      "collapsed": true
+    },
+    {
+      "id": 4,
+      "heading": "Are there any hidden costs associated with your services?",
+      "content": "NO. We discuss pricing at the beginning of the project. If you change or add new requirements after the project sign-off, we will need to determine a new quote based on the requirements. We will communicate this information to you before resuming work.",
+      "collapsed": true
+    }
+  ]
