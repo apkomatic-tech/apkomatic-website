@@ -10,7 +10,8 @@ const StyledBanner = styled.div`
   min-height: 30vh;
   position: relative;
   z-index: 1;
-  background-color: var(--grey);
+  background-color: var(--primaryColor);
+  color: var(--white);
   text-align: center;
   overflow: hidden;
 `;
@@ -29,6 +30,7 @@ const StyledTitle = styled(motion.h1)`
   font-size: 2.6rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  border-radius: 1px;
 `;
 
 const SplashBanner = ({ title, message }) => {
@@ -50,10 +52,6 @@ const SplashBanner = ({ title, message }) => {
 
 SplashBanner.propTypes = {
   title: PropTypes.string.isRequired,
-  message: PropTypes.string,
-};
-SplashBanner.propTypes = {
-  message: '',
 };
 
 export default SplashBanner;
