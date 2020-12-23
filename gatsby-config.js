@@ -5,6 +5,13 @@ module.exports = {
     author: `@apkomatic-tech`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-101945546-1',
+        head: true,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -24,7 +31,7 @@ module.exports = {
         background_color: `#5d2c8d`,
         theme_color: `#5d2c8d`,
         display: `minimal-ui`,
-        icon: `/src/images/favicon.gif`, // This path is relative to the root of the site.
+        icon: `${__dirname}/src/images/favicon.gif`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-styled-components`,

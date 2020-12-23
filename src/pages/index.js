@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 import { motion } from 'framer-motion';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 import SEO from '../components/seo';
 import {
@@ -135,6 +136,13 @@ const IndexPage = () => {
                   minWidth: '200px',
                 }}
                 to="/contact"
+                onClick={() => {
+                  trackCustomEvent({
+                    category: 'Homepage',
+                    action: 'Click Contact Us',
+                    label: 'Hero',
+                  });
+                }}
               >
                 Contact Us
                 <HiOutlineChevronRight />
