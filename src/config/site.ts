@@ -8,7 +8,7 @@ export const SENTRY_KEY =
 export const CONTACT_ENDPOINT =
   process.env.NODE_ENV === 'production'
     ? 'https://formspree.io/apkomatic@gmail.com'
-    : 'https://formspree.io/konstantindev925@gmail.com';
+    : 'https://formspree.io/humbl3dev@gmail.com';
 export const EMAIL_CONFIRMATION_URL =
   process.env.NODE_ENV === 'production'
     ? '//apkomatic.com/thank-you'
