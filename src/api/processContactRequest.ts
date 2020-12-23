@@ -1,11 +1,13 @@
 import { CONTACT_FORM_NAME } from '../config/site';
 import { encode } from '../utils';
 
-const processContactRequest = async (data: {
+type EmailRequestProps = {
   email: string;
   fullName: string;
   message?: string;
-}) => {
+};
+
+const processContactRequest = async (data: EmailRequestProps) => {
   try {
     // send email request
     const response = await fetch('/', {
