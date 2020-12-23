@@ -1,9 +1,9 @@
-import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi'
-import { headerHeight, minDesktopWidth } from '../config/styles'
+import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
+import { headerHeight, minDesktopWidth } from '../config/styles';
 
 const links = [
   {
@@ -15,22 +15,22 @@ const links = [
     url: '/services',
   },
   {
-    title: 'About Us',
+    title: 'About',
     url: '/about',
   },
   {
-    title: 'FAQ',
+    title: 'Questions',
     url: '/faq',
   },
   {
-    title: 'Contact Us',
+    title: 'Contact',
     url: '/contact',
   },
-]
+];
 
 const StyledHeader = styled.header`
   background-color: var(--white);
-`
+`;
 const StyledHeaderWrapper = styled.div`
   max-width: var(--desktopContainerWidth);
   margin: auto;
@@ -38,7 +38,7 @@ const StyledHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 const StyledSiteBrand = styled.h1`
   color: var(--primaryColor);
   margin: 0;
@@ -52,10 +52,10 @@ const StyledSiteBrand = styled.h1`
     font-family: inherit;
     text-decoration: none;
   }
-`
+`;
 const StyledHamburgerSiteBrand = styled(StyledSiteBrand)`
   color: var(--baseTextColor);
-`
+`;
 
 const StyledNavigation = styled.nav`
   display: none;
@@ -84,9 +84,10 @@ const StyledNavigation = styled.nav`
     a:hover,
     a:focus {
       color: var(--primaryColor);
+      font-weight: 600;
     }
   }
-`
+`;
 const StyledBaseHamburgerButton = styled.button`
   display: flex;
   justify-content: center;
@@ -97,7 +98,7 @@ const StyledBaseHamburgerButton = styled.button`
   font-size: 2.5rem;
   align-items: center;
   color: var(--baseTextColor);
-`
+`;
 
 const StyledHamburgerMenuButton = styled(StyledBaseHamburgerButton)`
   border: 1px solid var(--secondaryColor);
@@ -112,7 +113,7 @@ const StyledHamburgerMenuButton = styled(StyledBaseHamburgerButton)`
   @media screen and (min-width: ${minDesktopWidth}) {
     display: none;
   }
-`
+`;
 
 const StyledHamburgerMenu = styled.nav`
   position: fixed;
@@ -145,35 +146,43 @@ const StyledHamburgerMenu = styled.nav`
   @media screen and (min-width: ${minDesktopWidth}) {
     display: none;
   }
-`
+`;
 
 const StyledHamburgerMenuHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-`
+`;
 
 const StyledHamburgerMenuClose = styled(StyledBaseHamburgerButton)`
   &:hover {
     color: var(--primaryColor);
   }
-`
+`;
 
-function renderLinks() {
+function renderLinks(handleClick) {
   return links.map(link => {
     return (
       <li key={link.title}>
-        <Link to={link.url} activeClassName="active">
+        <Link
+          to={link.url}
+          activeClassName="active"
+          onClick={() => {
+            if (typeof handleClick === 'function') {
+              handleClick();
+            }
+          }}
+        >
           {link.title}
         </Link>
       </li>
-    )
-  })
+    );
+  });
 }
 
 const Header = ({ siteTitle }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <StyledHeader>
@@ -195,20 +204,20 @@ const Header = ({ siteTitle }) => {
                 <HiOutlineX />
               </StyledHamburgerMenuClose>
             </StyledHamburgerMenuHeader>
-            <ul>{renderLinks()}</ul>
+            <ul>{renderLinks(() => setIsMenuOpen(false))}</ul>
           </StyledHamburgerMenu>
         )}
       </StyledHeaderWrapper>
     </StyledHeader>
-  )
-}
+  );
+};
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-}
+};
 
 Header.defaultProps = {
   siteTitle: ``,
-}
+};
 
-export default Header
+export default Header;
