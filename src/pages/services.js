@@ -75,7 +75,7 @@ const ServicesPage = () => {
               <p>We offer clean and aesthetically pleasing designs.</p>
             </StyledCardBody>
             <StyledCardFooter>
-              <StyledSecondaryButton as={Link}>
+              <StyledSecondaryButton as={Link} to="/contact">
                 Contact for Quote
               </StyledSecondaryButton>
             </StyledCardFooter>
@@ -89,7 +89,7 @@ const ServicesPage = () => {
               </p>
             </StyledCardBody>
             <StyledCardFooter>
-              <StyledSecondaryButton as={Link}>
+              <StyledSecondaryButton as={Link} to="/contact">
                 Contact for Quote
               </StyledSecondaryButton>
             </StyledCardFooter>
