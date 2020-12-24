@@ -22,7 +22,6 @@ import EthicsImage from '../images/home/featured-relationship.svg';
 
 const StyledHero = styled.div`
   background-color: var(--grey);
-  margin-bottom: 5rem;
   overflow: hidden;
 `;
 const StyledHeroContainer = styled.div`
