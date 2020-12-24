@@ -53,15 +53,10 @@ const backdropVariants = {
 };
 const modalVariants = {
   visible: {
-    scale: 1,
-    transition: {
-      type: 'spring',
-      mass: 0.5,
-      stiffness: 180,
-    },
+    opacity: 1,
   },
   hidden: {
-    scale: 0,
+    opacity: 0,
   },
 };
 export default function Modal({
