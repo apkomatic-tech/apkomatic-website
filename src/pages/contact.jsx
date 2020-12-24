@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
@@ -16,31 +16,26 @@ import requestStates from '../components/contact/requestStates';
 
 import { MESSAGE_THRESHOLD, CONTACT_FORM_NAME } from '../config/site';
 import { validateEmail, validateName } from '../utils/index';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
-const errorMsgAnimateProps = {
-  initial: { y: 5 },
-  animate: { y: 0 },
-  transition: { type: 'tween', duration: 0.25 },
-};
 const formLabelVariants = {
   focused: {
     y: 1,
     scale: 0.8,
     transition: {
       stiffness: 50,
-      duration: .1
-    }
+      duration: 0.1,
+    },
   },
   blurred: {
     y: 16,
     scale: 1,
     transition: {
       stiffness: 50,
-      duration: .1
-    }
+      duration: 0.1,
+    },
   },
-
-}
+};
 
 const StyledForm = styled.form`
   --errorColor: #b9003e;
@@ -60,7 +55,7 @@ const StyledFormBlock = styled.div`
     margin-bottom: 0;
   }
 `;
-const StyledFormError = styled(motion.div)`
+const StyledFormError = styled.div`
   color: var(--errorColor);
   font-size: 1.4rem;
   position: absolute;
@@ -172,7 +167,7 @@ const ContactPage = () => {
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           onSubmit={handleSubmit(
-            (data) => {
+            data => {
               setRequestState(requestStates.PROCESS_REQUEST_STATE);
               processContactRequest(data)
                 .then(res => {
@@ -187,6 +182,15 @@ const ContactPage = () => {
                 .catch(() => {
                   setRequestState(requestStates.FAIL_REQUEST_STATE);
                 });
+            },
+            errorData => {
+              trackCustomEvent({
+                category: 'Contact',
+                action: 'Form Error - Submit',
+                label: Object.entries(errorData)
+                  .map(item => item[0])
+                  .join(', '),
+              });
             }
           )}
           ref={formNode}
@@ -213,9 +217,7 @@ const ContactPage = () => {
               })}
             />
             {errors.email && (
-              <StyledFormError {...errorMsgAnimateProps}>
-                Please enter a valid email
-              </StyledFormError>
+              <StyledFormError>Please enter a valid email</StyledFormError>
             )}
           </StyledFormBlock>
 
@@ -245,13 +247,9 @@ const ContactPage = () => {
             />
             {errors.fullName &&
               (errors.fullName.type === 'minLength' ? (
-                <StyledFormError {...errorMsgAnimateProps}>
-                  {errors.fullName.message}
-                </StyledFormError>
+                <StyledFormError>{errors.fullName.message}</StyledFormError>
               ) : (
-                <StyledFormError {...errorMsgAnimateProps}>
-                  Please enter a valid name
-                </StyledFormError>
+                <StyledFormError>Please enter a valid name</StyledFormError>
               ))}
           </StyledFormBlock>
           <StyledFormBlock>
@@ -282,9 +280,7 @@ const ContactPage = () => {
               })}
             />
             {errors.message && (
-              <StyledFormError {...errorMsgAnimateProps}>
-                {errors.message.message}
-              </StyledFormError>
+              <StyledFormError>{errors.message.message}</StyledFormError>
             )}
             <div
               style={{
@@ -301,12 +297,12 @@ const ContactPage = () => {
             </div>
           </StyledFormBlock>
 
-          <StyledPrimaryButton 
+          <StyledPrimaryButton
             type="submit"
             style={{
               display: 'block',
               width: '100%',
-              marginTop: '3rem'
+              marginTop: '3rem',
             }}
           >
             Send
