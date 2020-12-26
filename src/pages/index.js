@@ -5,15 +5,14 @@ import { HiOutlineChevronRight } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
+// external components
 import SEO from '../components/seo';
 import {
   StyledPrimaryButtonWithArrow,
   StyledSecondaryButtonWithArrow,
 } from '../components/Button';
-import { minDesktopWidth } from '../config/styles';
-
-// external components
 import Testimonials from '../components/Testimonials';
+import { minDesktopWidth } from '../config/styles';
 
 // images
 import DesignImage from '../images/home/featured-design.svg';
