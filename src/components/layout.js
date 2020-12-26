@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import { TiSocialTwitter, TiAt } from 'react-icons/ti';
 
+import { minDesktopWidth } from '../config/styles';
 import Header from './header';
 import 'normalize.css';
 import './global.css';
@@ -25,6 +26,9 @@ const StyledFooterContainer = styled.div`
   padding: 2rem;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: ${minDesktopWidth}) {
+    display: block;
+  }
 `;
 const StyledFooterCompanyCopy = styled.div`
   max-width: 400px;

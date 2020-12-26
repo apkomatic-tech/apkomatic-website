@@ -206,11 +206,19 @@ const IndexPage = () => {
           rest.
         </p>
         <StyledPrimaryButtonWithArrow
+          large={true}
           style={{
             width: '220px',
           }}
           to="/contact"
           as={Link}
+          onClick={() => {
+            trackCustomEvent({
+              category: 'Homepage',
+              action: 'Click Contact Us',
+              label: 'Get Started',
+            });
+          }}
         >
           Get a Quote <HiOutlineChevronRight />
         </StyledPrimaryButtonWithArrow>

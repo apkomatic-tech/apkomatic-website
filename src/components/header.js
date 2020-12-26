@@ -1,6 +1,6 @@
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
 import { headerHeight, minDesktopWidth } from '../config/styles';
@@ -89,7 +89,7 @@ const StyledNavigation = styled.nav`
   }
 `;
 const StyledBaseHamburgerButton = styled.button`
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   appearance: none;
   background: transparent;
@@ -97,6 +97,7 @@ const StyledBaseHamburgerButton = styled.button`
   cursor: pointer;
   font-size: 2.5rem;
   align-items: center;
+  padding: 2px 5px;
   color: var(--baseTextColor);
 `;
 
@@ -183,6 +184,14 @@ function renderLinks(handleClick) {
 
 const Header = ({ siteTitle }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('no-y-overflow');
+    } else {
+      document.body.classList.remove('no-y-overflow');
+    }
+  }, [isMenuOpen]);
 
   return (
     <StyledHeader>

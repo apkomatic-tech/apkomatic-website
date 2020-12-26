@@ -68,3 +68,8 @@ h3 {
 .text-right {
   text-align: right;
 }
+
+.no-y-overflow {
+  overflow-y: hidden;
+  touch-action: none;
+}

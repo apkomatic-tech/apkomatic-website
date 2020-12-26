@@ -15,7 +15,7 @@ const StyledBanner = styled.div`
   text-align: center;
   overflow: hidden;
 `;
-const StyledBannerContainer = styled(motion.div)`
+const StyledBannerContainer = styled.div`
   max-width: 60rem;
   margin: auto;
   padding: 4rem 2rem;
@@ -36,13 +36,7 @@ const StyledTitle = styled(motion.h1)`
 const SplashBanner = ({ title, message }) => {
   return (
     <StyledBanner>
-      <StyledBannerContainer
-        transition={{
-          delay: 0.1,
-        }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
+      <StyledBannerContainer>
         <StyledTitle>{title}</StyledTitle>
         {message && <p>{message}</p>}
       </StyledBannerContainer>
