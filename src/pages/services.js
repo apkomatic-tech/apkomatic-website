@@ -57,7 +57,7 @@ const StyledCardFooter = styled.div`
 
 const ServicesPage = () => {
   return (
-    <>
+    <div id="services-page">
       <SplashBanner
         title="Services"
         message="Our mission is to build affordable websites for all kind of businesses and organizations. We offer different pricing plans to match your needs."
@@ -96,7 +96,7 @@ const ServicesPage = () => {
           </StyledCard>
         </StyledCardGrid>
       </Wrapper>
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import Wrapper from '../components/Wrapper';
 
 const AboutPage = () => {
   return (
-    <>
+    <div id="about-page">
       <SplashBanner title="About Us" />
       <Wrapper
         wrapperWidth="small"
@@ -27,7 +27,7 @@ const AboutPage = () => {
           organizations.
         </p>
       </Wrapper>
-    </>
+    </div>
   );
 };
 

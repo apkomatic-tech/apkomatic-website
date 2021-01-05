@@ -7,7 +7,7 @@ import faqJSON from '../data/faq.json';
 
 const FaqPage = () => {
   return (
-    <>
+    <div id="faq-page">
       <SplashBanner title="Frequently Asked Questions" />
       <Wrapper
         wrapperWidth="small"
@@ -24,7 +24,7 @@ const FaqPage = () => {
           }}
         />
       </Wrapper>
-    </>
+    </div>
   );
 };
 

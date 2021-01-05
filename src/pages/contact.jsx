@@ -130,7 +130,7 @@ const ContactPage = () => {
   }
 
   return (
-    <>
+    <div id="contact-page">
       <SplashBanner title="Contact Us" message="" />
       {/* Display Message on successful form submission */}
       <Modal
@@ -310,7 +310,7 @@ const ContactPage = () => {
           </StyledPrimaryButton>
         </StyledForm>
       </Wrapper>
-    </>
+    </div>
   );
 };
 
