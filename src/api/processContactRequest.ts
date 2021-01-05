@@ -1,3 +1,5 @@
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
+
 import { CONTACT_FORM_NAME } from '../config/site';
 import { encode } from '../utils';
 
@@ -18,14 +20,13 @@ const processContactRequest = async (data: EmailRequestProps) => {
       body: encode({ 'form-name': CONTACT_FORM_NAME, ...data }),
     });
 
-    return response;
-
     // track submissions
-    // TODO: add React GA dependency
-    // ReactGA.event({
-    //   category: 'Contact',
-    //   action: 'Submit-Contact-Form',
-    // });
+    trackCustomEvent({
+      category: 'Contact',
+      action: 'Submit-Contact-Form',
+    });
+
+    return response;
   } catch (e) {
     throw new Error(e);
   }
