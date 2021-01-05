@@ -100,7 +100,7 @@ const StyledGetStartedCallout = styled.div`
 
 const IndexPage = () => {
   return (
-    <>
+    <div id="homepage">
       <SEO title="Home" />
       <StyledHero>
         <StyledHeroContainer>
@@ -209,7 +209,7 @@ const IndexPage = () => {
           Get a Quote <HiOutlineChevronRight />
         </StyledPrimaryButtonWithArrow>
       </StyledGetStartedCallout>
-    </>
+    </div>
   );
 };
 
