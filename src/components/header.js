@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
-import { headerHeight, minDesktopWidth } from '../config/styles';
+import { minDesktopWidth } from '../config/styles';
 
 const links = [
   {
@@ -20,7 +20,7 @@ const links = [
   },
   {
     title: 'Questions',
-    url: '/faq',
+    url: '/frequently-asked-questions',
   },
   {
     title: 'Contact',

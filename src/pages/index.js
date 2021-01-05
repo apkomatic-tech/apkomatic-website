@@ -4,13 +4,16 @@ import styled from 'styled-components';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
+// data
+import testimonialsJSON from '../data/testimonials.json';
+
 // external components
 import SEO from '../components/seo';
 import {
   StyledPrimaryButtonWithArrow,
   StyledSecondaryButtonWithArrow,
 } from '../components/Button';
-import Testimonials from '../components/Testimonials';
+import Testimonials from '../components/Testimonials.tsx';
 import { minDesktopWidth, minDesktopWidthLarge } from '../config/styles';
 
 // images
@@ -184,7 +187,7 @@ const IndexPage = () => {
           <img src={EthicsImage} alt="Work Ethics" />
         </StyledFeatureRowContainer>
       </StyledFeatureRow>
-      <Testimonials />
+      <Testimonials items={testimonialsJSON} />
       <StyledGetStartedCallout>
         <div className="h1">Ready to Get Started?</div>
         <p>

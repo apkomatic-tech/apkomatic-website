@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 
@@ -41,8 +40,19 @@ const StyledAccordionContent = styled(motion.div)`
   }
 `;
 
+// interfaces
+interface AccordionProps {
+  items: AccordionItem[];
+}
+interface AccordionItem {
+  id: number | string;
+  heading: string;
+  content: string;
+  collapsed: true | false;
+}
+
 // hooks
-function useAccordion(items = []) {
+function useAccordion(items: AccordionItem[]) {
   const [accItems, setAccItems] = useState(items);
 
   const toggleVisibility = id => {
@@ -66,7 +76,7 @@ function useAccordion(items = []) {
   };
 }
 
-const Accordion = ({ items, ...rest }) => {
+const Accordion = ({ items, ...rest }: AccordionProps) => {
   const { accItems, toggleVisibility } = useAccordion(items);
 
   // id, heading, content, collapsed
@@ -120,10 +130,6 @@ const Accordion = ({ items, ...rest }) => {
       })}
     </div>
   );
-};
-
-Accordion.propTypes = {
-  items: PropTypes.array.isRequired,
 };
 
 export default Accordion;

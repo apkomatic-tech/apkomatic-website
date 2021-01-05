@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -33,7 +32,12 @@ const StyledTitle = styled(motion.h1)`
   border-radius: 1px;
 `;
 
-const SplashBanner = ({ title, message }) => {
+interface SplashBannerProps {
+  title: string;
+  message?: string;
+}
+
+const SplashBanner = ({ title, message }: SplashBannerProps) => {
   return (
     <StyledBanner>
       <StyledBannerContainer>
@@ -42,10 +46,6 @@ const SplashBanner = ({ title, message }) => {
       </StyledBannerContainer>
     </StyledBanner>
   );
-};
-
-SplashBanner.propTypes = {
-  title: PropTypes.string.isRequired,
 };
 
 export default SplashBanner;
