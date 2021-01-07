@@ -4,18 +4,13 @@ import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
   margin: auto;
-  max-width: ${({ wrapperWidth }) =>
-    wrapperWidth === 'small' ? '65rem' : 'var(--desktopContainerWidth)'};
+  max-width: var(--desktopContainerWidth);
   padding-left: 2rem;
   padding-right: 2rem;
 `;
 
-const Wrapper = ({ wrapperWidth, children, ...rest }) => {
-  return (
-    <StyledWrapper wrapperWidth={wrapperWidth} {...rest}>
-      {children}
-    </StyledWrapper>
-  );
+const Wrapper = ({ children, ...rest }) => {
+  return <StyledWrapper {...rest}>{children}</StyledWrapper>;
 };
 
 Wrapper.propTypes = {
