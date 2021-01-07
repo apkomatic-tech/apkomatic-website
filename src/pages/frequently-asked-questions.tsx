@@ -1,8 +1,9 @@
 import React from 'react';
-import Accordion from '../components/Accordion.tsx';
+import Accordion from '../components/Accordion';
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
 
+// data
 import faqJSON from '../data/faq.json';
 
 const FaqPage = () => {
@@ -18,7 +19,7 @@ const FaqPage = () => {
       >
         <Accordion
           items={faqJSON}
-          style={{
+          customStyles={{
             marginTop: '7rem',
             marginBottom: '7rem',
           }}

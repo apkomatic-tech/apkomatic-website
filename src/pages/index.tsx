@@ -13,8 +13,8 @@ import {
   StyledPrimaryButtonWithArrow,
   StyledSecondaryButtonWithArrow,
 } from '../components/Button';
-import Testimonials from '../components/Testimonials.tsx';
-import { minDesktopWidth, minDesktopWidthLarge } from '../config/styles';
+import Testimonials from '../components/Testimonials';
+import { minDesktopWidth } from '../config/styles';
 
 // images
 import DesignImage from '../images/home/featured-design.svg';
@@ -70,7 +70,10 @@ const StyledFeatureRow = styled.div`
     margin-bottom: 0;
   }
 `;
-const StyledFeatureRowContainer = styled.div`
+interface StyledFeatureRowContainerProps {
+  readonly reverse?: boolean;
+}
+const StyledFeatureRowContainer = styled.div<StyledFeatureRowContainerProps>`
   max-width: var(--desktopContainerWidth);
   margin: auto;
   padding: 5rem 0;
@@ -118,7 +121,7 @@ const IndexPage = () => {
               <StyledSecondaryButtonWithArrow
                 id="hero-callout-btn"
                 as={Link}
-                large
+                size="large"
                 style={{
                   marginTop: '2rem',
                   minWidth: '200px',
@@ -195,7 +198,7 @@ const IndexPage = () => {
           rest.
         </p>
         <StyledPrimaryButtonWithArrow
-          large={true}
+          size="large"
           style={{
             width: '220px',
           }}
