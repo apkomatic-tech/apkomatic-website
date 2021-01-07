@@ -43,6 +43,7 @@ const StyledAccordionContent = styled(motion.div)`
 // interfaces
 interface AccordionProps {
   items: AccordionItem[];
+  customStyles: any | undefined | null;
 }
 interface AccordionItem {
   id: number | string;
@@ -76,12 +77,12 @@ function useAccordion(items: AccordionItem[]) {
   };
 }
 
-const Accordion = ({ items, ...rest }: AccordionProps) => {
+const Accordion = ({ items, customStyles }: AccordionProps) => {
   const { accItems, toggleVisibility } = useAccordion(items);
 
   // id, heading, content, collapsed
   return (
-    <div {...rest}>
+    <div style={customStyles}>
       {accItems.map(({ id, heading, content, collapsed }) => {
         return (
           <StyledAccordion key={id}>
