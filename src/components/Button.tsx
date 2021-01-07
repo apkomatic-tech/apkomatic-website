@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface StyledButtonProps {
-  readonly large: boolean;
+  readonly size?: string;
 }
 
 export const StyledBaseButton = styled.button<StyledButtonProps>`
@@ -15,12 +15,12 @@ export const StyledBaseButton = styled.button<StyledButtonProps>`
   cursor: pointer;
   display: inline-block;
   font-family: var(--headingFont);
-  font-size: ${props => (props.large ? '2rem' : '')};
+  font-size: ${props => (props.size === 'large' ? '2rem' : '')};
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1;
   opacity: 0.9;
-  padding: ${props => (props.large ? '1.2rem' : '0.8rem')};
+  padding: ${props => (props.size === 'large' ? '1.2rem' : '0.8rem')};
   text-align: center;
   text-decoration: none;
   transition: 300ms ease;
