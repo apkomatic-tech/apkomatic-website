@@ -1,8 +1,10 @@
-import React from 'react'
-import styled from 'styled-components'
-import Link from 'gatsby'
+import styled from 'styled-components';
 
-export const StyledBaseButton = styled.button`
+interface StyledButtonProps {
+  readonly large: boolean;
+}
+
+export const StyledBaseButton = styled.button<StyledButtonProps>`
   // subtle shadow
   appearance: none;
   background: var(--grey);
@@ -25,7 +27,7 @@ export const StyledBaseButton = styled.button`
   &:hover {
     opacity: 1;
   }
-`
+`;
 
 export const StyledPrimaryButton = styled(StyledBaseButton)`
   color: var(--white);
@@ -37,7 +39,7 @@ export const StyledPrimaryButton = styled(StyledBaseButton)`
     border-color: var(--primaryColor);
     background: var(--primaryColor);
   }
-`
+`;
 
 export const StyledSecondaryButton = styled(StyledBaseButton)`
   color: var(--baseTextColor);
@@ -49,7 +51,7 @@ export const StyledSecondaryButton = styled(StyledBaseButton)`
     border-color: var(--secondaryColor);
     background: var(--secondaryColor);
   }
-`
+`;
 
 export const StyledPrimaryButtonWithArrow = styled(StyledPrimaryButton)`
   display: inline-flex;
@@ -64,7 +66,7 @@ export const StyledPrimaryButtonWithArrow = styled(StyledPrimaryButton)`
   &:hover svg {
     transform: translateX(10px);
   }
-`
+`;
 
 export const StyledSecondaryButtonWithArrow = styled(StyledSecondaryButton)`
   display: inline-flex;
@@ -79,4 +81,4 @@ export const StyledSecondaryButtonWithArrow = styled(StyledSecondaryButton)`
   &:hover svg {
     transform: translateX(10px);
   }
-`
+`;
