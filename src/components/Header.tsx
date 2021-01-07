@@ -57,7 +57,11 @@ const StyledHamburgerSiteBrand = styled(StyledSiteBrand)`
   color: var(--baseTextColor);
 `;
 
-const StyledNavigation = styled.nav`
+interface StyledNavigationProps {
+  readonly linkCount: number | undefined;
+}
+
+const StyledNavigation = styled.nav<StyledNavigationProps>`
   display: none;
   @media screen and (min-width: ${minDesktopWidth}) {
     line-height: 1;
@@ -162,7 +166,7 @@ const StyledHamburgerMenuClose = styled(StyledBaseHamburgerButton)`
   }
 `;
 
-function renderLinks(handleClick) {
+function renderLinks(clickHandler?: Function) {
   return links.map(link => {
     return (
       <li key={link.title}>
@@ -170,8 +174,8 @@ function renderLinks(handleClick) {
           to={link.url}
           activeClassName="active"
           onClick={() => {
-            if (typeof handleClick === 'function') {
-              handleClick();
+            if (typeof clickHandler === 'function') {
+              clickHandler();
             }
           }}
         >
