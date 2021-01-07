@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "apkomatic",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "Apkomatic Website",
+  "version": "2.0.0",
+  "author": "Apkomatic <apkomatic@gmail.com>",
   "dependencies": {
     "@types/styled-components": "^5.1.7",
     "babel-plugin-styled-components": "^1.12.0",
@@ -33,7 +33,10 @@
     "prettier": "2.1.2"
   },
   "keywords": [
-    "gatsby"
+    "apkomatic",
+    "gatsby",
+    "web development",
+    "web design"
   ],
   "license": "0BSD",
   "scripts": {
@@ -47,7 +50,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/apkomatic-tech/apkomatic-website-2"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
