@@ -88,7 +88,6 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
     a:hover,
     a:focus {
       color: var(--primaryColor);
-      font-weight: 600;
     }
   }
 `;
