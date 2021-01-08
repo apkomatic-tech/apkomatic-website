@@ -8,7 +8,7 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import testimonialsJSON from '../data/testimonials.json';
 
 // external components
-import SEO from '../components/seo';
+import SEO from '../components/Seo';
 import {
   StyledPrimaryButtonWithArrow,
   StyledSecondaryButtonWithArrow,
