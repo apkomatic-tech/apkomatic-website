@@ -1,22 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 // api
 import processContactRequest from '../api/processContactRequest';
 
-import { StyledPrimaryButton } from '../components/Button';
+// components
 import Modal from '../components/Modal';
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
 import CharacterCount from '../components/contact/CharacterCount';
 import useInputTouched from '../components/contact/useInputTouched';
 import requestStates from '../components/contact/requestStates';
+import { validateEmail, validateName } from '../utils/index';
+import { StyledPrimaryButton } from '../components/Button';
+import {
+  StyledForm,
+  StyledFormBlock,
+  StyledFormLabel,
+  StyledFormError,
+  StyledFormInput,
+  StyledFormTextArea,
+} from '../components/contact/formStyles';
 
 import { MESSAGE_THRESHOLD, CONTACT_FORM_NAME } from '../config/site';
-import { validateEmail, validateName } from '../utils/index';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 const formLabelVariants = {
   focused: {
@@ -36,67 +43,6 @@ const formLabelVariants = {
     },
   },
 };
-
-const StyledForm = styled.form`
-  --errorColor: #b9003e;
-  box-sizing: border-box;
-  width: 100%;
-  display: block;
-  * {
-    box-sizing: inherit;
-  }
-`;
-const StyledFormBlock = styled.div`
-  position: relative;
-  margin-bottom: 1rem;
-  padding-bottom: 2rem;
-  z-index: 1;
-  &:not::last-of-type {
-    margin-bottom: 0;
-  }
-`;
-const StyledFormError = styled.div`
-  color: var(--errorColor);
-  font-size: 1.4rem;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-`;
-
-const StyledFormInput = styled.input`
-  border-radius: 0;
-  appearance: none;
-  box-shadow: none;
-  display: block;
-  font-size: inherit;
-  line-height: 1.5;
-  min-height: calc(1.5em + 0.75rem + 2px);
-  outline: none;
-  transition: border-color 0.15s ease-in-out;
-  width: 100%;
-  padding: 2rem 0.65rem 0.75rem 1rem;
-  border: 1px solid var(--primaryColor);
-  background-color: var(--grey);
-  border-radius: 5px;
-
-  &.hasError {
-    color: var(--errorColor);
-    border-color: var(--errorColor);
-  }
-  &::not(.hasError):focus {
-    color: var(--errorColor);
-  }
-`;
-const StyledFormLabel = styled(motion.label)`
-  position: absolute;
-  top: 0;
-  left: 1rem;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.6);
-  cursor: pointer;
-  z-index: 5;
-  transform-origin: left;
-`;
 
 const ContactPage = () => {
   const [requestState, setRequestState] = useState(
@@ -156,10 +102,12 @@ const ContactPage = () => {
         <div>We were unable to process your request, please try again.</div>
       </Modal>
       <Wrapper
-        wrapperWidth="small"
         style={{
           marginTop: '7rem',
           marginBottom: '7rem',
+          maxWidth: '65rem',
+          paddingLeft: '3rem',
+          paddingRight: '3rem',
         }}
       >
         <StyledForm
@@ -167,7 +115,7 @@ const ContactPage = () => {
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           onSubmit={handleSubmit(
-            data => {
+            (data: any) => {
               setRequestState(requestStates.PROCESS_REQUEST_STATE);
               processContactRequest(data)
                 .then(res => {
@@ -261,8 +209,7 @@ const ContactPage = () => {
             >
               Message ({MESSAGE_THRESHOLD} characters max)
             </StyledFormLabel>
-            <StyledFormInput
-              as="textarea"
+            <StyledFormTextArea
               className={errors.message ? 'hasError' : ''}
               id="inspirations"
               name="message"
@@ -299,7 +246,7 @@ const ContactPage = () => {
 
           <StyledPrimaryButton
             type="submit"
-            large={true}
+            size="large"
             style={{
               display: 'block',
               width: '200px',

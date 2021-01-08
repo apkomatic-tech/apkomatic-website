@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import jsonData from '../data/testimonials.json';
 import Swiper, { Navigation, Pagination, EffectFade } from 'swiper';
 // import swiper styles
 import 'swiper/swiper-bundle.css';
@@ -59,7 +58,20 @@ const StyledTestimonialItemContainer = styled.div`
   padding: 4rem;
 `;
 
-const Testimonials = () => {
+interface TestimonialAuthor {
+  name: string;
+  company?: string;
+}
+interface Testimonial {
+  id: number;
+  content: string;
+  author: TestimonialAuthor;
+}
+interface TestimonialsProps {
+  items: Testimonial[];
+}
+
+const Testimonials = ({ items }: TestimonialsProps) => {
   useEffect(() => {
     Swiper.use([Navigation, Pagination, EffectFade]);
     new Swiper('.swiper-container', {
@@ -81,15 +93,17 @@ const Testimonials = () => {
   return (
     <StyledTestimonials className="swiper-container">
       <div className="swiper-wrapper">
-        {jsonData.map(testimonial => (
-          <StyledTestimonialItem key={testimonial.id} className="swiper-slide">
+        {items.map((t: Testimonial) => (
+          <StyledTestimonialItem key={t.id} className="swiper-slide">
             <StyledTestimonialItemContainer>
               <section className="body">
-                <p>{testimonial.content}</p>
+                <p>{t.content}</p>
               </section>
               <section>
-                <div className="author">{testimonial.author.name}</div>
-                <div className="company">{testimonial.author.company}</div>
+                <div className="author">{t.author.name}</div>
+                {typeof t.author.company === 'string' && (
+                  <div className="company">{t.author.company}</div>
+                )}
               </section>
             </StyledTestimonialItemContainer>
           </StyledTestimonialItem>

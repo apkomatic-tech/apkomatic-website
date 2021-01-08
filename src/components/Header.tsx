@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
-import { headerHeight, minDesktopWidth } from '../config/styles';
+import { minDesktopWidth } from '../config/styles';
 
 const links = [
   {
@@ -20,7 +20,7 @@ const links = [
   },
   {
     title: 'Questions',
-    url: '/faq',
+    url: '/frequently-asked-questions',
   },
   {
     title: 'Contact',
@@ -57,7 +57,11 @@ const StyledHamburgerSiteBrand = styled(StyledSiteBrand)`
   color: var(--baseTextColor);
 `;
 
-const StyledNavigation = styled.nav`
+interface StyledNavigationProps {
+  readonly linkCount: number | undefined;
+}
+
+const StyledNavigation = styled.nav<StyledNavigationProps>`
   display: none;
   @media screen and (min-width: ${minDesktopWidth}) {
     line-height: 1;
@@ -84,7 +88,6 @@ const StyledNavigation = styled.nav`
     a:hover,
     a:focus {
       color: var(--primaryColor);
-      font-weight: 600;
     }
   }
 `;
@@ -102,14 +105,12 @@ const StyledBaseHamburgerButton = styled.button`
 `;
 
 const StyledHamburgerMenuButton = styled(StyledBaseHamburgerButton)`
-  border: 1px solid var(--secondaryColor);
-  border-radius: 3px;
+  border: 0;
   &,
   &:hover,
   &:focus {
     background-color: var(--secondaryColor);
     color: var(--baseTextColor);
-    border-color: var(--secondaryColor);
   }
   @media screen and (min-width: ${minDesktopWidth}) {
     display: none;
@@ -162,7 +163,7 @@ const StyledHamburgerMenuClose = styled(StyledBaseHamburgerButton)`
   }
 `;
 
-function renderLinks(handleClick) {
+function renderLinks(clickHandler?: Function) {
   return links.map(link => {
     return (
       <li key={link.title}>
@@ -170,8 +171,8 @@ function renderLinks(handleClick) {
           to={link.url}
           activeClassName="active"
           onClick={() => {
-            if (typeof handleClick === 'function') {
-              handleClick();
+            if (typeof clickHandler === 'function') {
+              clickHandler();
             }
           }}
         >

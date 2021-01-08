@@ -12,7 +12,7 @@ import styled from 'styled-components';
 import { TiSocialTwitter, TiAt } from 'react-icons/ti';
 
 import { minDesktopWidth } from '../config/styles';
-import Header from './header';
+import Header from './Header';
 import 'normalize.css';
 import './global.css';
 

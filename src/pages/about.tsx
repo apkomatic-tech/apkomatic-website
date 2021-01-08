@@ -7,10 +7,10 @@ const AboutPage = () => {
     <div id="about-page">
       <SplashBanner title="About Us" />
       <Wrapper
-        wrapperWidth="small"
         style={{
           marginTop: '7rem',
           marginBottom: '7rem',
+          maxWidth: '65rem',
         }}
       >
         <h2>Who We Are</h2>
