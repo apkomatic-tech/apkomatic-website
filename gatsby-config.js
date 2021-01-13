@@ -47,11 +47,8 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        // TODO: set up sanity project to get keys/tokens
-        projectId: '??',
-        dataset: '??',
-        // TODO: get token from .env
-        token: '',
+        projectId: 'jibd5p3x',
+        dataset: 'production',
       },
     },
   ],

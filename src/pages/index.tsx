@@ -1,11 +1,8 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
-
-// data
-import testimonialsJSON from '../data/testimonials.json';
 
 // external components
 import SEO from '../components/Seo';
@@ -97,7 +94,8 @@ const StyledGetStartedCallout = styled.div`
   padding: 8rem 2rem;
 `;
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const testimonialsData = data.allSanityTestimonial.nodes;
   return (
     <div id="homepage">
       <SEO title="Home" />
@@ -181,7 +179,7 @@ const IndexPage = () => {
           <img src={EthicsImage} alt="Work Ethics" />
         </StyledFeatureRowContainer>
       </StyledFeatureRow>
-      <Testimonials items={testimonialsJSON} />
+      <Testimonials items={testimonialsData} />
       <StyledGetStartedCallout>
         <div className="h1">Ready to Get Started?</div>
         <p>
@@ -209,5 +207,18 @@ const IndexPage = () => {
     </div>
   );
 };
+
+export const query = graphql`
+  query {
+    allSanityTestimonial {
+      nodes {
+        _id
+        content
+        author
+        company
+      }
+    }
+  }
+`;
 
 export default IndexPage;
