@@ -2,6 +2,7 @@ import React from 'react';
 import Accordion from '../components/Accordion';
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
+import SEO from '../components/Seo';
 
 // data
 import faqJSON from '../data/faq.json';
@@ -9,6 +10,7 @@ import faqJSON from '../data/faq.json';
 const FaqPage = () => {
   return (
     <div id="faq-page">
+      <SEO title="Frequently Asked Questions" />
       <SplashBanner title="Frequently Asked Questions" />
       <Wrapper
         wrapperWidth="small"

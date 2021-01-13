@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
+import SEO from '../components/Seo';
 import { StyledSecondaryButton } from '../components/Button';
 import { minDesktopWidth } from '../config/styles';
 
@@ -58,6 +59,7 @@ const StyledCardFooter = styled.div`
 const ServicesPage = () => {
   return (
     <div id="services-page">
+      <SEO title="Services" />
       <SplashBanner
         title="Services"
         message="Our mission is to build affordable websites for all kind of businesses and organizations. We offer different pricing plans to match your needs."

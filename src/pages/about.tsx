@@ -1,10 +1,12 @@
 import React from 'react';
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
+import SEO from '../components/Seo';
 
 const AboutPage = () => {
   return (
     <div id="about-page">
+      <SEO title="About Us" />
       <SplashBanner title="About Us" />
       <Wrapper
         style={{

@@ -101,12 +101,12 @@ const Layout = ({ children }) => {
               <strong>Connect with us:</strong>
               <ul>
                 <li>
-                  <a href="#">
+                  <a href="mailto:apkomatic@gmail.com" aria-label="Email">
                     <TiAt />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="https://twitter.com/apkomatic" aria-label="Twitter">
                     <TiSocialTwitter />
                   </a>
                 </li>

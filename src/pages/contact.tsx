@@ -6,6 +6,7 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import processContactRequest from '../api/processContactRequest';
 
 // components
+import SEO from '../components/Seo';
 import Modal from '../components/Modal';
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
@@ -77,6 +78,7 @@ const ContactPage = () => {
 
   return (
     <div id="contact-page">
+      <SEO title="Contact Us" />
       <SplashBanner title="Contact Us" message="" />
       {/* Display Message on successful form submission */}
       <Modal
