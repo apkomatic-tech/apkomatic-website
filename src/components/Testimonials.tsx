@@ -57,15 +57,11 @@ const StyledTestimonialItemContainer = styled.div`
   max-width: 80rem;
   padding: 4rem;
 `;
-
-interface TestimonialAuthor {
-  name: string;
-  company?: string;
-}
 interface Testimonial {
-  id: number;
+  _id: string;
   content: string;
-  author: TestimonialAuthor;
+  author: string;
+  company?: string;
 }
 interface TestimonialsProps {
   items: Testimonial[];
@@ -94,15 +90,15 @@ const Testimonials = ({ items }: TestimonialsProps) => {
     <StyledTestimonials className="swiper-container">
       <div className="swiper-wrapper">
         {items.map((t: Testimonial) => (
-          <StyledTestimonialItem key={t.id} className="swiper-slide">
+          <StyledTestimonialItem key={t._id} className="swiper-slide">
             <StyledTestimonialItemContainer>
               <section className="body">
                 <p>{t.content}</p>
               </section>
               <section>
-                <div className="author">{t.author.name}</div>
-                {typeof t.author.company === 'string' && (
-                  <div className="company">{t.author.company}</div>
+                <div className="author">{t.author}</div>
+                {typeof t.company === 'string' && (
+                  <div className="company">{t.company}</div>
                 )}
               </section>
             </StyledTestimonialItemContainer>

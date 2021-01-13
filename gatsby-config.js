@@ -43,5 +43,13 @@ module.exports = {
         },
       },
     },
+    // sanity CMS
+    {
+      resolve: `gatsby-source-sanity`,
+      options: {
+        projectId: 'jibd5p3x',
+        dataset: 'production',
+      },
+    },
   ],
 };
