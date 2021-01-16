@@ -1,6 +1,7 @@
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import vanillaTilt from 'vanilla-tilt';
 
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
@@ -57,6 +58,28 @@ const StyledCardFooter = styled.div`
 `;
 
 const ServicesPage = () => {
+  const cardGridRef: any | null | undefined = useRef();
+
+  useEffect(() => {
+    if (!cardGridRef) {
+      return;
+    }
+
+    const cards = cardGridRef.current.querySelectorAll('.card');
+    cards.forEach(cardElement =>
+      vanillaTilt.init(cardElement, {
+        max: 5,
+        speed: 1500,
+        // glare: true,
+        // axis: 'x',
+      })
+    );
+
+    return () => {
+      cards.forEach(cardElement => cardElement.vanillaTilt.destroy());
+    };
+  }, []);
+
   return (
     <div id="services-page">
       <SEO title="Services" />
@@ -70,8 +93,8 @@ const ServicesPage = () => {
           marginBottom: '4rem',
         }}
       >
-        <StyledCardGrid>
-          <StyledCard>
+        <StyledCardGrid ref={cardGridRef}>
+          <StyledCard className="card">
             <StyledCardHeader>Web Design</StyledCardHeader>
             <StyledCardBody>
               <p>We offer clean and aesthetically pleasing designs.</p>
@@ -82,7 +105,7 @@ const ServicesPage = () => {
               </StyledSecondaryButton>
             </StyledCardFooter>
           </StyledCard>
-          <StyledCard>
+          <StyledCard className="card">
             <StyledCardHeader>Web Development</StyledCardHeader>
             <StyledCardBody>
               <p>

@@ -90,8 +90,13 @@ const StyledFeatureRowContainer = styled.div<StyledFeatureRowContainerProps>`
 
 const StyledGetStartedCallout = styled.div`
   text-align: center;
-  background: var(--grey);
+  background: var(--primaryColor);
   padding: 8rem 2rem;
+  .h1 {
+    font-size: 3rem;
+    color: var(--white);
+    margin-bottom: 3rem;
+  }
 `;
 
 const IndexPage = ({ data }) => {
@@ -182,11 +187,7 @@ const IndexPage = ({ data }) => {
       <Testimonials items={testimonialsData} />
       <StyledGetStartedCallout>
         <div className="h1">Ready to Get Started?</div>
-        <p>
-          Drop us a line. It only takes a few minutes. We will take care of the
-          rest.
-        </p>
-        <StyledPrimaryButtonWithArrow
+        <StyledSecondaryButtonWithArrow
           size="large"
           style={{
             width: '220px',
@@ -202,7 +203,7 @@ const IndexPage = ({ data }) => {
           }}
         >
           Get a Quote <HiOutlineChevronRight />
-        </StyledPrimaryButtonWithArrow>
+        </StyledSecondaryButtonWithArrow>
       </StyledGetStartedCallout>
     </div>
   );
