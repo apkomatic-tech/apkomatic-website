@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `Apkomatic`,
+    siteUrl: `https://www.apkomatic.com`,
     description: `Apkomatic is a Los Angeles based web development company specializing in building websites and web applications.`,
-    author: `@apkomatic-tech`,
+    author: `@apkomatic`,
   },
   plugins: [
     {
