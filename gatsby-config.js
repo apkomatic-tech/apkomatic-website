@@ -50,6 +50,8 @@ module.exports = {
       options: {
         projectId: 'jibd5p3x',
         dataset: 'production',
+        // Dev: get updates without having to manually restart the build process
+        watchMode: true,
       },
     },
   ],

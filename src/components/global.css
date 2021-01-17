@@ -34,6 +34,22 @@ a:focus {
   color: var(--baseLinkColor);
 }
 
+.baseLink {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  display: inline-block;
+  padding-bottom: 0.1rem;
+  transition: border 100ms;
+  color: var(--ternaryColor);
+}
+
+.baseLink:hover,
+.baseLink:focus {
+  opacity: 0.8;
+  color: var(--ternaryColor);
+  border-color: 1px solid var(--ternaryColor);
+}
+
 .h1,
 .h2,
 .h3,
@@ -67,6 +83,9 @@ h3 {
 }
 .text-right {
   text-align: right;
+}
+.text-left {
+  text-align: left;
 }
 
 .no-y-overflow {

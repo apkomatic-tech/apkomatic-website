@@ -18,30 +18,36 @@ const StyledBannerContainer = styled.div`
   max-width: 60rem;
   margin: auto;
   padding: 4rem 2rem;
-`;
-const StyledTitle = styled(motion.h1)`
-  margin-bottom: 2.5rem;
-  position: relative;
-  z-index: 1;
-  padding: 2rem;
-  border: 3px solid var(--darkColor);
-  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4);
-  font-size: 2.6rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border-radius: 1px;
+  h1 {
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    border: 3px solid var(--darkColor);
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4);
+    font-size: 2.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 1px;
+    .small {
+      text-transform: capitalize;
+      font-size: 1.6rem;
+    }
+  }
 `;
 
 interface SplashBannerProps {
-  title: string;
+  title?: string;
   message?: string;
+  children?: any;
 }
 
-const SplashBanner = ({ title, message }: SplashBannerProps) => {
+const SplashBanner = ({ title, message, children }: SplashBannerProps) => {
   return (
     <StyledBanner>
       <StyledBannerContainer>
-        <StyledTitle>{title}</StyledTitle>
+        {title && <h1>{title}</h1>}
+        {children}
         {message && <p>{message}</p>}
       </StyledBannerContainer>
     </StyledBanner>
