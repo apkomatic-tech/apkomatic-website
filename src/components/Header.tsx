@@ -5,28 +5,8 @@ import styled from 'styled-components';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
 import { minDesktopWidth } from '../config/styles';
 
-const links = [
-  {
-    title: 'Home',
-    url: '/',
-  },
-  {
-    title: 'Services',
-    url: '/services',
-  },
-  {
-    title: 'About',
-    url: '/about',
-  },
-  {
-    title: 'Questions',
-    url: '/frequently-asked-questions',
-  },
-  {
-    title: 'Contact',
-    url: '/contact',
-  },
-];
+// data
+import pageLinks from '../data/urls.json';
 
 const StyledHeader = styled.header`
   background-color: var(--white);
@@ -164,7 +144,7 @@ const StyledHamburgerMenuClose = styled(StyledBaseHamburgerButton)`
 `;
 
 function renderLinks(clickHandler?: Function) {
-  return links.map(link => {
+  return pageLinks.map(link => {
     return (
       <li key={link.title}>
         <Link
@@ -200,10 +180,14 @@ const Header = ({ siteTitle }) => {
         <StyledSiteBrand>
           <Link to="/">{siteTitle}</Link>
         </StyledSiteBrand>
-        <StyledNavigation linkCount={links.length}>
+        <StyledNavigation linkCount={pageLinks.length}>
           <ul>{renderLinks()}</ul>
         </StyledNavigation>
-        <StyledHamburgerMenuButton onClick={() => setIsMenuOpen(true)}>
+        <StyledHamburgerMenuButton
+          role="navigation"
+          aria-label="Navigation"
+          onClick={() => setIsMenuOpen(true)}
+        >
           <HiOutlineMenu />
         </StyledHamburgerMenuButton>
         {isMenuOpen && (
