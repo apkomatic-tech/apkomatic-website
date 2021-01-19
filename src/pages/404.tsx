@@ -34,7 +34,7 @@ const NotFoundPage = () => (
           <MdSentimentVeryDissatisfied /> Page not Found
         </h1>
         <p>
-          Oops, we can't fine the page you are looking forward. Try going back
+          Oops, we can't find the page you are looking forward. Try going back
           to the previous page.
         </p>
       </Styled404Container>
