@@ -10,18 +10,15 @@ import SplashBanner from '../components/SplashBanner';
 
 const StyledDetails = styled.section`
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   column-gap: 3rem;
+  row-gap: 3rem;
   .visit {
     display: inline-flex;
     align-items: center;
     svg {
       margin-left: 0.25rem;
     }
-  }
-  @media screen and (max-width: 960px) {
-    grid-template-columns: 1fr;
-    row-gap: 3rem;
   }
 `;
 
@@ -32,6 +29,10 @@ const StyledDetailsContent = styled.div`
   p {
     margin-top: 0;
   }
+`;
+
+const StyledDetailImageWrapper = styled.div`
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 `;
 
 const StyledBreadCrumbs = styled.div`
@@ -48,7 +49,7 @@ const StyledBreadCrumbs = styled.div`
 `;
 
 export default function ProjectDetailsPage({ data }) {
-  const { name, description, url, client, thumb } = data.sanityProject;
+  const { name, description, url, thumb } = data.sanityProject;
 
   return (
     <div id="project-details-page">
@@ -76,13 +77,11 @@ export default function ProjectDetailsPage({ data }) {
           <span>{name}</span>
         </StyledBreadCrumbs>
         <StyledDetails>
-          <div>
+          <StyledDetailImageWrapper>
             <Img fluid={thumb.asset.fluid} alt={name} />
-          </div>
+          </StyledDetailImageWrapper>
           <StyledDetailsContent>
             {description && <p>{description}</p>}
-            <h2>Client</h2>
-            <p>{client}</p>
             <a
               href={url}
               target="_blank"
@@ -103,7 +102,6 @@ export const query = graphql`
     sanityProject(_id: { eq: $id }) {
       name
       url
-      client
       description
       thumb {
         asset {

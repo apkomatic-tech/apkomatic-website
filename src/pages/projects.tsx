@@ -2,12 +2,13 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
 import SEO from '../components/Seo';
 
-const StyledProjectGrid = styled.section`
+const StyledProjectGrid = styled(motion.section)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 3rem;
@@ -19,7 +20,7 @@ const StyledProjectGrid = styled.section`
     grid-template-columns: 1fr;
   }
 `;
-const StyledProjectCard = styled.article`
+const StyledProjectCard = styled(motion.article)`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -37,7 +38,7 @@ const StyledProjectCard = styled.article`
   .img-wrapper {
     overflow: hidden;
     object-fit: contain;
-    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     margin-bottom: 3rem;
     cursor: pointer;
     a:focus {
@@ -45,6 +46,29 @@ const StyledProjectCard = styled.article`
     }
   }
 `;
+
+const gridVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.3,
+    },
+  },
+};
+const gridItemVariant = {
+  hidden: {
+    opacity: 0,
+    y: 10,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+  },
+};
 
 const ProjectPage = ({ data }) => {
   const { nodes: projectData } = data.allSanityProject;
@@ -58,17 +82,26 @@ const ProjectPage = ({ data }) => {
           marginBottom: '7rem',
         }}
       >
-        <StyledProjectGrid>
-          {projectData.map(p => {
-            const { _id, name, slug, thumb } = p;
+        <StyledProjectGrid
+          variants={gridVariant}
+          initial="hidden"
+          animate="show"
+        >
+          {projectData.map(project => {
+            const { _id, name, slug, thumb } = project;
 
             return (
-              <StyledProjectCard key={_id}>
+              <StyledProjectCard key={_id} variants={gridItemVariant}>
                 <header className="header">
                   <h2>{name}</h2>
                 </header>
                 {thumb && (
-                  <div className="img-wrapper">
+                  <motion.div
+                    className="img-wrapper"
+                    whileHover={{
+                      scale: 1.05,
+                    }}
+                  >
                     <Link
                       to={`/projects/${slug.current}`}
                       role="navigation"
@@ -77,7 +110,7 @@ const ProjectPage = ({ data }) => {
                     >
                       <Img fluid={thumb.asset.fluid} alt={name} />
                     </Link>
-                  </div>
+                  </motion.div>
                 )}
               </StyledProjectCard>
             );
