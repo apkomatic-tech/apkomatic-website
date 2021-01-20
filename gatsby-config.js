@@ -54,5 +54,7 @@ module.exports = {
         watchMode: true,
       },
     },
+    // Sitemap
+    `gatsby-plugin-sitemap`,
   ],
 };
