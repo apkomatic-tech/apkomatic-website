@@ -4,11 +4,9 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
-
 const path = require('path');
 
-exports.createPages = async ({ graphql, actions }) => {
+async function createProjectPages({ graphql, actions }) {
   // get template
   const ProjectTemplate = path.resolve('./src/templates/Project.tsx');
   // query
@@ -28,12 +26,18 @@ exports.createPages = async ({ graphql, actions }) => {
   data.project.nodes.forEach(p => {
     const { _id: id, slug } = p;
 
+    const url = `projects/${slug.current}/`;
+
     actions.createPage({
-      path: `projects/${slug.current}`,
+      path: url,
       component: ProjectTemplate,
       context: {
         id,
       },
     });
   });
+}
+
+exports.createPages = async params => {
+  await Promise.all([createProjectPages(params)]);
 };

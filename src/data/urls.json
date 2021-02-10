@@ -5,22 +5,22 @@
     },
     {
       "title": "Services",
-      "url": "/services"
+      "url": "/services/"
     },
     {
       "title": "About",
-      "url": "/about"
+      "url": "/about/"
     },
     {
       "title": "Questions",
-      "url": "/frequently-asked-questions"
+      "url": "/frequently-asked-questions/"
     },
     {
       "title": "Projects",
-      "url": "/projects"
+      "url": "/projects/"
     },
     {
       "title": "Contact",
-      "url": "/contact"
+      "url": "/contact/"
     }
 ]

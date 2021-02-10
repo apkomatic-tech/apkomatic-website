@@ -103,7 +103,7 @@ const ProjectPage = ({ data }) => {
                     }}
                   >
                     <Link
-                      to={`/projects/${slug.current}`}
+                      to={`/projects/${slug.current}/`}
                       role="navigation"
                       tabIndex={0}
                       aria-label="Project Details"
