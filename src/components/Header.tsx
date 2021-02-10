@@ -57,6 +57,27 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
 
     a {
       color: var(--darkGrey);
+      padding: 0.2rem 0.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    // hover effect
+    a::before {
+      background: rgba(255, 196, 0, 0.25);
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: width 220ms;
+      width: 0;
+      z-index: -1;
+    }
+    a:hover::before {
+      left: 0;
+      width: 100%;
     }
     a,
     a:hover,
