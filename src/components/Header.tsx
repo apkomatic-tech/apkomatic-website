@@ -110,7 +110,6 @@ const StyledHamburgerMenuButton = styled(StyledBaseHamburgerButton)`
   &,
   &:hover,
   &:focus {
-    background-color: var(--secondaryColor);
     color: var(--baseTextColor);
   }
   @media screen and (min-width: ${minDesktopWidth}) {
