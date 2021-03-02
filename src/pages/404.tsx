@@ -6,12 +6,13 @@ import SEO from '../components/Seo';
 import Wrapper from '../components/Wrapper';
 
 const Styled404Container = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 40vh;
   h1 {
     margin-top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     svg {
       margin-right: 0.5rem;
       transform: scale(1.1);
