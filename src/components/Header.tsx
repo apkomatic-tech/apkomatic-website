@@ -52,7 +52,7 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
       padding: 0;
       display: grid;
       grid-template-columns: repeat(${props => props.linkCount}, auto);
-      column-gap: 2rem;
+      column-gap: 1.2rem;
     }
 
     a {

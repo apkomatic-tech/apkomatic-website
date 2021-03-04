@@ -11,9 +11,10 @@ import {
   StyledSecondaryButtonWithArrow,
 } from '../components/Button';
 import Testimonials from '../components/Testimonials';
-import { minDesktopWidth } from '../config/styles';
+import { minDesktopWidth, minDesktopWidthLarge } from '../config/styles';
 
 // images
+import HeroImage from '../images/home/hero.svg';
 import DesignImage from '../images/home/featured-design.svg';
 import CodeImage from '../images/home/featured-code.svg';
 import EthicsImage from '../images/home/featured-relationship.svg';
@@ -22,19 +23,43 @@ const StyledHero = styled.div`
   background-color: var(--grey);
   overflow: hidden;
 `;
+const StyledHeroImage = styled.img`
+  display: none;
+  @media screen and (min-width: 600px) {
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    max-width: 295px;
+    right: 0;
+  }
+  @media screen and (min-width: 767px) {
+    right: -9px;
+    max-width: 345px;
+  }
+  @media screen and (min-width: 1024px) {
+    max-width: 425px;
+    right: -24px;
+  }
+`;
 const StyledHeroContainer = styled.div`
   max-width: var(--desktopContainerWidth);
   padding: 7rem 2rem;
   margin: auto;
+  position: relative;
+  z-index: 1;
   @media screen and (min-width: 960px) {
     padding-top: 15rem;
     padding-bottom: 15rem;
   }
 `;
 const StyledHeroCopy = styled.div`
-  width: 100%;
-  @media screen and (min-width: ${minDesktopWidth}) {
-    max-width: 50vw;
+  @media screen and (min-width: 600px) {
+    width: 50vw;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 44vw;
   }
 `;
 const StyledHeroTextTop = styled.p`
@@ -106,6 +131,12 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
       <StyledHero>
         <StyledHeroContainer>
+          <StyledHeroImage
+            src={HeroImage}
+            alt="Apkomatic"
+            width={800}
+            height={800}
+          />
           <StyledHeroCopy>
             <StyledHeroTextTop>
               We're <span className="text-uppercase">Apkomatic</span>
