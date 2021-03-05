@@ -146,7 +146,6 @@ const IndexPage = ({ data }) => {
               <StyledSecondaryButtonWithArrow
                 id="hero-callout-btn"
                 as={Link}
-                size="large"
                 style={{
                   marginTop: '2rem',
                   minWidth: '200px',

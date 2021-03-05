@@ -248,7 +248,6 @@ const ContactPage = () => {
 
           <StyledPrimaryButton
             type="submit"
-            size="large"
             style={{
               display: 'block',
               width: '200px',
