@@ -10,7 +10,7 @@ import SplashBanner from '../components/SplashBanner';
 
 const StyledDetails = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   column-gap: 3rem;
   row-gap: 3rem;
   .visit {
