@@ -108,7 +108,7 @@ const Layout = ({ children }) => {
                 <li>
                   <a
                     href="https://instagram.com/apkomatic"
-                    aria-label="Twitter"
+                    aria-label="Instagram"
                   >
                     <TiSocialInstagram />
                   </a>
