@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
-import { TiSocialTwitter, TiAt } from 'react-icons/ti';
+import { TiSocialInstagram, TiAt } from 'react-icons/ti';
 
 import { minDesktopWidth } from '../config/styles';
 import Header from './Header';
@@ -106,8 +106,11 @@ const Layout = ({ children }) => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/apkomatic" aria-label="Twitter">
-                    <TiSocialTwitter />
+                  <a
+                    href="https://instagram.com/apkomatic"
+                    aria-label="Twitter"
+                  >
+                    <TiSocialInstagram />
                   </a>
                 </li>
               </ul>
