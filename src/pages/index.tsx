@@ -25,18 +25,18 @@ const StyledHero = styled.div`
 `;
 const StyledHeroImage = styled.img`
   display: none;
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 700px) {
     position: absolute;
     z-index: 4;
     top: 50%;
     transform: translateY(-50%);
     display: block;
-    max-width: 295px;
+    max-width: 250px;
     right: 0;
   }
   @media screen and (min-width: 767px) {
     right: -9px;
-    max-width: 345px;
+    max-width: 300px;
   }
   @media screen and (min-width: 1024px) {
     max-width: 425px;
@@ -55,11 +55,15 @@ const StyledHeroContainer = styled.div`
   }
 `;
 const StyledHeroCopy = styled.div`
-  @media screen and (min-width: 600px) {
-    width: 50vw;
+  width: 100%;
+  text-align: center;
+  white-space: pre-wrap;
+  @media screen and (min-width: 700px) {
+    width: 75%;
+    text-align: left;
   }
   @media screen and (min-width: 1024px) {
-    width: 44vw;
+    width: 50%;
   }
 `;
 const StyledHeroTextTop = styled.p`
