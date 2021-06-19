@@ -1,12 +1,11 @@
 import { Link } from 'gatsby';
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import vanillaTilt from 'vanilla-tilt';
 
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
 import SEO from '../components/Seo';
-import { StyledSecondaryButton } from '../components/Button';
+import { StyledGhostButton } from '../components/Button';
 import { minDesktopWidth } from '../config/styles';
 
 const StyledCardGrid = styled.section`
@@ -25,8 +24,7 @@ const StyledCard = styled.article`
   grid-template-rows: 1fr 2fr 1fr;
   overflow: hidden;
   border-radius: 1px;
-  border: 3px solid var(--darkColor);
-  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   * {
     box-sizing: inherit;
@@ -43,43 +41,17 @@ const StyledCardHeader = styled.div`
   line-height: 1;
   display: flex;
   align-items: center;
-  background-color: var(--grey);
+  background-color: var(--primaryColor);
+  color: #fff;
 `;
 const StyledCardBody = styled.div`
   padding: 2rem;
 `;
 const StyledCardFooter = styled.div`
   padding: 2rem;
-  text-align: center;
-  a {
-    display: block;
-    width: 100%;
-  }
 `;
 
 const ServicesPage = () => {
-  const cardGridRef: any | null | undefined = useRef();
-
-  useEffect(() => {
-    if (!cardGridRef) {
-      return;
-    }
-
-    const cards = cardGridRef.current.querySelectorAll('.card');
-    cards.forEach(cardElement =>
-      vanillaTilt.init(cardElement, {
-        max: 5,
-        speed: 1500,
-        // glare: true,
-        // axis: 'x',
-      })
-    );
-
-    return () => {
-      cards.forEach(cardElement => cardElement.vanillaTilt.destroy());
-    };
-  }, []);
-
   return (
     <div id="services-page">
       <SEO title="Services" />
@@ -93,16 +65,20 @@ const ServicesPage = () => {
           marginBottom: '4rem',
         }}
       >
-        <StyledCardGrid ref={cardGridRef}>
+        <StyledCardGrid>
           <StyledCard className="card">
             <StyledCardHeader>Web Design</StyledCardHeader>
             <StyledCardBody>
               <p>We offer clean and aesthetically pleasing designs.</p>
             </StyledCardBody>
             <StyledCardFooter>
-              <StyledSecondaryButton as={Link} to="/contact">
+              <StyledGhostButton
+                as={Link}
+                to="/contact"
+                style={{ width: 'auto' }}
+              >
                 Contact for Quote
-              </StyledSecondaryButton>
+              </StyledGhostButton>
             </StyledCardFooter>
           </StyledCard>
           <StyledCard className="card">
@@ -114,9 +90,9 @@ const ServicesPage = () => {
               </p>
             </StyledCardBody>
             <StyledCardFooter>
-              <StyledSecondaryButton as={Link} to="/contact">
+              <StyledGhostButton as={Link} to="/contact">
                 Contact for Quote
-              </StyledSecondaryButton>
+              </StyledGhostButton>
             </StyledCardFooter>
           </StyledCard>
         </StyledCardGrid>

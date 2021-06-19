@@ -1,15 +1,11 @@
 import styled, { css } from 'styled-components';
 
-interface StyledButtonProps {
-  readonly size?: string;
-}
-
 const withBaseStyles = css`
   // subtle shadow
   appearance: none;
   background: var(--grey);
   border-radius: 3px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   color: var(--baseTextColor);
   cursor: pointer;
@@ -19,7 +15,7 @@ const withBaseStyles = css`
   font-weight: 400;
   line-height: 1;
   opacity: 0.9;
-  padding: 0.8rem;
+  padding: 1.2rem 1rem;
   text-align: center;
   text-decoration: none;
   transition: 300ms ease;
@@ -81,5 +77,18 @@ export const StyledSecondaryButtonWithArrow = styled(StyledSecondaryButton)`
   }
   &:hover svg {
     transform: translateX(10px);
+  }
+`;
+
+export const StyledGhostButton = styled.button`
+  ${withBaseStyles}
+  color: var(--baseTextColor);
+  border-color: var(--baseTextColor);
+  background: transparent;
+  &:hover,
+  &:focus {
+    color: var(--baseTextColor);
+    border-color: var(--baseTextColor);
+    background: var(--grey);
   }
 `;

@@ -13,8 +13,7 @@ const baseInputStyles = css`
   transition: border-color 0.15s ease-in-out;
   width: 100%;
   padding: 2rem 0.65rem 0.75rem 1rem;
-  border: 0;
-  background-color: #eef1f9;
+  border: 1px solid var(--baseTextColor);
   border-radius: 1px;
 
   &.hasError {
@@ -30,10 +29,8 @@ export const StyledForm = styled.form`
   box-sizing: border-box;
   width: 100%;
   display: block;
-  border: 3px solid var(--darkColor);
-  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4);
   background-color: var(--white);
-  padding: 1.5rem;
+  padding: 0;
   * {
     box-sizing: inherit;
   }

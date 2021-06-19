@@ -6,7 +6,7 @@ const StyledBanner = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 30vh;
+  min-height: 15vh;
   position: relative;
   z-index: 1;
   background-color: var(--primaryColor);
@@ -23,8 +23,6 @@ const StyledBannerContainer = styled.div`
     position: relative;
     z-index: 1;
     padding: 2rem;
-    border: 3px solid var(--darkColor);
-    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4);
     font-size: 2.6rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
