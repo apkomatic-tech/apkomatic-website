@@ -6,23 +6,33 @@ import { HiOutlineChevronRight } from 'react-icons/hi';
 // styled components
 const StyledAccordion = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
   box-sizing: border-box;
   * {
     box-sizing: inherit;
   }
 `;
-const StyledAccordionHeading = styled.div`
+type StyledHeadingProps = {
+  isActive: boolean;
+};
+const StyledAccordionHeading = styled.div<StyledHeadingProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   padding: 1.5rem;
-  background: transparent;
   border-radius: 5px;
   width: 100%;
   appearance: none;
   border: 0;
   text-align: left;
+  background: ${props => (props.isActive ? 'var(--darkColor)' : 'transparent')};
+  color: ${props => (props.isActive ? 'var(--white)' : 'var(--baseTextColor)')};
+  &:hover,
+  &:focus {
+    background: var(--darkColor);
+    color: var(--white);
+  }
 `;
 const StyledAccordionToggle = styled(motion.span)`
   display: block;
@@ -33,7 +43,6 @@ const StyledAccordionToggle = styled(motion.span)`
 const StyledAccordionContent = styled(motion.div)`
   overflow: hidden;
   color: rgba(#111, 0.7);
-  background: var(--grey);
   height: 0;
   .content {
     padding: 2rem;
@@ -87,6 +96,7 @@ const Accordion = ({ items, customStyles }: AccordionProps) => {
         return (
           <StyledAccordion key={id}>
             <StyledAccordionHeading
+              isActive={!collapsed}
               role="button"
               tabIndex={0}
               onClick={() => toggleVisibility(id)}

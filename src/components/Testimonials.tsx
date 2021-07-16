@@ -69,11 +69,10 @@ interface TestimonialsProps {
 
 const Testimonials = ({ items }: TestimonialsProps) => {
   useEffect(() => {
-    Swiper.use([Navigation, Pagination, EffectFade]);
-    new Swiper('.swiper-container', {
+    const swiperConfig = {
       grabCursor: true,
-      loop: false,
-      autoplay: false,
+      loop: true,
+      autoplay: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -83,7 +82,9 @@ const Testimonials = ({ items }: TestimonialsProps) => {
         dynamicBullets: true,
         clickable: true,
       },
-    });
+    };
+    Swiper.use([Navigation, Pagination, EffectFade]);
+    new Swiper('.swiper-container', swiperConfig);
   }, []);
 
   return (

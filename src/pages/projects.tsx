@@ -2,13 +2,12 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
 import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
 import SEO from '../components/Seo';
 
-const StyledProjectGrid = styled(motion.section)`
+const StyledProjectGrid = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 3rem;
@@ -20,7 +19,7 @@ const StyledProjectGrid = styled(motion.section)`
     grid-template-columns: 1fr;
   }
 `;
-const StyledProjectCard = styled(motion.article)`
+const StyledProjectCard = styled.article`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -47,29 +46,6 @@ const StyledProjectCard = styled(motion.article)`
   }
 `;
 
-const gridVariant = {
-  hidden: {
-    opacity: 0,
-  },
-  show: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      staggerChildren: 0.3,
-    },
-  },
-};
-const gridItemVariant = {
-  hidden: {
-    opacity: 0,
-    y: 10,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-  },
-};
-
 const ProjectPage = ({ data }) => {
   const { nodes: projectData } = data.allSanityProject;
   return (
@@ -82,26 +58,17 @@ const ProjectPage = ({ data }) => {
           marginBottom: '7rem',
         }}
       >
-        <StyledProjectGrid
-          variants={gridVariant}
-          initial="hidden"
-          animate="show"
-        >
+        <StyledProjectGrid>
           {projectData.map(project => {
             const { _id, name, slug, thumb } = project;
 
             return (
-              <StyledProjectCard key={_id} variants={gridItemVariant}>
+              <StyledProjectCard key={_id}>
                 <header className="header">
                   <h2>{name}</h2>
                 </header>
                 {thumb && (
-                  <motion.div
-                    className="img-wrapper"
-                    whileHover={{
-                      scale: 1.05,
-                    }}
-                  >
+                  <div className="img-wrapper">
                     <Link
                       to={`/projects/${slug.current}/`}
                       role="navigation"
@@ -110,7 +77,7 @@ const ProjectPage = ({ data }) => {
                     >
                       <Img fluid={thumb.asset.fluid} alt={name} />
                     </Link>
-                  </motion.div>
+                  </div>
                 )}
               </StyledProjectCard>
             );

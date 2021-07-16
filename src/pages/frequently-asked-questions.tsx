@@ -13,10 +13,10 @@ const FaqPage = () => {
       <SEO title="Frequently Asked Questions" />
       <SplashBanner title="Frequently Asked Questions" />
       <Wrapper
-        wrapperWidth="small"
         style={{
           marginTop: '4rem',
           marginBottom: '4rem',
+          maxWidth: '72rem',
         }}
       >
         <Accordion
