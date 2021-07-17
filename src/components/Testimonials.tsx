@@ -88,10 +88,17 @@ const Testimonials = ({ items }: TestimonialsProps) => {
   }, []);
 
   return (
-    <StyledTestimonials className="swiper-container">
+    <StyledTestimonials
+      data-testid="swiper-container"
+      className="swiper-container"
+    >
       <div className="swiper-wrapper">
         {items.map((t: Testimonial) => (
-          <StyledTestimonialItem key={t._id} className="swiper-slide">
+          <StyledTestimonialItem
+            key={t._id}
+            data-testid="testimonial-item"
+            className="swiper-slide"
+          >
             <StyledTestimonialItemContainer>
               <section className="body">
                 <p>{t.content}</p>
@@ -106,9 +113,15 @@ const Testimonials = ({ items }: TestimonialsProps) => {
           </StyledTestimonialItem>
         ))}
       </div>
-      <div className="arrow swiper-button-next swiper-button-white"></div>
-      <div className="arrow swiper-button-prev swiper-button-white"></div>
-      <div className="swiper-pagination" />
+      <div
+        data-testid="swiper-arrow"
+        className="arrow swiper-button-next swiper-button-white"
+      ></div>
+      <div
+        data-testid="swiper-arrow"
+        className="arrow swiper-button-prev swiper-button-white"
+      ></div>
+      <div data-testid="swiper-pagination" className="swiper-pagination" />
     </StyledTestimonials>
   );
 };
