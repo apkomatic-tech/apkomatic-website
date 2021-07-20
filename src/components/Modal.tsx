@@ -89,7 +89,11 @@ export default function Modal({
             }
           }}
         >
-          <StyledModalContainer key="modal" variants={modalVariants}>
+          <StyledModalContainer
+            data-testid="modal-container"
+            key="modal"
+            variants={modalVariants}
+          >
             {children}
             {showCloseBtn && (
               <StyledPrimaryButton
