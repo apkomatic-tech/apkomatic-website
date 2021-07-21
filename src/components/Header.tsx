@@ -1,5 +1,4 @@
 import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
 
@@ -37,7 +36,11 @@ function renderLinks(clickHandler?: Function) {
   });
 }
 
-const Header = ({ siteTitle }) => {
+type HeaderProps = {
+  siteTitle?: string;
+};
+
+const Header = ({ siteTitle = '' }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -49,15 +52,19 @@ const Header = ({ siteTitle }) => {
   }, [isMenuOpen]);
 
   return (
-    <StyledHeader>
+    <StyledHeader data-testid="header">
       <StyledHeaderWrapper>
         <StyledSiteBrand>
           <Link to="/">{siteTitle}</Link>
         </StyledSiteBrand>
-        <StyledNavigation linkCount={pageLinks.length}>
+        <StyledNavigation
+          linkCount={pageLinks.length}
+          data-testid="desktop-navigation"
+        >
           <ul>{renderLinks()}</ul>
         </StyledNavigation>
         <StyledHamburgerMenuButton
+          data-testid="hamburger-button"
           role="navigation"
           aria-label="Navigation"
           onClick={() => setIsMenuOpen(true)}
@@ -65,10 +72,13 @@ const Header = ({ siteTitle }) => {
           <HiOutlineMenu />
         </StyledHamburgerMenuButton>
         {isMenuOpen && (
-          <StyledHamburgerMenu>
+          <StyledHamburgerMenu data-testid="mobile-navigation">
             <StyledHamburgerMenuHeader>
               <StyledHamburgerSiteBrand>{siteTitle}</StyledHamburgerSiteBrand>
-              <StyledHamburgerMenuClose onClick={() => setIsMenuOpen(false)}>
+              <StyledHamburgerMenuClose
+                onClick={() => setIsMenuOpen(false)}
+                data-testid="close-hamburger-menu"
+              >
                 <HiOutlineX />
               </StyledHamburgerMenuClose>
             </StyledHamburgerMenuHeader>
@@ -78,14 +88,6 @@ const Header = ({ siteTitle }) => {
       </StyledHeaderWrapper>
     </StyledHeader>
   );
-};
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-  siteTitle: ``,
 };
 
 export default Header;
