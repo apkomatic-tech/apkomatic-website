@@ -29,6 +29,13 @@ describe('Header - Mobile', () => {
     fireEvent.click(hamburgerButton);
     expect(screen.queryByTestId('mobile-navigation')).toBeInTheDocument();
   });
+  test('Hamburger menu contains site brand', async () => {
+    render(<Header siteTitle="My Site" />);
+    const hamburgerButton = screen.getByTestId('hamburger-button');
+    fireEvent.click(hamburgerButton);
+    const siteBrand = await screen.findByTestId('mobile-navigation-sitebrand');
+    expect(siteBrand.textContent).toBe('My Site');
+  });
   test('Hamburger menu is hidden when close button is clicked', async () => {
     render(<Header siteTitle="My Site" />);
     const hamburgerButton = screen.getByTestId('hamburger-button');

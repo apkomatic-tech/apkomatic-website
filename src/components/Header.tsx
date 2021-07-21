@@ -74,7 +74,9 @@ const Header = ({ siteTitle = '' }: HeaderProps) => {
         {isMenuOpen && (
           <StyledHamburgerMenu data-testid="mobile-navigation">
             <StyledHamburgerMenuHeader>
-              <StyledHamburgerSiteBrand>{siteTitle}</StyledHamburgerSiteBrand>
+              <StyledHamburgerSiteBrand data-testid="mobile-navigation-sitebrand">
+                {siteTitle}
+              </StyledHamburgerSiteBrand>
               <StyledHamburgerMenuClose
                 onClick={() => setIsMenuOpen(false)}
                 data-testid="close-hamburger-menu"
