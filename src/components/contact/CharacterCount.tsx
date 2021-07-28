@@ -6,14 +6,16 @@ const CharacterCount = ({ count, threshold }) => {
   return (
     <div
       className="character-count"
+      data-testid="character-count"
       style={{
         fontSize: '1.2rem',
-        color: limitExceeded ? '#b9003e' : 'rgba(0,0,0,.7)',
+        color: limitExceeded ? 'rgb(185, 0, 62)' : 'rgba(0,0,0,.7)',
         fontStyle: 'italic',
         textAlign: 'right',
       }}
     >
-      <strong>{charactersAllowed}</strong> of {threshold} characters
+      <strong data-testid="characters-allowed">{charactersAllowed}</strong> of{' '}
+      <span data-testid="threshold">{threshold}</span> characters
     </div>
   );
 };
