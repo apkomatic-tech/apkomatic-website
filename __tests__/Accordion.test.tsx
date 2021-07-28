@@ -33,7 +33,7 @@ const mockAccordionItems = [
     id: 5,
     heading: 'Item 5',
     content: 'Content 5',
-    collapsed: false,
+    collapsed: true,
   },
 ];
 
@@ -56,6 +56,7 @@ describe('Accordion', () => {
     render(<Accordion items={mockAccordionItems} customStyles={{}} />);
     const contentElements = screen.getAllByTestId('accordion-content');
     const toggleButtonElements = screen.getAllByRole('button');
+    fireEvent.click(toggleButtonElements[4]);
     fireEvent.click(toggleButtonElements[4]);
     expect(contentElements[0].getAttribute('aria-expanded')).toBe('false');
   });

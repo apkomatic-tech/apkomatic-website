@@ -23,18 +23,18 @@ describe('Header - Mobile', () => {
     render(<Header siteTitle="My Site" />);
     expect(screen.queryByTestId('mobile-navigation')).not.toBeInTheDocument();
   });
-  test('Hamburger menu shows when hamburger button is clicked', () => {
-    render(<Header siteTitle="My Site" />);
-    const hamburgerButton = screen.getByTestId('hamburger-button');
-    fireEvent.click(hamburgerButton);
-    expect(screen.queryByTestId('mobile-navigation')).toBeInTheDocument();
-  });
   test('Hamburger menu contains site brand', async () => {
     render(<Header siteTitle="My Site" />);
     const hamburgerButton = screen.getByTestId('hamburger-button');
     fireEvent.click(hamburgerButton);
     const siteBrand = await screen.findByTestId('mobile-navigation-sitebrand');
     expect(siteBrand.textContent).toBe('My Site');
+  });
+  test('Hamburger menu shows when hamburger button is clicked', () => {
+    render(<Header siteTitle="My Site" />);
+    const hamburgerButton = screen.getByTestId('hamburger-button');
+    fireEvent.click(hamburgerButton);
+    expect(screen.queryByTestId('mobile-navigation')).toBeInTheDocument();
   });
   test('Hamburger menu is hidden when close button is clicked', async () => {
     render(<Header siteTitle="My Site" />);
