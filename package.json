@@ -6,6 +6,7 @@
   "author": "Apkomatic <apkomatic@gmail.com>",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
+    "@types/jest-axe": "^3.5.2",
     "@types/styled-components": "^5.1.7",
     "babel-plugin-styled-components": "^1.12.0",
     "framer-motion": "^2.9.5",
@@ -22,6 +23,7 @@
     "gatsby-source-filesystem": "^2.5.0",
     "gatsby-source-sanity": "^6.0.4",
     "gatsby-transformer-sharp": "^2.6.0",
+    "jest-axe": "^5.0.1",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

@@ -1,7 +1,10 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
 import Header from '../src/components/Header';
+
+expect.extend(toHaveNoViolations);
 
 describe('Header - Desktop', () => {
   test('Header renders correctly', () => {
@@ -15,6 +18,11 @@ describe('Header - Desktop', () => {
   test('Header contains navigation', () => {
     render(<Header siteTitle="My Site" />);
     expect(screen.getByTestId('desktop-navigation')).toBeInTheDocument();
+  });
+  test('Header accessibility', async () => {
+    const { container } = render(<Header siteTitle="my site" />);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });
 
@@ -45,5 +53,12 @@ describe('Header - Mobile', () => {
     );
     fireEvent.click(closeHamburgerMenuButton);
     expect(screen.queryByTestId('mobile-navigation')).not.toBeInTheDocument();
+  });
+  test('Header accessibility', async () => {
+    const { container } = render(<Header siteTitle="My Site" />);
+    const hamburgerButton = screen.getByTestId('hamburger-button');
+    fireEvent.click(hamburgerButton);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

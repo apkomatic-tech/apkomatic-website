@@ -65,7 +65,6 @@ const Header = ({ siteTitle = '' }: HeaderProps) => {
         </StyledNavigation>
         <StyledHamburgerMenuButton
           data-testid="hamburger-button"
-          role="navigation"
           aria-label="Navigation"
           onClick={() => setIsMenuOpen(true)}
         >
@@ -79,6 +78,7 @@ const Header = ({ siteTitle = '' }: HeaderProps) => {
               </StyledHamburgerSiteBrand>
               <StyledHamburgerMenuClose
                 onClick={() => setIsMenuOpen(false)}
+                aria-label="Close Navigation"
                 data-testid="close-hamburger-menu"
               >
                 <HiOutlineX />
