@@ -43,10 +43,15 @@ describe('Modal', () => {
 
   test('close callback is called when provided', () => {
     const mockOnClose = jest.fn();
-    render(<MockModal showCloseBtn onClose={mockOnClose} />);
+    const { rerender } = render(
+      <MockModal showCloseBtn onClose={mockOnClose} />
+    );
 
     const closeButton = screen.getByRole('button');
     fireEvent.click(closeButton);
     expect(mockOnClose).toHaveBeenCalled();
+
+    rerender(<MockModal show={false} />);
+    expect(screen.getByTestId('modal-container').style.opacity).toBe('0');
   });
 });
