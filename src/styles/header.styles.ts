@@ -9,7 +9,7 @@ const StyledHeader = styled.header`
   background-color: var(--white);
 `;
 const StyledHeaderWrapper = styled.div`
-  max-width: var(--desktopContainerWidth);
+  max-width: var(--desktopWideContainerWidth);
   margin: auto;
   padding: 2rem;
   display: flex;
