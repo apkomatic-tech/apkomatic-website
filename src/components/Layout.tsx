@@ -22,7 +22,7 @@ import {
 } from '../styles/layout.styles';
 
 type LayoutProps = {
-  children: React.ReactNode[];
+  children: React.ReactNode[] | React.ReactNode;
 };
 
 const Layout = ({ children }: LayoutProps) => {

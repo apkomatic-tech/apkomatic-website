@@ -54,7 +54,7 @@ const StyledCardIcon = styled.div`
   border-radius: 5px;
   box-shadow: 4px 0 8px rgba(0, 0, 0, 0.15);
 `;
-const StyledCardHeader = styled.h3`
+const StyledCardHeader = styled.h2`
   margin-top: 6.5rem;
   margin-bottom: 0;
   font-weight: 700;
