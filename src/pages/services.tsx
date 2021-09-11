@@ -1,102 +1,133 @@
 import { Link } from 'gatsby';
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { AiOutlineCode as DevIcon } from 'react-icons/ai';
+import { RiBrush2Fill as DesignIcon } from 'react-icons/ri';
 
-import SplashBanner from '../components/SplashBanner';
-import Wrapper from '../components/Wrapper';
 import SEO from '../components/Seo';
 import { StyledGhostButton } from '../components/Button';
 import { minDesktopWidth } from '../config/styles';
+import SplashHeader from '../components/SplashHeader';
+import HeaderBackground from '../images/services/header-bg.jpg';
 
 const StyledCardGrid = styled.section`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 3.5rem;
-  row-gap: 3rem;
-  @media screen and (max-width: ${minDesktopWidth}) {
-    grid-template-columns: 1fr;
+  gap: 6rem;
+  transform: translateY(-60px);
+  max-width: var(--desktopWideContainerWidth);
+  margin: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  @media screen and (min-width: ${minDesktopWidth}) {
+    transform: translateY(-80px);
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
   }
 `;
 
 const StyledCard = styled.article`
   background: var(--white);
-  display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
-  overflow: hidden;
-  border-radius: 1px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 12px 15px rgba(0, 0, 0, 0.09);
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: 1fr 1fr max-content;
   * {
     box-sizing: inherit;
   }
 `;
 
-const StyledCardHeader = styled.div`
-  padding: 2rem;
-  font-size: 2rem;
-  font-weight: 700;
-  font-family: var(--headingFont);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  line-height: 1;
+const StyledCardIcon = styled.div`
+  position: absolute;
+  top: -3rem;
+  left: 3rem;
+  background-color: var(--primaryColor);
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
-  background-color: var(--primaryColor);
+  justify-content: center;
+  font-size: 3rem;
   color: #fff;
+  border-radius: 5px;
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.15);
+`;
+const StyledCardHeader = styled.h3`
+  margin-top: 6.5rem;
+  margin-bottom: 0;
+  font-weight: 700;
+  font-size: 2.3rem;
+  line-height: 1;
+  padding-left: 3rem;
+  padding-right: 3rem;
 `;
 const StyledCardBody = styled.div`
-  padding: 2rem;
+  color: var(--darkGrey);
+  padding-left: 3rem;
+  padding-right: 3rem;
 `;
 const StyledCardFooter = styled.div`
-  padding: 2rem;
+  margin-top: 3rem;
+  padding: 2rem 3rem;
+  background: var(--grey);
+  a {
+    font-size: 1.6rem;
+    &:hover {
+      background: #fff;
+    }
+  }
+  /* padding: 2rem; */
 `;
 
 const ServicesPage = () => {
   return (
     <div id="services-page">
       <SEO title="Services" />
-      <SplashBanner
-        title="Services"
-        message="Our mission is to build affordable websites for all kind of businesses and organizations. We offer different pricing plans to match your needs."
+      <SplashHeader
+        headingText="Services"
+        subheadingText="Our mission is to build affordable websites for all kind of businesses and organizations. We offer different pricing plans to match your needs."
+        backgroundImage={HeaderBackground}
       />
-      <Wrapper
-        style={{
-          marginTop: '4rem',
-          marginBottom: '4rem',
-        }}
-      >
-        <StyledCardGrid>
-          <StyledCard className="card">
-            <StyledCardHeader>Web Design</StyledCardHeader>
-            <StyledCardBody>
-              <p>We offer clean and aesthetically pleasing designs.</p>
-            </StyledCardBody>
-            <StyledCardFooter>
-              <StyledGhostButton
-                as={Link}
-                to="/contact"
-                style={{ width: 'auto' }}
-              >
-                Contact for Quote
-              </StyledGhostButton>
-            </StyledCardFooter>
-          </StyledCard>
-          <StyledCard className="card">
-            <StyledCardHeader>Web Development</StyledCardHeader>
-            <StyledCardBody>
-              <p>
-                We build websites using right tools and we follow best practices
-                to make your websites fast and responsive
-              </p>
-            </StyledCardBody>
-            <StyledCardFooter>
-              <StyledGhostButton as={Link} to="/contact">
-                Contact for Quote
-              </StyledGhostButton>
-            </StyledCardFooter>
-          </StyledCard>
-        </StyledCardGrid>
-      </Wrapper>
+
+      <StyledCardGrid>
+        <StyledCard className="card">
+          <StyledCardIcon>
+            <DesignIcon />
+          </StyledCardIcon>
+          <StyledCardHeader>Web Design</StyledCardHeader>
+          <StyledCardBody>
+            <p>We offer clean and aesthetically pleasing designs.</p>
+          </StyledCardBody>
+          <StyledCardFooter>
+            <StyledGhostButton
+              as={Link}
+              to="/contact"
+              style={{ width: 'auto' }}
+            >
+              Contact for Quote
+            </StyledGhostButton>
+          </StyledCardFooter>
+        </StyledCard>
+        <StyledCard className="card">
+          <StyledCardIcon>
+            <DevIcon />
+          </StyledCardIcon>
+          <StyledCardHeader>Web Development</StyledCardHeader>
+          <StyledCardBody>
+            <p>
+              We build websites using right tools and we follow best practices
+              to make your websites fast and responsive
+            </p>
+          </StyledCardBody>
+          <StyledCardFooter>
+            <StyledGhostButton as={Link} to="/contact">
+              Contact for Quote
+            </StyledGhostButton>
+          </StyledCardFooter>
+        </StyledCard>
+      </StyledCardGrid>
     </div>
   );
 };

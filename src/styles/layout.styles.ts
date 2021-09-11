@@ -6,7 +6,7 @@ const StyledFooter = styled.footer`
   font-size: 1.3rem;
 `;
 const StyledFooterContainer = styled.div`
-  max-width: var(--desktopContainerWidth);
+  max-width: var(--desktopWideContainerWidth);
   margin: auto;
   padding: 2rem;
   display: flex;
