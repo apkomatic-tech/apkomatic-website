@@ -1,132 +1,38 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import styled from 'styled-components';
-import { HiOutlineChevronRight } from 'react-icons/hi';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
-
-// external components
+// icons
+import { HiOutlineChevronRight } from 'react-icons/hi';
+import { AiOutlineCode as DevIcon } from 'react-icons/ai';
+import { RiBrush2Fill as DesignIcon } from 'react-icons/ri';
+import {
+  BiAccessibility as AccessibilityIcon,
+  BiCommentDetail as CommunicationIcon,
+} from 'react-icons/bi';
+// components
 import SEO from '../components/Seo';
 import {
-  StyledPrimaryButtonWithArrow,
+  StyledPrimaryButton,
   StyledSecondaryButtonWithArrow,
 } from '../components/Button';
 import Testimonials from '../components/Testimonials';
-import { minDesktopWidth, minDesktopWidthLarge } from '../config/styles';
-
 // images
-import HeroImage from '../images/home/hero.svg';
-import DesignImage from '../images/home/featured-design.svg';
-import CodeImage from '../images/home/featured-code.svg';
-import EthicsImage from '../images/home/featured-relationship.svg';
-
-const StyledHero = styled.div`
-  background-color: var(--grey);
-  overflow: hidden;
-`;
-const StyledHeroImage = styled.img`
-  display: none;
-  @media screen and (min-width: 700px) {
-    position: absolute;
-    z-index: 4;
-    top: 50%;
-    transform: translateY(-50%);
-    display: block;
-    max-width: 250px;
-    right: 0;
-  }
-  @media screen and (min-width: 767px) {
-    right: -9px;
-    max-width: 300px;
-  }
-  @media screen and (min-width: 1024px) {
-    max-width: 425px;
-    right: -24px;
-  }
-`;
-const StyledHeroContainer = styled.div`
-  max-width: var(--desktopContainerWidth);
-  padding: 7rem 2rem;
-  margin: auto;
-  position: relative;
-  z-index: 1;
-  @media screen and (min-width: 960px) {
-    padding-top: 15rem;
-    padding-bottom: 15rem;
-  }
-`;
-const StyledHeroCopy = styled.div`
-  width: 100%;
-  text-align: center;
-  white-space: pre-wrap;
-  @media screen and (min-width: 700px) {
-    width: 75%;
-    text-align: left;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 50%;
-  }
-`;
-const StyledHeroTextTop = styled.p`
-  color: var(--primaryColor);
-  font-size: 1.8rem;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-family: var(--headingFont);
-  font-weight: 600;
-`;
-const StyledHeroH1 = styled.h1`
-  font-size: clamp(3rem, 5vw, 5rem);
-  margin: 0;
-  font-weight: 600;
-  letter-spacing: -0.08rem;
-  line-height: 1.1;
-  color: var(--darkColor);
-`;
-
-const maxFeaturedImgW = '320px';
-const StyledFeatureRow = styled.div`
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-`;
-interface StyledFeatureRowContainerProps {
-  readonly reverse?: boolean;
-}
-const StyledFeatureRowContainer = styled.div<StyledFeatureRowContainerProps>`
-  max-width: var(--desktopContainerWidth);
-  margin: auto;
-  padding: 5rem 0;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: ${props =>
-    props.reverse ? `${maxFeaturedImgW} 1fr` : `1fr ${maxFeaturedImgW}`};
-  column-gap: 5rem;
-  img {
-    max-width: ${maxFeaturedImgW};
-    width: 100%;
-    height: auto;
-    margin: auto;
-    display: block;
-  }
-  @media screen and (max-width: ${minDesktopWidth}) {
-    grid-template-columns: 1fr;
-  }
-  @media screen and (max-width: 1180px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-`;
-
-const StyledGetStartedCallout = styled.div`
-  text-align: center;
-  background: var(--primaryColor);
-  padding: 8rem 2rem;
-  .h1 {
-    font-size: 3rem;
-    color: var(--white);
-    margin-bottom: 3rem;
-  }
-`;
+import HeroImage from '../images/home/hero-image-alt.svg';
+//styles
+import {
+  StyledCallToAction,
+  StyledCallToActionWrapper,
+  StyledFeatureCard,
+  StyledFeatureGrid,
+  StyledFeatureIcon,
+  StyledFeatureSection,
+  StyledHero,
+  StyledHeroContainer,
+  StyledHeroCopy,
+  StyledHeroH1,
+  StyledHeroImage,
+  StyledHeroTextTop,
+} from '../styles/homepage.styles';
 
 const IndexPage = ({ data }) => {
   const testimonialsData = data.allSanityTestimonial.nodes;
@@ -138,12 +44,12 @@ const IndexPage = ({ data }) => {
           <StyledHeroImage
             src={HeroImage}
             alt="Apkomatic"
-            width={800}
-            height={800}
+            width={1000}
+            height={1000}
           />
           <StyledHeroCopy>
             <StyledHeroTextTop>
-              We're <span className="text-uppercase">Apkomatic</span>
+              <span className="text-uppercase">Apkomatic</span>
             </StyledHeroTextTop>
             <StyledHeroH1>We build smart and beautiful websites.</StyledHeroH1>
             <div>
@@ -170,75 +76,96 @@ const IndexPage = ({ data }) => {
           </StyledHeroCopy>
         </StyledHeroContainer>
       </StyledHero>
-      <StyledFeatureRow>
-        <StyledFeatureRowContainer>
+      {/* Featured section */}
+      <StyledFeatureSection>
+        <h2 className="text-center feature-section-heading">
+          We can help you build your online presence.
+        </h2>
+        <p className="text-center feature-section-subheading">
+          We take our work seriously and therefore only deliver high-quality
+          results that our customers will love.
+        </p>
+        <StyledFeatureGrid>
+          <StyledFeatureCard>
+            <StyledFeatureIcon>
+              <DesignIcon />
+            </StyledFeatureIcon>
+            <div>
+              <h3>Design</h3>
+              <p>
+                No copy-paste designs. Instead, we develop unique designs for
+                each client.
+              </p>
+            </div>
+          </StyledFeatureCard>
+          <StyledFeatureCard>
+            <StyledFeatureIcon>
+              <DevIcon />
+            </StyledFeatureIcon>
+            <div>
+              <h3>Performance</h3>
+              <p>
+                We use best practices and technology stacks that will result in
+                high-speed and responsive web applications/sites.
+              </p>
+            </div>
+          </StyledFeatureCard>
+          <StyledFeatureCard>
+            <StyledFeatureIcon>
+              <AccessibilityIcon />
+            </StyledFeatureIcon>
+            <div>
+              <h3>Accessibility</h3>
+              <p>
+                For every project, we take accessibility seriously. We perform
+                an accessibility audit during our development stage.
+              </p>
+            </div>
+          </StyledFeatureCard>
+          <StyledFeatureCard>
+            <StyledFeatureIcon>
+              <CommunicationIcon />
+            </StyledFeatureIcon>
+            <div>
+              <h3>Communication</h3>
+              <p>
+                We work closely with our clients to collect feedback during
+                every stage of the project. We do not make assumptions, and we
+                listen to our clients.
+              </p>
+            </div>
+          </StyledFeatureCard>
+        </StyledFeatureGrid>
+      </StyledFeatureSection>
+      {/* Call to action */}
+      <StyledCallToAction>
+        <StyledCallToActionWrapper>
           <div>
-            <h2>Design</h2>
-            <p>
-              We recognize that good design is very important as it visually
-              communicates with your users and customers. We take it seriously.
-              Whether you are a small business looking for a simple website to
-              promote your services or mid-size organization looking to refresh
-              your website look or add new features - we got you covered.
-            </p>
+            <h2 className="cta-heading">Ready to start?</h2>
+            <h3 className="cta-subheading">Let's connect.</h3>
           </div>
-          <img src={DesignImage} alt="Design" />
-        </StyledFeatureRowContainer>
-      </StyledFeatureRow>
-      <StyledFeatureRow
-        style={{
-          backgroundColor: 'var(--grey)',
-        }}
-      >
-        <StyledFeatureRowContainer reverse={true}>
-          <img src={CodeImage} alt="Development" />
           <div>
-            <h2>Development</h2>
-            <p>
-              We recognize that good design is very important as it visually
-              communicates with your users and customers. We take it seriously.
-              Whether you are a small business looking for a simple website to
-              promote your services or mid-size organization looking to refresh
-              your website look or add new features - we got you covered.
-            </p>
+            <StyledPrimaryButton
+              to="/contact"
+              as={Link}
+              style={{
+                width: '180px',
+              }}
+              onClick={() =>
+                trackCustomEvent({
+                  category: 'Homepage',
+                  action: 'Click Contact Us',
+                  label: 'Get Started',
+                })
+              }
+            >
+              Contact Us
+            </StyledPrimaryButton>
           </div>
-        </StyledFeatureRowContainer>
-      </StyledFeatureRow>
-      <StyledFeatureRow>
-        <StyledFeatureRowContainer>
-          <div>
-            <h2>Work Ethics</h2>
-            <p>
-              We truly care about our customers and that's why our work is not
-              done after we build your product. We will keep in touch with you
-              if you need help maintaining your website or web application. We
-              value your time and business.
-            </p>
-          </div>
-          <img src={EthicsImage} alt="Work Ethics" />
-        </StyledFeatureRowContainer>
-      </StyledFeatureRow>
+        </StyledCallToActionWrapper>
+      </StyledCallToAction>
+      {/* Testimonials */}
       <Testimonials items={testimonialsData} />
-      <StyledGetStartedCallout>
-        <div className="h1">Ready to Get Started?</div>
-        <StyledSecondaryButtonWithArrow
-          size="large"
-          style={{
-            width: '220px',
-          }}
-          to="/contact"
-          as={Link}
-          onClick={() => {
-            trackCustomEvent({
-              category: 'Homepage',
-              action: 'Click Contact Us',
-              label: 'Get Started',
-            });
-          }}
-        >
-          Get a Quote <HiOutlineChevronRight />
-        </StyledSecondaryButtonWithArrow>
-      </StyledGetStartedCallout>
     </div>
   );
 };
