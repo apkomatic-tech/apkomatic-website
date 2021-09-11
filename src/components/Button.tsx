@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const withBaseStyles = css`
+export const withBaseStyles = css`
   // subtle shadow
   appearance: none;
   background: var(--grey);
@@ -11,14 +11,15 @@ const withBaseStyles = css`
   cursor: pointer;
   display: inline-block;
   font-family: var(--headingFont);
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 400;
   line-height: 1;
   opacity: 0.9;
-  padding: 1.2rem 1rem;
+  padding: 1.4rem;
   text-align: center;
   text-decoration: none;
   transition: 300ms ease;
+  font-weight: bold;
   &:hover {
     opacity: 1;
   }

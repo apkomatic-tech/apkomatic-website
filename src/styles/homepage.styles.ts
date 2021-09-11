@@ -53,11 +53,12 @@ export const StyledHeroCopy = styled.div`
 `;
 export const StyledHeroTextTop = styled.p`
   color: var(--primaryColor);
-  font-size: 1.8rem;
+  font-size: clamp(2.8rem, 5vw, 4rem);
   margin-top: 0;
   margin-bottom: 1rem;
   font-family: var(--headingFont);
   font-weight: 600;
+  line-height: 1;
 `;
 export const StyledHeroH1 = styled.h1`
   font-size: clamp(3rem, 5vw, 5rem);
@@ -118,18 +119,47 @@ export const StyledFeatureIcon = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 3.2rem;
-  background: #5d2c8d;
+  background: var(--primaryColor);
   color: #fff;
   border-radius: 5px;
   box-shadow: 4px 0 8px rgba(0, 0, 0, 0.15);
 `;
-export const StyledGetStartedCallout = styled.div`
-  text-align: center;
-  background: var(--primaryColor);
-  padding: 8rem 2rem;
-  .h1 {
-    font-size: 3rem;
-    color: var(--white);
-    margin-bottom: 3rem;
+export const StyledCallToAction = styled.section`
+  background-color: var(--grey);
+  padding-top: 9rem;
+  padding-bottom: 9rem;
+  @media screen and (min-width: 767px) {
+    padding-top: 11rem;
+    padding-bottom: 11rem;
+  }
+`;
+export const StyledCallToActionWrapper = styled.div`
+  max-width: var(--desktopWideContainerWidth);
+  margin: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  @media screen and (min-width: 767px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cta-heading,
+  .cta-subheading {
+    font-size: 3.6rem;
+    margin: 0;
+    line-height: 1;
+    @media screen and (min-width: 767px) {
+      font-size: 3.8rem;
+    }
+  }
+  .cta-subheading {
+    color: var(--primaryColor);
+    margin-bottom: 2rem;
+    margin-top: 0.4rem;
+    @media screen and (min-width: 767px) {
+      margin-bottom: 0;
+    }
   }
 `;

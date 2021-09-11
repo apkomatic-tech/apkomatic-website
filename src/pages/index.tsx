@@ -11,17 +11,21 @@ import {
 } from 'react-icons/bi';
 // components
 import SEO from '../components/Seo';
-import { StyledSecondaryButtonWithArrow } from '../components/Button';
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButtonWithArrow,
+} from '../components/Button';
 import Testimonials from '../components/Testimonials';
 // images
 import HeroImage from '../images/home/hero-image-alt.svg';
 //styles
 import {
+  StyledCallToAction,
+  StyledCallToActionWrapper,
   StyledFeatureCard,
   StyledFeatureGrid,
   StyledFeatureIcon,
   StyledFeatureSection,
-  StyledGetStartedCallout,
   StyledHero,
   StyledHeroContainer,
   StyledHeroCopy,
@@ -45,7 +49,7 @@ const IndexPage = ({ data }) => {
           />
           <StyledHeroCopy>
             <StyledHeroTextTop>
-              We're <span className="text-uppercase">Apkomatic</span>
+              <span className="text-uppercase">Apkomatic</span>
             </StyledHeroTextTop>
             <StyledHeroH1>We build smart and beautiful websites.</StyledHeroH1>
             <div>
@@ -133,29 +137,35 @@ const IndexPage = ({ data }) => {
           </StyledFeatureCard>
         </StyledFeatureGrid>
       </StyledFeatureSection>
+      {/* Call to action */}
+      <StyledCallToAction>
+        <StyledCallToActionWrapper>
+          <div>
+            <h2 className="cta-heading">Ready to start?</h2>
+            <h3 className="cta-subheading">Let's connect.</h3>
+          </div>
+          <div>
+            <StyledPrimaryButton
+              to="/contact"
+              as={Link}
+              style={{
+                width: '180px',
+              }}
+              onClick={() =>
+                trackCustomEvent({
+                  category: 'Homepage',
+                  action: 'Click Contact Us',
+                  label: 'Get Started',
+                })
+              }
+            >
+              Contact Us
+            </StyledPrimaryButton>
+          </div>
+        </StyledCallToActionWrapper>
+      </StyledCallToAction>
       {/* Testimonials */}
       <Testimonials items={testimonialsData} />
-      {/* Call to action */}
-      <StyledGetStartedCallout>
-        <div className="h1">Ready to Get Started?</div>
-        <StyledSecondaryButtonWithArrow
-          size="large"
-          style={{
-            width: '220px',
-          }}
-          to="/contact"
-          as={Link}
-          onClick={() => {
-            trackCustomEvent({
-              category: 'Homepage',
-              action: 'Click Contact Us',
-              label: 'Get Started',
-            });
-          }}
-        >
-          Get a Quote <HiOutlineChevronRight />
-        </StyledSecondaryButtonWithArrow>
-      </StyledGetStartedCallout>
     </div>
   );
 };
