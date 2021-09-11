@@ -13,12 +13,13 @@ import HeaderBackground from '../images/services/header-bg.jpg';
 const StyledCardGrid = styled.section`
   display: grid;
   gap: 6rem;
-  transform: translateY(-80px);
+  transform: translateY(-60px);
   max-width: var(--desktopWideContainerWidth);
   margin: auto;
   padding-left: 2rem;
   padding-right: 2rem;
   @media screen and (min-width: ${minDesktopWidth}) {
+    transform: translateY(-80px);
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
   }
