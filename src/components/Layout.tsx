@@ -21,7 +21,11 @@ import {
   StyledFooterSocial,
 } from '../styles/layout.styles';
 
-const Layout = ({ children }) => {
+type LayoutProps = {
+  children: React.ReactNode[];
+};
+
+const Layout = ({ children }: LayoutProps) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
