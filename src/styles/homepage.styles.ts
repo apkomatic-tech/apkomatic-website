@@ -151,9 +151,6 @@ export const StyledCallToActionWrapper = styled.div`
     margin: 0;
     font-size: clamp(3rem, 5vw, 4rem);
     line-height: 1.1;
-    /* @media screen and (min-width: 767px) {
-      font-size: 3.8rem;
-    } */
   }
   .cta-subheading {
     color: var(--primaryColor);
