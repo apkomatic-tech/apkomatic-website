@@ -78,7 +78,8 @@ export const StyledFeatureSection = styled.section`
     padding-top: 10rem;
   }
   .feature-section-heading {
-    font-size: 3rem;
+    font-size: clamp(3rem, 5vw, 3rem);
+    line-height: 1.1;
     margin-top: 0;
     margin-bottom: 1rem;
     text-align: center;
@@ -147,12 +148,12 @@ export const StyledCallToActionWrapper = styled.div`
 
   .cta-heading,
   .cta-subheading {
-    font-size: 3.6rem;
     margin: 0;
-    line-height: 1;
-    @media screen and (min-width: 767px) {
+    font-size: clamp(3rem, 5vw, 4rem);
+    line-height: 1.1;
+    /* @media screen and (min-width: 767px) {
       font-size: 3.8rem;
-    }
+    } */
   }
   .cta-subheading {
     color: var(--primaryColor);
