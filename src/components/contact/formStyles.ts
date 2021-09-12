@@ -7,14 +7,17 @@ const baseInputStyles = css`
   box-shadow: none;
   display: block;
   font-size: inherit;
-  line-height: 1.5;
-  min-height: calc(1.5em + 0.75rem + 2px);
-  outline: none;
+  line-height: 1;
   transition: border-color 0.15s ease-in-out;
   width: 100%;
-  padding: 2rem 0.65rem 0.75rem 1rem;
-  border: 1px solid var(--baseTextColor);
-  border-radius: 1px;
+  padding: 1.35rem 0.65rem 1.35rem 0.95rem;
+  border: 1px solid #999;
+  border-radius: 7px;
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.04);
+  outline-offset: -1px;
+  &:focus {
+    border-color: #444;
+  }
 
   &.hasError {
     color: var(--errorColor);
@@ -23,6 +26,24 @@ const baseInputStyles = css`
   &::not(.hasError):focus {
     color: var(--errorColor);
   }
+  &.hasError:focus {
+    outline-color: var(--errorColor);
+  }
+`;
+export const StyledFormHeading = styled.div`
+  text-align: center;
+  margin-top: 8rem;
+  margin-bottom: 0;
+  .heading {
+    font-size: clamp(3rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .subheading {
+    color: #888;
+    margin: 1rem 0 0;
+  }
 `;
 export const StyledForm = styled.form`
   --errorColor: #b9003e;
@@ -30,7 +51,12 @@ export const StyledForm = styled.form`
   width: 100%;
   display: block;
   background-color: var(--white);
-  padding: 0;
+
+  border-radius: 8px;
+  padding: 3rem 0 2rem;
+  @media screen and (min-width: 767px) {
+    padding: 4rem;
+  }
   * {
     box-sizing: inherit;
   }
@@ -46,10 +72,11 @@ export const StyledFormBlock = styled.div`
 `;
 export const StyledFormError = styled.div`
   color: var(--errorColor);
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   position: absolute;
-  bottom: 0;
+  bottom: 3px;
   left: 0;
+  padding-left: 1rem;
 `;
 export const StyledFormInput = styled.input`
   ${baseInputStyles}
@@ -62,8 +89,16 @@ export const StyledFormLabel = styled(motion.label)`
   top: 0;
   left: 1rem;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   z-index: 5;
   transform-origin: left;
+  display: inline-block;
+`;
+export const StyledAlertContainer = styled.div`
+  margin: 2rem 0;
+  @media screen and (min-width: 767px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
 `;
