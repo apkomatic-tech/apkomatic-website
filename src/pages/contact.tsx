@@ -28,7 +28,7 @@ import Alert from '../components/Alert';
 
 const ContactPage = () => {
   const [requestState, setRequestState] = useState(
-    () => requestStates.INITIAL_REQUEST_STATE
+    requestStates.INITIAL_REQUEST_STATE
   );
   const { register, handleSubmit, errors } = useForm();
   const formNode = useRef(null);
@@ -88,13 +88,12 @@ const ContactPage = () => {
                   .then(res => {
                     if (res.ok) {
                       setRequestState(requestStates.SUCCESS_REQUEST_STATE);
-                      formNode.current.reset();
                       return;
                     }
 
                     setRequestState(requestStates.FAIL_REQUEST_STATE);
                   })
-                  .catch(() => {
+                  .catch(err => {
                     setRequestState(requestStates.FAIL_REQUEST_STATE);
                   });
               },

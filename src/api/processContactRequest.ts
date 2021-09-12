@@ -28,6 +28,7 @@ const processContactRequest = async (data: EmailRequestProps) => {
 
     return response;
   } catch (e) {
+    console.log('error', e.message);
     throw new Error(e);
   }
 };
