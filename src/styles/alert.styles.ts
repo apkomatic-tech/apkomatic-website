@@ -5,6 +5,7 @@ function handleThemingFromType(type: string) {
     case 'error':
       return css`
         background-color: var(--redOpaque);
+        border-color: var(--red);
         .icon {
           color: var(--red);
         }
@@ -12,6 +13,7 @@ function handleThemingFromType(type: string) {
     case 'warning':
       return css`
         background-color: var(--yellowOpaque);
+        border-color: var(--yellow);
         .icon {
           color: var(--yellow);
         }
@@ -20,6 +22,7 @@ function handleThemingFromType(type: string) {
     default:
       return css`
         background-color: var(--greenOpaque);
+        border-color: var(--green);
         .icon {
           color: var(--green);
         }
@@ -36,19 +39,21 @@ export const StyledAlert = styled.div<StyledAlertProps>`
   grid-gap: 1rem;
   padding: 2rem;
   align-items: center;
+  border-left: 6px solid;
+  border-radius: 2px;
   .icon {
-    font-size: 2rem;
+    font-size: 2.35rem;
     padding-right: 1rem;
   }
   .heading {
     font-weight: 700;
     margin-bottom: 1rem;
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.86);
     font-size: 1.6rem;
     line-height: 1.1;
   }
   .text {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.7);
     font-size: 1.4rem;
   }
   .close-btn {
@@ -60,9 +65,10 @@ export const StyledAlert = styled.div<StyledAlertProps>`
     background: none;
     border: 0;
     cursor: pointer;
+    padding: 0;
   }
   .close-btn svg {
-    opacity: 0.6;
+    opacity: 0.8;
   }
   ${props => handleThemingFromType(props.type)};
 `;

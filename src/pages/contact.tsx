@@ -9,7 +9,6 @@ import processContactRequest from '../api/processContactRequest';
 import SEO from '../components/Seo';
 import Wrapper from '../components/Wrapper';
 import CharacterCount from '../components/contact/CharacterCount';
-import useInputTouched from '../components/contact/useInputTouched';
 import requestStates from '../components/contact/requestStates';
 import { validateEmail, validateName } from '../utils/index';
 import { StyledPrimaryButton } from '../components/Button';
@@ -27,40 +26,11 @@ import {
 import { MESSAGE_THRESHOLD, CONTACT_FORM_NAME } from '../config/site';
 import Alert from '../components/Alert';
 
-const formLabelVariants = {
-  focused: {
-    y: -2,
-    scale: 0.65,
-    transition: {
-      stiffness: 50,
-      duration: 0.1,
-    },
-  },
-  blurred: {
-    y: 13,
-    scale: 1,
-    transition: {
-      stiffness: 50,
-      duration: 0.1,
-    },
-  },
-};
-
 const ContactPage = () => {
   const [requestState, setRequestState] = useState(
     () => requestStates.INITIAL_REQUEST_STATE
   );
   const { register, handleSubmit, errors } = useForm();
-  const {
-    touchedInputs,
-    handleFocus,
-    handleBlur,
-    resetTouchedInputs,
-  } = useInputTouched(() => ({
-    email: false,
-    fullName: false,
-    message: false,
-  }));
   const formNode = useRef(null);
   const [messageCount, setMessageCount] = useState(0);
 
@@ -69,24 +39,12 @@ const ContactPage = () => {
     setRequestState(requestStates.INITIAL_REQUEST_STATE);
   }
 
-  function resetFormState() {
-    // reset form state to initial
-    if (formNode) {
-      formNode.current.reset();
-    }
-    resetTouchedInputs();
-  }
-
   return (
     <div id="contact-page">
       <SEO title="Contact Us" />
       <Wrapper
         style={{
-          marginTop: '7rem',
-          marginBottom: '7rem',
           maxWidth: '65rem',
-          paddingLeft: '3rem',
-          paddingRight: '3rem',
         }}
       >
         <StyledFormHeading>
@@ -154,20 +112,11 @@ const ContactPage = () => {
           >
             <input type="hidden" name="form-name" value={CONTACT_FORM_NAME} />
             <StyledFormBlock>
-              <StyledFormLabel
-                variants={formLabelVariants}
-                initial={touchedInputs.email ? 'focused' : 'blurred'}
-                animate={touchedInputs.email ? 'focused' : 'blurred'}
-                htmlFor="email"
-              >
-                Email Address
-              </StyledFormLabel>
+              <StyledFormLabel htmlFor="email">Email Address</StyledFormLabel>
               <StyledFormInput
                 id="email"
                 type="text"
                 name="email"
-                onFocus={handleFocus}
-                onBlur={handleBlur}
                 className={errors.email ? 'hasError' : ''}
                 ref={register({
                   validate: validateEmail,
@@ -179,21 +128,12 @@ const ContactPage = () => {
             </StyledFormBlock>
 
             <StyledFormBlock>
-              <StyledFormLabel
-                variants={formLabelVariants}
-                initial={touchedInputs.fullName ? 'focused' : 'blurred'}
-                animate={touchedInputs.fullName ? 'focused' : 'blurred'}
-                htmlFor="full-name"
-              >
-                Name
-              </StyledFormLabel>
+              <StyledFormLabel htmlFor="full-name">Name</StyledFormLabel>
               <StyledFormInput
                 id="full-name"
                 type="text"
                 className={errors.fullName ? 'hasError' : ''}
                 name="fullName"
-                onFocus={handleFocus}
-                onBlur={handleBlur}
                 ref={register({
                   validate: validateName,
                   minLength: {
@@ -210,24 +150,17 @@ const ContactPage = () => {
                 ))}
             </StyledFormBlock>
             <StyledFormBlock>
-              <StyledFormLabel
-                variants={formLabelVariants}
-                initial={touchedInputs.message ? 'focused' : 'blurred'}
-                animate={touchedInputs.message ? 'focused' : 'blurred'}
-                htmlFor="inspirations"
-              >
+              <StyledFormLabel htmlFor="inspirations">
                 Message ({MESSAGE_THRESHOLD} characters max)
               </StyledFormLabel>
               <StyledFormTextArea
                 className={errors.message ? 'hasError' : ''}
                 id="inspirations"
                 name="message"
-                onFocus={handleFocus}
-                onBlur={handleBlur}
                 onChange={event => {
                   setMessageCount(event.target.value.length);
                 }}
-                rows={9}
+                rows={13}
                 ref={register({
                   maxLength: {
                     value: MESSAGE_THRESHOLD,
@@ -242,7 +175,7 @@ const ContactPage = () => {
                 style={{
                   position: 'absolute',
                   right: 0,
-                  bottom: 0,
+                  bottom: -5,
                   paddingTop: '.5rem',
                 }}
               >
