@@ -28,7 +28,7 @@ import Alert from '../components/Alert';
 
 const ContactPage = () => {
   const [requestState, setRequestState] = useState(
-    () => requestStates.INITIAL_REQUEST_STATE
+    requestStates.INITIAL_REQUEST_STATE
   );
   const { register, handleSubmit, errors } = useForm();
   const formNode = useRef(null);
@@ -82,21 +82,14 @@ const ContactPage = () => {
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit(
-              (data: any) => {
+              async (data: any) => {
                 setRequestState(requestStates.PROCESS_REQUEST_STATE);
-                processContactRequest(data)
-                  .then(res => {
-                    if (res.ok) {
-                      setRequestState(requestStates.SUCCESS_REQUEST_STATE);
-                      formNode.current.reset();
-                      return;
-                    }
-
-                    setRequestState(requestStates.FAIL_REQUEST_STATE);
-                  })
-                  .catch(() => {
-                    setRequestState(requestStates.FAIL_REQUEST_STATE);
-                  });
+                const res = await processContactRequest(data);
+                if (res.ok) {
+                  setRequestState(requestStates.SUCCESS_REQUEST_STATE);
+                } else {
+                  setRequestState(requestStates.FAIL_REQUEST_STATE);
+                }
               },
               errorData => {
                 trackCustomEvent({
