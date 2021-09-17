@@ -33,7 +33,14 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Apkomatic`} />
       <div className="page">
-        <main className="content">{children}</main>
+        <main
+          className="content"
+          style={{
+            minHeight: '70vh',
+          }}
+        >
+          {children}
+        </main>
         <Footer siteTitle={data.site.siteMetadata?.title} />
       </div>
     </>

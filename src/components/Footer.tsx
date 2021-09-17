@@ -4,7 +4,6 @@ import { Link } from 'gatsby';
 import {
   StyledFooter,
   StyledFooterContainer,
-  StyledFooterLinks,
   StyledFooterSocial,
   StyledFooterCopyright,
 } from '../styles/footer.styles';
@@ -37,7 +36,9 @@ const Footer: React.FC<FooterProps> = ({ siteTitle = 'Apkomatic' }) => {
   return (
     <StyledFooter>
       <StyledFooterContainer>
-        <StyledFooterLinks>{renderLinks()}</StyledFooterLinks>
+        <StyledFooterCopyright>
+          © {new Date().getFullYear()}, {siteTitle}
+        </StyledFooterCopyright>
         <StyledFooterSocial>
           <ul>
             <li>
@@ -53,9 +54,6 @@ const Footer: React.FC<FooterProps> = ({ siteTitle = 'Apkomatic' }) => {
           </ul>
         </StyledFooterSocial>
       </StyledFooterContainer>
-      <StyledFooterCopyright>
-        © {new Date().getFullYear()}, {siteTitle}
-      </StyledFooterCopyright>
     </StyledFooter>
   );
 };
