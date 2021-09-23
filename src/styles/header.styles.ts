@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { minDesktopWidth } from '../config/styles';
+import { minDesktopWidth, minDesktopWidthLarge } from '../config/styles';
 
 type StyledNavigationProps = {
   readonly linkCount: number | undefined;
@@ -19,11 +19,11 @@ const StyledHeaderWrapper = styled.div`
 const StyledSiteBrand = styled.h1`
   color: var(--primaryColor);
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
   font-family: var(--headingFont);
   text-transform: uppercase;
-  letter-spacing: 0.25rem;
+  letter-spacing: -0.01rem;
   a {
     color: inherit;
     font-family: inherit;
@@ -36,6 +36,7 @@ const StyledHamburgerSiteBrand = styled(StyledSiteBrand)`
 
 const StyledNavigation = styled.nav<StyledNavigationProps>`
   display: none;
+
   @media screen and (min-width: ${minDesktopWidth}) {
     line-height: 1;
     display: block;
@@ -45,7 +46,6 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
       padding: 0;
       display: grid;
       grid-template-columns: repeat(${props => props.linkCount}, auto);
-      column-gap: 1.2rem;
     }
 
     a {
@@ -84,6 +84,16 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
       color: var(--primaryColor);
     }
   }
+  @media screen and (min-width: ${minDesktopWidth}) and (max-width: ${minDesktopWidthLarge}) {
+    ul {
+      column-gap: 1.6rem;
+    }
+  }
+  @media screen and (min-width: ${minDesktopWidthLarge}) {
+    ul {
+      column-gap: 2.2rem;
+    }
+  }
 `;
 const StyledBaseHamburgerButton = styled.button`
   display: inline-flex;
@@ -92,7 +102,7 @@ const StyledBaseHamburgerButton = styled.button`
   background: transparent;
   border: 0;
   cursor: pointer;
-  font-size: 2.5rem;
+  font-size: 2.9rem;
   align-items: center;
   padding: 2px 5px;
   color: var(--baseTextColor);
@@ -121,13 +131,14 @@ const StyledHamburgerMenu = styled.nav`
 
   ul {
     list-style: none;
-    padding: 2rem;
-    margin: 0;
+    padding: 2rem 0;
+    margin: 0 2rem;
+    border-top: 2px solid rgba(0, 0, 0, 0.13);
   }
 
   a {
     text-decoration: none;
-    font-size: 1.8rem;
+    font-size: 2rem;
     line-height: 2;
     color: var(--baseTextColor);
     display: block;
@@ -147,14 +158,10 @@ const StyledHamburgerMenuHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
+  padding: 2rem 2rem 3rem 2rem;
 `;
 
-const StyledHamburgerMenuClose = styled(StyledBaseHamburgerButton)`
-  &:hover {
-    color: var(--primaryColor);
-  }
-`;
+const StyledHamburgerMenuClose = styled(StyledBaseHamburgerButton)``;
 
 export {
   StyledHeader,
