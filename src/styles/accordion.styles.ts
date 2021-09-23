@@ -24,8 +24,7 @@ const StyledAccordionHeading = styled.div<StyledHeadingProps>`
   border: 0;
   text-align: left;
   background: transparent;
-  color: var(--baseTextColor);
-  font-weight: bold;
+  color: #111;
   font-size: clamp(1.6rem, 5vw, 1.8rem);
 `;
 const StyledAccordionToggle = styled(motion.span)`
@@ -39,7 +38,7 @@ const StyledAccordionToggle = styled(motion.span)`
 `;
 const StyledAccordionContent = styled(motion.div)`
   overflow: hidden;
-  color: var(--darkGrey);
+  color: rgba(0, 0, 0, 0.6);
   height: 0;
   .content {
     padding: 0 0 2rem;

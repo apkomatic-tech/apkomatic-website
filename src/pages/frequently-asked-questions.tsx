@@ -15,6 +15,7 @@ const FaqPage = () => {
         style={{
           marginTop: '6rem',
           marginBottom: '4rem',
+          maxWidth: '80rem',
         }}
       >
         <h1
