@@ -53,35 +53,20 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
       padding: 0.2rem 0.4rem;
       position: relative;
       z-index: 1;
-    }
-
-    // hover effect
-    a::before {
-      background: rgba(255, 196, 0, 0.25);
-      content: '';
-      display: block;
-      height: 100%;
-      position: absolute;
-      right: 0;
-      top: 0;
-      transition: width 220ms;
-      width: 0;
-      z-index: -1;
-    }
-    a:hover::before {
-      left: 0;
-      width: 100%;
-    }
-    a,
-    a:hover,
-    a:focus {
-      text-decoration: none;
+      font-size: clamp(1.5rem, 5vw, 1.7rem);
+      & {
+        text-decoration: none;
+      }
     }
 
     a.active,
     a:hover,
     a:focus {
       color: var(--primaryColor);
+    }
+
+    a.active {
+      font-weight: bold;
     }
   }
   @media screen and (min-width: ${minDesktopWidth}) and (max-width: ${minDesktopWidthLarge}) {

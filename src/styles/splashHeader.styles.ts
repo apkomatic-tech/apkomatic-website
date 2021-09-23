@@ -2,11 +2,23 @@ import styled, { css } from 'styled-components';
 
 type StyledHeaderProps = {
   background?: string;
+  tight: boolean;
 };
+
 export const StyledSplashHeader = styled.header<StyledHeaderProps>`
-  min-height: 220px;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  ${props => {
+    if (props.tight) {
+      return css`
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+      `;
+    }
+    return css`
+      padding-top: 10rem;
+      padding-bottom: 10rem;
+      min-height: 220px;
+    `;
+  }}
   background-color: var(--baseTextColor);
   ${props =>
     props.background
