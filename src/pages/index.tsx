@@ -47,7 +47,10 @@ const IndexPage = ({ data }) => {
             width={1000}
             height={1000}
           />
-          <StyledHeroCopy>
+          <StyledHeroCopy
+            initial={{ y: 25, opacity: 0.25 }}
+            animate={{ y: 0, opacity: 1 }}
+          >
             <StyledHeroTextTop>
               <span className="text-uppercase">Apkomatic</span>
             </StyledHeroTextTop>

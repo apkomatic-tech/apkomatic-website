@@ -1,7 +1,9 @@
 :root {
   --white: #fff;
-  --grey: #f3f5fa;
-  --darkGrey: #515363;
+  --offWhite: #f8f8fa;
+  --grey: #e2e6f1;
+  --mediumGrey: #9daac9;
+  --darkGrey: #373947;
   --baseTextColor: #070918;
   --baseContrastTextColor: #f3f5fa;
   --baseLinkColor: #5d2c8d;

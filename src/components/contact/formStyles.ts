@@ -11,7 +11,7 @@ const baseInputStyles = css`
   width: 100%;
   padding: 1rem 0.9rem;
   border: 1px solid #999;
-  border-radius: 7px;
+  border-radius: 3px;
   box-shadow: 0 0 22px rgba(0, 0, 0, 0.04);
   outline-offset: -1px;
   &:focus {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { minDesktopWidth } from '../config/styles';
+import { minDesktopWidth, minDesktopWidthLarge } from '../config/styles';
 
 type StyledNavigationProps = {
   readonly linkCount: number | undefined;
@@ -19,11 +19,11 @@ const StyledHeaderWrapper = styled.div`
 const StyledSiteBrand = styled.h1`
   color: var(--primaryColor);
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
   font-family: var(--headingFont);
   text-transform: uppercase;
-  letter-spacing: 0.25rem;
+  letter-spacing: -0.01rem;
   a {
     color: inherit;
     font-family: inherit;
@@ -31,11 +31,12 @@ const StyledSiteBrand = styled.h1`
   }
 `;
 const StyledHamburgerSiteBrand = styled(StyledSiteBrand)`
-  color: var(--baseTextColor);
+  color: #fff;
 `;
 
 const StyledNavigation = styled.nav<StyledNavigationProps>`
   display: none;
+
   @media screen and (min-width: ${minDesktopWidth}) {
     line-height: 1;
     display: block;
@@ -45,7 +46,6 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
       padding: 0;
       display: grid;
       grid-template-columns: repeat(${props => props.linkCount}, auto);
-      column-gap: 1.2rem;
     }
 
     a {
@@ -53,35 +53,30 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
       padding: 0.2rem 0.4rem;
       position: relative;
       z-index: 1;
-    }
-
-    // hover effect
-    a::before {
-      background: rgba(255, 196, 0, 0.25);
-      content: '';
-      display: block;
-      height: 100%;
-      position: absolute;
-      right: 0;
-      top: 0;
-      transition: width 220ms;
-      width: 0;
-      z-index: -1;
-    }
-    a:hover::before {
-      left: 0;
-      width: 100%;
-    }
-    a,
-    a:hover,
-    a:focus {
-      text-decoration: none;
+      font-size: clamp(1.5rem, 5vw, 1.7rem);
+      & {
+        text-decoration: none;
+      }
     }
 
     a.active,
     a:hover,
     a:focus {
       color: var(--primaryColor);
+    }
+
+    a.active {
+      font-weight: bold;
+    }
+  }
+  @media screen and (min-width: ${minDesktopWidth}) and (max-width: ${minDesktopWidthLarge}) {
+    ul {
+      column-gap: 1.6rem;
+    }
+  }
+  @media screen and (min-width: ${minDesktopWidthLarge}) {
+    ul {
+      column-gap: 2.2rem;
     }
   }
 `;
@@ -92,7 +87,7 @@ const StyledBaseHamburgerButton = styled.button`
   background: transparent;
   border: 0;
   cursor: pointer;
-  font-size: 2.5rem;
+  font-size: 2.9rem;
   align-items: center;
   padding: 2px 5px;
   color: var(--baseTextColor);
@@ -116,25 +111,26 @@ const StyledHamburgerMenu = styled.nav`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: var(--secondaryColor);
+  background: var(--primaryColor);
   z-index: 999;
 
   ul {
     list-style: none;
-    padding: 2rem;
-    margin: 0;
+    padding: 2rem 0;
+    margin: 0 2rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.13);
   }
 
   a {
     text-decoration: none;
-    font-size: 1.8rem;
+    font-size: 2rem;
     line-height: 2;
-    color: var(--baseTextColor);
+    color: rgba(255, 255, 255, 0.9);
     display: block;
     padding: 0.5rem;
     &:hover,
     &:focus {
-      background: rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.05);
     }
   }
 
@@ -147,13 +143,11 @@ const StyledHamburgerMenuHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
+  padding: 2rem 2rem 3rem 2rem;
 `;
 
 const StyledHamburgerMenuClose = styled(StyledBaseHamburgerButton)`
-  &:hover {
-    color: var(--primaryColor);
-  }
+  color: rgba(255, 255, 255, 0.9);
 `;
 
 export {

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const StyledHero = styled.div`
@@ -39,7 +40,7 @@ export const StyledHeroContainer = styled.div`
     padding-bottom: 15rem;
   }
 `;
-export const StyledHeroCopy = styled.div`
+export const StyledHeroCopy = styled(motion.div)`
   width: 100%;
   text-align: center;
   white-space: pre-wrap;
@@ -127,8 +128,8 @@ export const StyledFeatureIcon = styled.div`
 `;
 export const StyledCallToAction = styled.section`
   background-color: var(--grey);
-  padding-top: 9rem;
-  padding-bottom: 9rem;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
   @media screen and (min-width: 767px) {
     padding-top: 11rem;
     padding-bottom: 11rem;
@@ -139,11 +140,13 @@ export const StyledCallToActionWrapper = styled.div`
   margin: auto;
   padding-left: 2rem;
   padding-right: 2rem;
+  text-align: center;
 
   @media screen and (min-width: 767px) {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: left;
   }
 
   .cta-heading,

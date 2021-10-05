@@ -1,26 +1,22 @@
 [
-    {
-      "title": "Home",
-      "url": "/"
-    },
-    {
-      "title": "Services",
-      "url": "/services/"
-    },
-    {
-      "title": "About",
-      "url": "/about/"
-    },
-    {
-      "title": "Questions",
-      "url": "/frequently-asked-questions/"
-    },
-    {
-      "title": "Projects",
-      "url": "/projects/"
-    },
-    {
-      "title": "Contact",
-      "url": "/contact/"
-    }
+  {
+    "title": "Home",
+    "url": "/"
+  },
+  {
+    "title": "Services",
+    "url": "/services/"
+  },
+  {
+    "title": "Projects",
+    "url": "/projects/"
+  },
+  {
+    "title": "Contact",
+    "url": "/contact/"
+  },
+  {
+    "title": "FAQ",
+    "url": "/frequently-asked-questions/"
+  }
 ]

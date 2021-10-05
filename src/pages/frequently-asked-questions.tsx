@@ -1,6 +1,5 @@
 import React from 'react';
 import Accordion from '../components/Accordion';
-import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
 import SEO from '../components/Seo';
 
@@ -11,19 +10,29 @@ const FaqPage = () => {
   return (
     <div id="faq-page">
       <SEO title="Frequently Asked Questions" />
-      <SplashBanner title="Frequently Asked Questions" />
+
       <Wrapper
         style={{
-          marginTop: '4rem',
+          marginTop: '6rem',
           marginBottom: '4rem',
-          maxWidth: '72rem',
+          maxWidth: '80rem',
         }}
       >
+        <h1
+          style={{
+            fontSize: 'clamp(3rem, 5vw, 4rem)',
+            margin: 0,
+            textAlign: 'center',
+            paddingBottom: '2rem',
+            borderBottom: '2px solid var(--grey)',
+          }}
+        >
+          Frequently Asked Questions
+        </h1>
         <Accordion
           items={faqJSON}
           customStyles={{
-            marginTop: '7rem',
-            marginBottom: '7rem',
+            marginTop: '2rem',
           }}
         />
       </Wrapper>

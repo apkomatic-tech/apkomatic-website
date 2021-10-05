@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const StyledAccordion = styled.div`
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid var(--grey);
 
   box-sizing: border-box;
   * {
@@ -17,32 +17,31 @@ const StyledAccordionHeading = styled.div<StyledHeadingProps>`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  padding: 1.5rem;
+  padding: 2.4rem 0;
   border-radius: 5px;
   width: 100%;
   appearance: none;
   border: 0;
   text-align: left;
-  background: ${props => (props.isActive ? 'var(--darkColor)' : 'transparent')};
-  color: ${props => (props.isActive ? 'var(--white)' : 'var(--baseTextColor)')};
-  &:hover,
-  &:focus {
-    background: var(--darkColor);
-    color: var(--white);
-  }
+  background: transparent;
+  color: #111;
+  font-size: clamp(1.6rem, 5vw, 1.8rem);
 `;
 const StyledAccordionToggle = styled(motion.span)`
-  display: block;
+  display: flex;
   margin-left: 10px;
   transform: rotate(90deg);
-  font-size: 1.3rem;
+  font-size: 2.4rem;
+  color: var(--darkGrey);
+  align-items: center;
+  justify-content: center;
 `;
 const StyledAccordionContent = styled(motion.div)`
   overflow: hidden;
-  color: rgba(#111, 0.7);
+  color: rgba(0, 0, 0, 0.6);
   height: 0;
   .content {
-    padding: 2rem;
+    padding: 0 0 2rem;
   }
 `;
 
