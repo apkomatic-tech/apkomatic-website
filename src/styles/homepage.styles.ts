@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const StyledHero = styled.div`
@@ -39,7 +40,7 @@ export const StyledHeroContainer = styled.div`
     padding-bottom: 15rem;
   }
 `;
-export const StyledHeroCopy = styled.div`
+export const StyledHeroCopy = styled(motion.div)`
   width: 100%;
   text-align: center;
   white-space: pre-wrap;
