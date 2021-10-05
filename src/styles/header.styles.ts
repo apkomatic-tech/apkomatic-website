@@ -31,7 +31,7 @@ const StyledSiteBrand = styled.h1`
   }
 `;
 const StyledHamburgerSiteBrand = styled(StyledSiteBrand)`
-  color: var(--baseTextColor);
+  color: #fff;
 `;
 
 const StyledNavigation = styled.nav<StyledNavigationProps>`
@@ -111,26 +111,26 @@ const StyledHamburgerMenu = styled.nav`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: var(--secondaryColor);
+  background: var(--primaryColor);
   z-index: 999;
 
   ul {
     list-style: none;
     padding: 2rem 0;
     margin: 0 2rem;
-    border-top: 2px solid rgba(0, 0, 0, 0.13);
+    border-top: 2px solid rgba(255, 255, 255, 0.13);
   }
 
   a {
     text-decoration: none;
     font-size: 2rem;
     line-height: 2;
-    color: var(--baseTextColor);
+    color: rgba(255, 255, 255, 0.9);
     display: block;
     padding: 0.5rem;
     &:hover,
     &:focus {
-      background: rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.05);
     }
   }
 
@@ -146,7 +146,9 @@ const StyledHamburgerMenuHeader = styled.div`
   padding: 2rem 2rem 3rem 2rem;
 `;
 
-const StyledHamburgerMenuClose = styled(StyledBaseHamburgerButton)``;
+const StyledHamburgerMenuClose = styled(StyledBaseHamburgerButton)`
+  color: rgba(255, 255, 255, 0.9);
+`;
 
 export {
   StyledHeader,
