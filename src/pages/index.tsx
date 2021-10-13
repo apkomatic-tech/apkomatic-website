@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, graphql } from 'gatsby';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 // icons
@@ -34,8 +34,33 @@ import {
   StyledHeroTextTop,
 } from '../styles/homepage.styles';
 
+function unveil(element: HTMLElement, onIntersecting: () => void) {
+  const unveilCallback: IntersectionObserverCallback = (
+    entries: IntersectionObserverEntry[],
+    observer: IntersectionObserver
+  ) => {
+    const [entry] = entries;
+    if (!entry.isIntersecting) return;
+    onIntersecting();
+    observer.unobserve(entry.target);
+  };
+  const unveilOpts: IntersectionObserverInit = {
+    root: null,
+    threshold: 0.5,
+  };
+  const intObserver = new IntersectionObserver(unveilCallback, unveilOpts);
+  intObserver.observe(element);
+}
+
 const IndexPage = ({ data }) => {
+  const [showCallToAction, setShowCallToAction] = useState(false);
+  const callToActionElementRef = useRef<HTMLElement>();
   const testimonialsData = data.allSanityTestimonial.nodes;
+
+  useEffect(() => {
+    unveil(callToActionElementRef.current, () => setShowCallToAction(true));
+  });
+
   return (
     <div id="homepage">
       <SEO title="Home" />
@@ -78,6 +103,8 @@ const IndexPage = ({ data }) => {
             </div>
           </StyledHeroCopy>
         </StyledHeroContainer>
+        <div className="pattern-box pattern-box-1" />
+        <div className="pattern-box pattern-box-2" />
       </StyledHero>
       {/* Featured section */}
       <StyledFeatureSection>
@@ -140,8 +167,13 @@ const IndexPage = ({ data }) => {
           </StyledFeatureCard>
         </StyledFeatureGrid>
       </StyledFeatureSection>
+      {/* Testimonials */}
+      <Testimonials items={testimonialsData} />
       {/* Call to action */}
-      <StyledCallToAction>
+      <StyledCallToAction
+        ref={callToActionElementRef}
+        className={showCallToAction ? '' : `visually-hidden`}
+      >
         <StyledCallToActionWrapper>
           <div>
             <h2 className="cta-heading">Ready to start?</h2>
@@ -167,8 +199,6 @@ const IndexPage = ({ data }) => {
           </div>
         </StyledCallToActionWrapper>
       </StyledCallToAction>
-      {/* Testimonials */}
-      <Testimonials items={testimonialsData} />
     </div>
   );
 };

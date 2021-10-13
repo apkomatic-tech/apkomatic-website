@@ -2,11 +2,41 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const StyledHero = styled.div`
-  background-color: var(--grey);
+  /* background-color: var(--grey); */
   overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid var(--grey);
   @media screen and (min-width: 767px) {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+  .pattern-box {
+    display: none;
+    @media screen and (min-width: 767px) {
+      display: block;
+      position: absolute;
+      z-index: -1;
+
+      background-color: #ffffff;
+      opacity: 0.3;
+      background-image: radial-gradient(
+        #5d2c8d 0.6000000000000001px,
+        #ffffff 0.6000000000000001px
+      );
+      background-size: 12px 12px;
+    }
+  }
+  .pattern-box-1 {
+    width: 400px;
+    height: 400px;
+    top: 15px;
+    left: -25px;
+  }
+  .pattern-box-2 {
+    width: 400px;
+    height: 400px;
+    bottom: 15px;
+    right: -25px;
   }
 `;
 export const StyledHeroImage = styled.img`
@@ -130,6 +160,11 @@ export const StyledCallToAction = styled.section`
   background-color: var(--grey);
   padding-top: 7rem;
   padding-bottom: 7rem;
+  transition: 700ms ease;
+  &.visually-hidden {
+    opacity: 0;
+    transform: translateY(15px);
+  }
   @media screen and (min-width: 767px) {
     padding-top: 11rem;
     padding-bottom: 11rem;
