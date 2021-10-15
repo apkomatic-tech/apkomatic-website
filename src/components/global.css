@@ -1,6 +1,6 @@
 :root {
   --white: #fff;
-  --offWhite: #f8f8fa;
+  --offWhite: #fdfbff;
   --grey: #e2e6f1;
   --mediumGrey: #9daac9;
   --darkGrey: #373947;
@@ -101,4 +101,22 @@ h3 {
 .no-y-overflow {
   overflow-y: hidden;
   touch-action: none;
+}
+
+/* watermark */
+.watermark {
+  font-size: 26rem;
+  color: rgba(0, 0, 0, 0.04);
+  font-weight: bold;
+  position: absolute;
+  user-select: none;
+  line-height: 0;
+  letter-spacing: -16px;
+  font-family: sans-serif;
+}
+
+@media screen and (min-width: 767px) {
+  .watermark {
+    font-size: 32rem;
+  }
 }

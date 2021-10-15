@@ -8,7 +8,6 @@ import processContactRequest from '../api/processContactRequest';
 // components
 import SEO from '../components/Seo';
 import Wrapper from '../components/Wrapper';
-import CharacterCount from '../components/contact/CharacterCount';
 import requestStates from '../components/contact/requestStates';
 import { validateEmail, validateName } from '../utils/index';
 import { StyledPrimaryButton } from '../components/Button';
@@ -32,7 +31,6 @@ const ContactPage = () => {
   );
   const { register, handleSubmit, errors } = useForm();
   const formNode = useRef(null);
-  const [messageCount, setMessageCount] = useState(0);
 
   function resetRequestState() {
     // reset request state to initial
@@ -150,9 +148,6 @@ const ContactPage = () => {
                 className={errors.message ? 'hasError' : ''}
                 id="inspirations"
                 name="message"
-                onChange={event => {
-                  setMessageCount(event.target.value.length);
-                }}
                 rows={13}
                 ref={register({
                   maxLength: {
@@ -164,19 +159,6 @@ const ContactPage = () => {
               {errors.message && (
                 <StyledFormError>{errors.message.message}</StyledFormError>
               )}
-              <div
-                style={{
-                  position: 'absolute',
-                  right: 0,
-                  bottom: -5,
-                  paddingTop: '.5rem',
-                }}
-              >
-                <CharacterCount
-                  count={messageCount}
-                  threshold={MESSAGE_THRESHOLD}
-                />
-              </div>
             </StyledFormBlock>
 
             <StyledPrimaryButton
