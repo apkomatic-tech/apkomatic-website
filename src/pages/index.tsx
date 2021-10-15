@@ -103,6 +103,7 @@ const IndexPage = ({ data }) => {
             </div>
           </StyledHeroCopy>
         </StyledHeroContainer>
+        <div className="decor-box"></div>
         <div className="pattern-box pattern-box-1" />
         <div className="pattern-box pattern-box-2" />
       </StyledHero>
@@ -174,6 +175,13 @@ const IndexPage = ({ data }) => {
         ref={callToActionElementRef}
         className={showCallToAction ? '' : `visually-hidden`}
       >
+        <div className="pattern-box"></div>
+        <div className="watermark watermark--left" aria-hidden="true">
+          Connect
+        </div>
+        <div className="watermark watermark--right" aria-hidden="true">
+          Start
+        </div>
         <StyledCallToActionWrapper>
           <div>
             <h2 className="cta-heading">Ready to start?</h2>

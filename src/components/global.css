@@ -102,3 +102,21 @@ h3 {
   overflow-y: hidden;
   touch-action: none;
 }
+
+/* watermark */
+.watermark {
+  font-size: 26rem;
+  color: rgba(0, 0, 0, 0.04);
+  font-weight: bold;
+  position: absolute;
+  user-select: none;
+  line-height: 0;
+  letter-spacing: -16px;
+  font-family: sans-serif;
+}
+
+@media screen and (min-width: 767px) {
+  .watermark {
+    font-size: 32rem;
+  }
+}

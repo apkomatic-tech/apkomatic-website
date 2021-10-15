@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const StyledHero = styled.div`
-  /* background-color: var(--grey); */
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid var(--grey);
@@ -12,7 +11,7 @@ export const StyledHero = styled.div`
   }
   .pattern-box {
     display: none;
-    @media screen and (min-width: 767px) {
+    @media screen and (min-width: 1024px) {
       display: block;
       position: absolute;
       z-index: -1;
@@ -38,6 +37,20 @@ export const StyledHero = styled.div`
     bottom: 15px;
     right: -25px;
   }
+  .decor-box {
+    display: none;
+    @media screen and (min-width: 1024px) {
+      display: block;
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      left: 15%;
+      top: 50%;
+      transform: skew(11deg, 11deg) translateY(-50%);
+      background: rgba(93, 44, 141, 0.1);
+      z-index: -1;
+    }
+  }
 `;
 export const StyledHeroImage = styled.img`
   display: none;
@@ -55,8 +68,8 @@ export const StyledHeroImage = styled.img`
     max-width: 400px;
   }
   @media screen and (min-width: 1024px) {
-    max-width: 600px;
-    right: -24px;
+    max-width: 550px;
+    right: -12px;
   }
 `;
 export const StyledHeroContainer = styled.div`
@@ -79,12 +92,13 @@ export const StyledHeroCopy = styled(motion.div)`
     text-align: left;
   }
   @media screen and (min-width: 1024px) {
-    width: 50%;
+    width: 60%;
+    margin-right: 3rem;
   }
 `;
 export const StyledHeroTextTop = styled.p`
   color: var(--primaryColor);
-  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   margin-top: 0;
   margin-bottom: 1rem;
   font-family: var(--headingFont);
@@ -92,7 +106,7 @@ export const StyledHeroTextTop = styled.p`
   line-height: 1;
 `;
 export const StyledHeroH1 = styled.h1`
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size: clamp(3rem, 5vw, 10rem);
   margin: 0;
   font-weight: 600;
   letter-spacing: -0.08rem;
@@ -158,16 +172,47 @@ export const StyledFeatureIcon = styled.div`
 `;
 export const StyledCallToAction = styled.section`
   background-color: var(--grey);
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 9rem;
+  padding-bottom: 9rem;
   transition: 700ms ease;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
   &.visually-hidden {
     opacity: 0;
     transform: translateY(15px);
   }
   @media screen and (min-width: 767px) {
-    padding-top: 11rem;
-    padding-bottom: 11rem;
+    padding-top: 16rem;
+    padding-bottom: 16rem;
+  }
+  .pattern-box {
+    display: block;
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    opacity: 0.2;
+    background-image: radial-gradient(
+      #5d2c8d 0.6000000000000001px,
+      transparent 0.6000000000000001px
+    );
+    background-size: 12px 12px;
+  }
+  .watermark {
+    color: rgba(0, 0, 0, 0.03);
+  }
+  .watermark--left {
+    top: 15%;
+    left: -45px;
+  }
+
+  .watermark--right {
+    bottom: 10%;
+    right: -10px;
   }
 `;
 export const StyledCallToActionWrapper = styled.div`
@@ -177,25 +222,15 @@ export const StyledCallToActionWrapper = styled.div`
   padding-right: 2rem;
   text-align: center;
 
-  @media screen and (min-width: 767px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-  }
-
   .cta-heading,
   .cta-subheading {
     margin: 0;
-    font-size: clamp(3rem, 5vw, 4rem);
+    font-size: clamp(3rem, 5vw, 6rem);
     line-height: 1.1;
   }
   .cta-subheading {
     color: var(--primaryColor);
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     margin-top: 0.4rem;
-    @media screen and (min-width: 767px) {
-      margin-bottom: 0;
-    }
   }
 `;
