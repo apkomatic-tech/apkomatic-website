@@ -8,7 +8,7 @@ import SEO from '../components/Seo';
 import { StyledGhostButton } from '../components/Button';
 import { minDesktopWidth } from '../config/styles';
 import SplashHeader from '../components/SplashHeader';
-import HeaderBackground from '../images/services/header-bg.jpg';
+import HeaderBackground from '../images/services/header-bg-optimized.jpg';
 
 const StyledCardGrid = styled.section`
   display: grid;
