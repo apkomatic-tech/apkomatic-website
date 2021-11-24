@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
 import SplashBanner from '../components/SplashBanner';
@@ -61,6 +61,7 @@ const ProjectPage = ({ data }) => {
         <StyledProjectGrid>
           {projectData.map(project => {
             const { _id, name, slug, thumb } = project;
+            const projectImage = getImage(thumb.asset);
 
             return (
               <StyledProjectCard key={_id}>
@@ -75,7 +76,7 @@ const ProjectPage = ({ data }) => {
                       tabIndex={0}
                       aria-label="Project Details"
                     >
-                      <Img fluid={thumb.asset.fluid} alt={name} />
+                      <GatsbyImage image={projectImage} alt={name} />
                     </Link>
                   </div>
                 )}
@@ -102,9 +103,7 @@ export const query = graphql`
         }
         thumb {
           asset {
-            fluid(maxWidth: 500) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(width: 500, placeholder: BLURRED)
           }
         }
         slug {

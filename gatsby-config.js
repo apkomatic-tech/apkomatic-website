@@ -56,5 +56,6 @@ module.exports = {
     },
     // Sitemap
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-image`,
   ],
 };
