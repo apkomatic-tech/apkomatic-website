@@ -16,7 +16,6 @@ import {
   StyledPrimaryButton,
   StyledSecondaryButtonWithArrow,
 } from '../components/Button';
-import Testimonials from '../components/Testimonials';
 // images
 import HeroImage from '../images/home/hero-image-alt.svg';
 //styles
@@ -177,8 +176,6 @@ const IndexPage = ({ data }) => {
         </h2>
         <InstagramFeed count={12} />
       </StyledFeatureSection>
-      {/* Testimonials */}
-      {/* <Testimonials items={testimonialsData} /> */}
       {/* Call to action */}
       <StyledCallToAction
         ref={callToActionElementRef}

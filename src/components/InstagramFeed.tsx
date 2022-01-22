@@ -1,7 +1,5 @@
-import { string } from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { AiFillInstagram } from 'react-icons/ai';
-import styled, { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 
 import getInstagramFeed from '../api/getInstagramFeed';
 
