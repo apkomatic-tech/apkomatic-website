@@ -117,9 +117,10 @@ export const StyledHeroH1 = styled.h1`
 export const StyledFeatureSection = styled.section`
   margin: auto;
   max-width: var(--desktopWideContainerWidth);
-  padding: 7rem 2rem;
+  padding-left: 2rem;
+  pading-right: 2rem;
+  padding-top: 7rem;
   @media screen and (min-width: 767px) {
-    padding-bottom: 10rem;
     padding-top: 10rem;
   }
   .feature-section-heading {

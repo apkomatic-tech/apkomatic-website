@@ -9,6 +9,7 @@ import {
   BiAccessibility as AccessibilityIcon,
   BiCommentDetail as CommunicationIcon,
 } from 'react-icons/bi';
+
 // components
 import SEO from '../components/Seo';
 import {
@@ -33,6 +34,7 @@ import {
   StyledHeroImage,
   StyledHeroTextTop,
 } from '../styles/homepage.styles';
+import InstagramFeed from '../components/InstagramFeed';
 
 function unveil(element: HTMLElement, onIntersecting: () => void) {
   const unveilCallback: IntersectionObserverCallback = (
@@ -168,8 +170,15 @@ const IndexPage = ({ data }) => {
           </StyledFeatureCard>
         </StyledFeatureGrid>
       </StyledFeatureSection>
+      {/* Instagram Feed */}
+      <StyledFeatureSection>
+        <h2 className="text-center feature-section-heading">
+          Follow Us On Instagram
+        </h2>
+        <InstagramFeed count={12} />
+      </StyledFeatureSection>
       {/* Testimonials */}
-      <Testimonials items={testimonialsData} />
+      {/* <Testimonials items={testimonialsData} /> */}
       {/* Call to action */}
       <StyledCallToAction
         ref={callToActionElementRef}
