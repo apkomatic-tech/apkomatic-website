@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 // icons
 import { HiOutlineChevronRight } from 'react-icons/hi';
@@ -56,7 +56,6 @@ function unveil(element: HTMLElement, onIntersecting: () => void) {
 const IndexPage = ({ data }) => {
   const [showCallToAction, setShowCallToAction] = useState(false);
   const callToActionElementRef = useRef<HTMLElement>();
-  const testimonialsData = data.allSanityTestimonial.nodes;
 
   useEffect(() => {
     unveil(callToActionElementRef.current, () => setShowCallToAction(true));
@@ -77,9 +76,6 @@ const IndexPage = ({ data }) => {
             initial={{ y: 25, opacity: 0.25 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <StyledHeroTextTop>
-              <span className="text-uppercase">Apkomatic</span>
-            </StyledHeroTextTop>
             <StyledHeroH1>We build smart and beautiful websites.</StyledHeroH1>
             <div>
               <StyledSecondaryButtonWithArrow
@@ -88,6 +84,8 @@ const IndexPage = ({ data }) => {
                 style={{
                   marginTop: '2rem',
                   minWidth: '200px',
+                  padding: '2rem',
+                  fontSize: '2rem',
                 }}
                 to="/contact"
                 onClick={() => {
@@ -185,9 +183,6 @@ const IndexPage = ({ data }) => {
         <div className="watermark watermark--left" aria-hidden="true">
           Connect
         </div>
-        <div className="watermark watermark--right" aria-hidden="true">
-          Start
-        </div>
         <StyledCallToActionWrapper>
           <div>
             <h2 className="cta-heading">Ready to start?</h2>
@@ -216,18 +211,5 @@ const IndexPage = ({ data }) => {
     </div>
   );
 };
-
-export const query = graphql`
-  query {
-    allSanityTestimonial {
-      nodes {
-        _id
-        content
-        author
-        company
-      }
-    }
-  }
-`;
 
 export default IndexPage;

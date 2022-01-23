@@ -54,7 +54,7 @@ export const StyledHero = styled.div`
 `;
 export const StyledHeroImage = styled.img`
   display: none;
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 767px) {
     position: absolute;
     z-index: 4;
     top: 50%;
@@ -63,11 +63,11 @@ export const StyledHeroImage = styled.img`
     max-width: 320px;
     right: 0;
   }
-  @media screen and (min-width: 767px) {
-    right: -9px;
-    max-width: 400px;
-  }
   @media screen and (min-width: 1024px) {
+    max-width: 420px;
+    right: -9px;
+  }
+  @media screen and (min-width: 1280px) {
     max-width: 550px;
     right: -12px;
   }
@@ -106,19 +106,32 @@ export const StyledHeroTextTop = styled.p`
   line-height: 1;
 `;
 export const StyledHeroH1 = styled.h1`
-  font-size: clamp(3rem, 5vw, 10rem);
-  margin: 0;
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.08rem;
   line-height: 1.1;
   color: var(--darkColor);
+  background: var(--darkColor);
+  background: -webkit-linear-gradient(to right, #5d2c8d 9%, #b60045 91%);
+  background: -moz-linear-gradient(to right, #5d2c8d 9%, #b60045 91%);
+  background: linear-gradient(to right, #5d2c8d 9%, #b60045 91%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 6rem;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 10rem;
+  }
 `;
 
 export const StyledFeatureSection = styled.section`
   margin: auto;
   max-width: var(--desktopWideContainerWidth);
   padding-left: 2rem;
-  pading-right: 2rem;
+  padding-right: 2rem;
   padding-top: 7rem;
   @media screen and (min-width: 767px) {
     padding-top: 10rem;
@@ -209,11 +222,6 @@ export const StyledCallToAction = styled.section`
   .watermark--left {
     top: 15%;
     left: -45px;
-  }
-
-  .watermark--right {
-    bottom: 10%;
-    right: -10px;
   }
 `;
 export const StyledCallToActionWrapper = styled.div`

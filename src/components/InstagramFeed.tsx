@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import getInstagramFeed from '../api/getInstagramFeed';
 
-interface StyledFeedContainerProps {
-  count: number;
-}
-const StyledFeedContainer = styled.section<StyledFeedContainerProps>`
+// TODO: use gatsby plugin to source instagram data instead of fetch, this way data is available on server instead of client
+
+const StyledFeedContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1.4rem;
@@ -44,7 +46,7 @@ const StyledFeedItem = styled.a`
   }
 
   .instagram-caption-username {
-    /* font-size: 1.6rem; */
+    font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 1rem;
   }
@@ -78,7 +80,7 @@ const InstagramFeed = ({ count = 5 }: { count?: number }) => {
     setIsLoading(true);
     getInstagramFeed(['username'])
       .then(data => {
-        if (data.hasOwnProperty('error')) {
+        if (data?.error) {
           setError(data.error);
           setIsLoading(false);
           return;
@@ -94,20 +96,36 @@ const InstagramFeed = ({ count = 5 }: { count?: number }) => {
       });
   }, []);
 
-  useEffect(() => {
-    if (error) {
-      console.error(error);
-    }
-  }, [error]);
-
   if (error) {
-    return <div>There was an error loading Instagram feed</div>;
+    return (
+      <div
+        style={{
+          color: 'var(--red)',
+          padding: '4rem 1rem',
+          fontWeight: 'bold',
+          fontSize: '1.8rem',
+          textAlign: 'center',
+        }}
+      >
+        Sorry, we encountered an error while loading instagram feed.
+      </div>
+    );
   }
   if (isLoading) {
-    return <div>Loading Instagram Feed...</div>;
+    return (
+      <SkeletonTheme height={300}>
+        <StyledFeedContainer>
+          {Array(count)
+            .fill(undefined)
+            .map((_, i) => {
+              return <Skeleton key={i} />;
+            })}
+        </StyledFeedContainer>
+      </SkeletonTheme>
+    );
   }
   return (
-    <StyledFeedContainer count={count}>
+    <StyledFeedContainer>
       {feed
         .filter(
           feedItem =>
@@ -116,7 +134,6 @@ const InstagramFeed = ({ count = 5 }: { count?: number }) => {
         )
         .slice(0, count)
         .map((feedItem, index) => {
-          console.log(feedItem);
           return (
             <StyledFeedItem
               key={feedItem.id}
