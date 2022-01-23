@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 // icons
 import { HiOutlineChevronRight } from 'react-icons/hi';
@@ -31,7 +31,6 @@ import {
   StyledHeroCopy,
   StyledHeroH1,
   StyledHeroImage,
-  StyledHeroTextTop,
 } from '../styles/homepage.styles';
 import InstagramFeed from '../components/InstagramFeed';
 
@@ -56,6 +55,7 @@ function unveil(element: HTMLElement, onIntersecting: () => void) {
 const IndexPage = ({ data }) => {
   const [showCallToAction, setShowCallToAction] = useState(false);
   const callToActionElementRef = useRef<HTMLElement>();
+  const feed = data.allInstagramContent.nodes;
 
   useEffect(() => {
     unveil(callToActionElementRef.current, () => setShowCallToAction(true));
@@ -172,7 +172,7 @@ const IndexPage = ({ data }) => {
         <h2 className="text-center feature-section-heading">
           Follow Us On Instagram
         </h2>
-        <InstagramFeed count={12} />
+        <InstagramFeed feed={feed} />
       </StyledFeatureSection>
       {/* Call to action */}
       <StyledCallToAction
@@ -213,3 +213,31 @@ const IndexPage = ({ data }) => {
 };
 
 export default IndexPage;
+export const query = graphql`
+  query MyQuery {
+    allInstagramContent(filter: { media_type: { eq: "IMAGE" } }, limit: 6) {
+      nodes {
+        id
+        caption
+        media_url
+        media_type
+        media_id
+        localImage {
+          childImageSharp {
+            gatsbyImageData(
+              layout: CONSTRAINED
+              placeholder: DOMINANT_COLOR
+              width: 500
+              height: 500
+            )
+          }
+        }
+        thumbnail_url
+        username
+        permalink
+        timestamp
+      }
+      totalCount
+    }
+  }
+`;

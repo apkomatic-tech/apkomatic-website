@@ -19,5 +19,3 @@ export const CONTACT_FORM_NAME =
     ? 'apkomatic-prod-contact'
     : 'apkomatic-dev-contact';
 export const MESSAGE_THRESHOLD: number = 500;
-export const INSTAGRAM_API_ACCESS_TOKEN =
-  'IGQVJVVVNQSUtVLWRUWW9EclhjT0FGR1hPc0VjeXpkUUFwZAzZAwZAHEwZAGItWVNOSGEzX2hMMEY1MUttT0Vpd1U1ZATlheXgyT0gwQXVQTnBUNVExVGlRR0syTGtEQTNfdUlIX0ZASVEU1RlE0Q0V2QmlMUQZDZD&';
