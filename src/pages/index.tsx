@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 // icons
 import { HiOutlineChevronRight } from 'react-icons/hi';
@@ -9,13 +9,13 @@ import {
   BiAccessibility as AccessibilityIcon,
   BiCommentDetail as CommunicationIcon,
 } from 'react-icons/bi';
+
 // components
 import SEO from '../components/Seo';
 import {
   StyledPrimaryButton,
   StyledSecondaryButtonWithArrow,
 } from '../components/Button';
-import Testimonials from '../components/Testimonials';
 // images
 import HeroImage from '../images/home/hero-image-alt.svg';
 //styles
@@ -31,8 +31,8 @@ import {
   StyledHeroCopy,
   StyledHeroH1,
   StyledHeroImage,
-  StyledHeroTextTop,
 } from '../styles/homepage.styles';
+import InstagramFeed from '../components/InstagramFeed';
 
 function unveil(element: HTMLElement, onIntersecting: () => void) {
   const unveilCallback: IntersectionObserverCallback = (
@@ -55,7 +55,7 @@ function unveil(element: HTMLElement, onIntersecting: () => void) {
 const IndexPage = ({ data }) => {
   const [showCallToAction, setShowCallToAction] = useState(false);
   const callToActionElementRef = useRef<HTMLElement>();
-  const testimonialsData = data.allSanityTestimonial.nodes;
+  const feed = data.allInstagramContent.nodes;
 
   useEffect(() => {
     unveil(callToActionElementRef.current, () => setShowCallToAction(true));
@@ -76,9 +76,6 @@ const IndexPage = ({ data }) => {
             initial={{ y: 25, opacity: 0.25 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <StyledHeroTextTop>
-              <span className="text-uppercase">Apkomatic</span>
-            </StyledHeroTextTop>
             <StyledHeroH1>We build smart and beautiful websites.</StyledHeroH1>
             <div>
               <StyledSecondaryButtonWithArrow
@@ -87,6 +84,8 @@ const IndexPage = ({ data }) => {
                 style={{
                   marginTop: '2rem',
                   minWidth: '200px',
+                  padding: '2rem',
+                  fontSize: '2rem',
                 }}
                 to="/contact"
                 onClick={() => {
@@ -168,8 +167,13 @@ const IndexPage = ({ data }) => {
           </StyledFeatureCard>
         </StyledFeatureGrid>
       </StyledFeatureSection>
-      {/* Testimonials */}
-      <Testimonials items={testimonialsData} />
+      {/* Instagram Feed */}
+      <StyledFeatureSection>
+        <h2 className="text-center feature-section-heading">
+          Follow Us On Instagram
+        </h2>
+        <InstagramFeed feed={feed} />
+      </StyledFeatureSection>
       {/* Call to action */}
       <StyledCallToAction
         ref={callToActionElementRef}
@@ -178,9 +182,6 @@ const IndexPage = ({ data }) => {
         <div className="pattern-box"></div>
         <div className="watermark watermark--left" aria-hidden="true">
           Connect
-        </div>
-        <div className="watermark watermark--right" aria-hidden="true">
-          Start
         </div>
         <StyledCallToActionWrapper>
           <div>
@@ -211,17 +212,32 @@ const IndexPage = ({ data }) => {
   );
 };
 
+export default IndexPage;
 export const query = graphql`
-  query {
-    allSanityTestimonial {
+  query MyQuery {
+    allInstagramContent(filter: { media_type: { eq: "IMAGE" } }, limit: 6) {
       nodes {
-        _id
-        content
-        author
-        company
+        id
+        caption
+        media_url
+        media_type
+        media_id
+        localImage {
+          childImageSharp {
+            gatsbyImageData(
+              layout: CONSTRAINED
+              placeholder: DOMINANT_COLOR
+              width: 500
+              height: 500
+            )
+          }
+        }
+        thumbnail_url
+        username
+        permalink
+        timestamp
       }
+      totalCount
     }
   }
 `;
-
-export default IndexPage;
