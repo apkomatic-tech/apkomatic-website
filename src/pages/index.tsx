@@ -5,10 +5,8 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 import { AiOutlineCode as DevIcon } from 'react-icons/ai';
 import { RiBrush2Fill as DesignIcon } from 'react-icons/ri';
-import {
-  BiAccessibility as AccessibilityIcon,
-  BiCommentDetail as CommunicationIcon,
-} from 'react-icons/bi';
+import { BiCommentDetail as CommunicationIcon } from 'react-icons/bi';
+import { IoAccessibility as AccessibilityIcon } from 'react-icons/io5';
 
 // components
 import SEO from '../components/Seo';
