@@ -38,25 +38,34 @@ export const StyledHero = styled.div`
     right: -25px;
   }
   .decor-box {
-    display: none;
+    display: block;
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    transform: skew(11deg, 11deg) translateY(-50%);
+    background: rgba(93, 44, 141, 0.1);
+    z-index: -1;
+    width: 300px;
+    height: 300px;
+    opacity: 0.6;
+    @media screen and (min-width: 767px) {
+      opacity: 1;
+      left: 15%;
+      width: 400px;
+      height: 400px;
+    }
     @media screen and (min-width: 1024px) {
-      display: block;
-      position: absolute;
+      left: 15%;
       width: 500px;
       height: 500px;
-      left: 15%;
-      top: 50%;
-      transform: skew(11deg, 11deg) translateY(-50%);
-      background: rgba(93, 44, 141, 0.1);
-      z-index: -1;
     }
   }
 `;
-export const StyledHeroImage = styled.img`
+export const StyledHeroImage = styled.svg`
   display: none;
   @media screen and (min-width: 767px) {
     position: absolute;
-    z-index: 4;
+    z-index: -1;
     top: 50%;
     transform: translateY(-50%);
     display: block;
@@ -87,7 +96,7 @@ export const StyledHeroCopy = styled(motion.div)`
   width: 100%;
   text-align: center;
   white-space: pre-wrap;
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 767px) {
     width: 75%;
     text-align: left;
   }
@@ -218,10 +227,9 @@ export const StyledCallToAction = styled.section`
   }
   .watermark {
     color: rgba(0, 0, 0, 0.03);
-  }
-  .watermark--left {
     top: 15%;
-    left: -45px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `;
 export const StyledCallToActionWrapper = styled.div`
@@ -231,15 +239,9 @@ export const StyledCallToActionWrapper = styled.div`
   padding-right: 2rem;
   text-align: center;
 
-  .cta-heading,
-  .cta-subheading {
-    margin: 0;
-    font-size: clamp(3rem, 5vw, 6rem);
+  .cta-heading {
+    margin: 0 0 2rem;
+    font-size: clamp(4rem, 5vw, 6rem);
     line-height: 1.1;
-  }
-  .cta-subheading {
-    color: var(--primaryColor);
-    margin-bottom: 3rem;
-    margin-top: 0.4rem;
   }
 `;

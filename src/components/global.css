@@ -105,7 +105,7 @@ h3 {
 
 /* watermark */
 .watermark {
-  font-size: 26rem;
+  font-size: 15rem;
   color: rgba(0, 0, 0, 0.04);
   font-weight: bold;
   position: absolute;
