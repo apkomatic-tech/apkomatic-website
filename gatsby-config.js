@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: `Apkomatic`,
@@ -57,5 +61,11 @@ module.exports = {
     // Sitemap
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-source-instagram-all`,
+      options: {
+        access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
+      },
+    },
   ],
 };

@@ -47,7 +47,12 @@ const Footer: React.FC<FooterProps> = ({ siteTitle = 'Apkomatic' }) => {
               </a>
             </li>
             <li>
-              <a href="https://instagram.com/apkomatic" aria-label="Instagram">
+              <a
+                href="https://instagram.com/apkomatic"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+              >
                 <TiSocialInstagram />
               </a>
             </li>

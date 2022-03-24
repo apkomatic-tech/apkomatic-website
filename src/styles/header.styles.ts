@@ -6,7 +6,7 @@ type StyledNavigationProps = {
 };
 
 const StyledHeader = styled.header`
-  background-color: #fdfbff;
+  background-color: #fff;
 `;
 const StyledHeaderWrapper = styled.div`
   max-width: var(--desktopWideContainerWidth);
