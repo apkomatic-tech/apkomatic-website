@@ -230,6 +230,7 @@ export const StyledCallToAction = styled.section`
     top: 15%;
     left: 50%;
     transform: translateX(-50%);
+    z-index: -1;
   }
 `;
 export const StyledCallToActionWrapper = styled.div`

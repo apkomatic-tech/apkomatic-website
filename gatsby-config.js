@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `Apkomatic`,
     siteUrl: `https://www.apkomatic.com`,
-    description: `Apkomatic is a Los Angeles based web development company specializing in building websites and web applications.`,
+    description: `Apkomatic is a web development company specializing in building websites and web applications.`,
     author: `@apkomatic`,
   },
   plugins: [
@@ -33,8 +33,8 @@ module.exports = {
         name: `Apkomatic Website`,
         short_name: `apkomatic`,
         start_url: `/`,
-        background_color: `#5d2c8d`,
-        theme_color: `#5d2c8d`,
+        background_color: `#070918`,
+        theme_color: `#070918`,
         display: `minimal-ui`,
         icon: `${__dirname}/src/images/favicon.gif`, // This path is relative to the root of the site.
       },
