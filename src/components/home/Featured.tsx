@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollAnimation from 'react-animate-on-scroll';
 // icons
 import { AiOutlineCode as DevIcon } from 'react-icons/ai';
 import { RiBrush2Fill as DesignIcon } from 'react-icons/ri';
@@ -23,55 +24,83 @@ export default function Featured() {
         results that our customers will love.
       </p>
       <StyledFeatureGrid>
-        <StyledFeatureCard>
-          <StyledFeatureIcon>
-            <DesignIcon />
-          </StyledFeatureIcon>
-          <div>
-            <h3>Design</h3>
-            <p>
-              No copy-paste designs. Instead, we develop unique designs for each
-              client.
-            </p>
-          </div>
-        </StyledFeatureCard>
-        <StyledFeatureCard>
-          <StyledFeatureIcon>
-            <DevIcon />
-          </StyledFeatureIcon>
-          <div>
-            <h3>Performance</h3>
-            <p>
-              We use best practices and technology stacks that will result in
-              high-speed and responsive web applications/sites.
-            </p>
-          </div>
-        </StyledFeatureCard>
-        <StyledFeatureCard>
-          <StyledFeatureIcon>
-            <AccessibilityIcon />
-          </StyledFeatureIcon>
-          <div>
-            <h3>Accessibility</h3>
-            <p>
-              For every project, we take accessibility seriously. We perform an
-              accessibility audit during our development stage.
-            </p>
-          </div>
-        </StyledFeatureCard>
-        <StyledFeatureCard>
-          <StyledFeatureIcon>
-            <CommunicationIcon />
-          </StyledFeatureIcon>
-          <div>
-            <h3>Communication</h3>
-            <p>
-              We work closely with our clients to collect feedback during every
-              stage of the project. We do not make assumptions, and we listen to
-              our clients.
-            </p>
-          </div>
-        </StyledFeatureCard>
+        <ScrollAnimation
+          animateIn="fadeInUp"
+          animateOnce
+          delay={0.1 * 1000}
+          duration={0.25}
+        >
+          <StyledFeatureCard>
+            <StyledFeatureIcon>
+              <DesignIcon />
+            </StyledFeatureIcon>
+            <div>
+              <h3>Design</h3>
+              <p>
+                No copy-paste designs. Instead, we develop unique designs for
+                each client.
+              </p>
+            </div>
+          </StyledFeatureCard>
+        </ScrollAnimation>
+        <ScrollAnimation
+          animateIn="fadeInUp"
+          animateOnce
+          delay={0.1 * 1000}
+          duration={0.25}
+        >
+          <StyledFeatureCard>
+            <StyledFeatureIcon>
+              <DevIcon />
+            </StyledFeatureIcon>
+            <div>
+              <h3>Performance</h3>
+              <p>
+                We use best practices and technology stacks that will result in
+                high-speed and responsive web applications/sites.
+              </p>
+            </div>
+          </StyledFeatureCard>
+        </ScrollAnimation>
+        <ScrollAnimation
+          animateIn="fadeInUp"
+          animateOnce
+          delay={0.3 * 1000}
+          duration={0.25}
+        >
+          <StyledFeatureCard>
+            <StyledFeatureIcon>
+              <AccessibilityIcon />
+            </StyledFeatureIcon>
+            <div>
+              <h3>Accessibility</h3>
+              <p>
+                For every project, we take accessibility seriously. We perform
+                an accessibility audit during our development stage.
+              </p>
+            </div>
+          </StyledFeatureCard>
+        </ScrollAnimation>
+        <ScrollAnimation
+          animateIn="fadeInUp"
+          animateOnce
+          delay={0.3 * 1000}
+          duration={0.25}
+        >
+          <StyledFeatureCard>
+            <StyledFeatureIcon>
+              <CommunicationIcon />
+            </StyledFeatureIcon>
+            <div>
+              <h3>Communication</h3>
+              <p>
+                We work closely with our clients to collect feedback during
+                every stage of the project. We do not make assumptions, and we
+                listen to our clients.
+              </p>
+            </div>
+          </StyledFeatureCard>
+        </ScrollAnimation>
       </StyledFeatureGrid>
     </StyledFeatureSection>
   );

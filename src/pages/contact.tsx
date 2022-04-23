@@ -3,7 +3,9 @@ import { useForm } from 'react-hook-form';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 // api
-import processContactRequest from '../api/processContactRequest';
+import processContactRequest, {
+  EmailRequestProps,
+} from '../api/processContactRequest';
 
 // components
 import SEO from '../components/Seo';
@@ -57,9 +59,9 @@ const ContactPage = () => {
           <StyledAlertContainer>
             <Alert
               type="success"
-              heading="We received your message."
-              message="Thank you for contacting us, we will review your information and
-          respond as soon as possible."
+              heading="Thank you for contacting us."
+              message="We will review your request and
+          get back to you as soon as possible. Please refresh this page if you would like to submit another request."
             />
           </StyledAlertContainer>
         )}
@@ -80,7 +82,16 @@ const ContactPage = () => {
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit(
-              async (data: any) => {
+              async (data: EmailRequestProps) => {
+                // use example.com for debugging
+                if (data.email.includes('@example')) {
+                  setRequestState(requestStates.PROCESS_REQUEST_STATE);
+                  console.log(data);
+                  setTimeout(() => {
+                    setRequestState(requestStates.SUCCESS_REQUEST_STATE);
+                  }, 2000);
+                  return;
+                }
                 setRequestState(requestStates.PROCESS_REQUEST_STATE);
                 const res = await processContactRequest(data);
                 if (res.ok) {
@@ -169,7 +180,7 @@ const ContactPage = () => {
                 marginTop: '3rem',
               }}
             >
-              Send
+              {requestState.processing ? 'Processing...' : 'Send'}
             </StyledPrimaryButton>
           </StyledForm>
         )}

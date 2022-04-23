@@ -50,10 +50,16 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
 
     a {
       color: var(--darkGrey);
-      padding: 0.2rem 0.4rem;
+      display: inline-block;
+      padding: 0.2rem 0.4rem 0.6rem 0.4rem;
       position: relative;
       z-index: 1;
       font-size: clamp(1.5rem, 5vw, 1.7rem);
+      background-size: 0 3px;
+      background-position: bottom left;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(to right, #5d2c8d 9%, #b60045 91%);
+      transition: background 300ms ease;
       & {
         text-decoration: none;
       }
@@ -63,6 +69,7 @@ const StyledNavigation = styled.nav<StyledNavigationProps>`
     a:hover,
     a:focus {
       color: var(--primaryColor);
+      background-size: 100% 3px;
     }
 
     a.active {

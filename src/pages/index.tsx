@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
-
 // components
 import SEO from '../components/Seo';
 import InstagramFeed from '../components/InstagramFeed';
@@ -8,43 +7,16 @@ import Hero from '../components/home/Hero';
 import Featured from '../components/home/Featured';
 import GetStarted from '../components/home/GetStarted';
 
-function unveil(element: HTMLElement, onIntersecting: () => void) {
-  const unveilCallback: IntersectionObserverCallback = (
-    entries: IntersectionObserverEntry[],
-    observer: IntersectionObserver
-  ) => {
-    const [entry] = entries;
-    if (!entry.isIntersecting) return;
-    onIntersecting();
-    observer.unobserve(entry.target);
-  };
-  const unveilOpts: IntersectionObserverInit = {
-    root: null,
-    threshold: 0.5,
-  };
-  const intObserver = new IntersectionObserver(unveilCallback, unveilOpts);
-  intObserver.observe(element);
-}
-
 const IndexPage = ({ data }) => {
-  const [showCallToAction, setShowCallToAction] = useState(false);
-  const callToActionElementRef = useRef<HTMLElement>();
   const feed = data.allInstagramContent.nodes;
-
-  useEffect(() => {
-    unveil(callToActionElementRef.current, () => setShowCallToAction(true));
-  });
 
   return (
     <div id="homepage">
       <SEO title="Home" />
       <Hero />
       <Featured />
+      <GetStarted />
       <InstagramFeed feed={feed} />
-      <GetStarted
-        elRef={callToActionElementRef}
-        showCallToAction={showCallToAction}
-      />
     </div>
   );
 };
@@ -72,7 +44,7 @@ export const query = graphql`
         thumbnail_url
         username
         permalink
-        timestamp
+        timestamp(fromNow: true)
       }
       totalCount
     }

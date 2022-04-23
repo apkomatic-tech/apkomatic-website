@@ -2,8 +2,6 @@ import { Link } from 'gatsby';
 import React, { useEffect, useState } from 'react';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
 
-// data
-import pageLinks from '../data/urls.json';
 import {
   StyledHamburgerMenu,
   StyledHamburgerMenuButton,
@@ -15,6 +13,29 @@ import {
   StyledNavigation,
   StyledSiteBrand,
 } from '../styles/header.styles';
+
+const pageLinks = [
+  {
+    title: 'Home',
+    url: '/',
+  },
+  {
+    title: 'Services',
+    url: '/services',
+  },
+  {
+    title: 'Projects',
+    url: '/projects',
+  },
+  {
+    title: 'Contact',
+    url: '/contact',
+  },
+  {
+    title: 'FAQ',
+    url: '/frequently-asked-questions',
+  },
+];
 
 function renderLinks(clickHandler?: Function) {
   return pageLinks.map(link => {

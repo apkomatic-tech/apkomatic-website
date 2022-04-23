@@ -79,7 +79,6 @@ const StyledCardFooter = styled.div`
       background: #fff;
     }
   }
-  /* padding: 2rem; */
 `;
 
 const ServicesPage = () => {
