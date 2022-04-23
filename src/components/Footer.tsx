@@ -1,33 +1,11 @@
 import React from 'react';
 import { TiAt, TiSocialInstagram } from 'react-icons/ti';
-import { Link } from 'gatsby';
 import {
   StyledFooter,
   StyledFooterContainer,
   StyledFooterSocial,
   StyledFooterCopyright,
 } from '../styles/footer.styles';
-
-import pageLinks from '../data/urls.json';
-
-function renderLinks(clickHandler?: Function) {
-  return pageLinks.map(link => {
-    return (
-      <li key={link.title}>
-        <Link
-          to={link.url}
-          onClick={() => {
-            if (typeof clickHandler === 'function') {
-              clickHandler();
-            }
-          }}
-        >
-          {link.title}
-        </Link>
-      </li>
-    );
-  });
-}
 
 type FooterProps = {
   siteTitle?: string;
