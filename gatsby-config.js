@@ -55,7 +55,7 @@ module.exports = {
         projectId: 'jibd5p3x',
         dataset: 'production',
         // Dev: get updates without having to manually restart the build process
-        watchMode: true,
+        watchMode: process.env.NODE_ENV !== 'production',
       },
     },
     // Sitemap
