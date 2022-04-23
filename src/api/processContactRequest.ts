@@ -3,7 +3,7 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { CONTACT_FORM_NAME } from '../config/site';
 import { encode } from '../utils';
 
-type EmailRequestProps = {
+export type EmailRequestProps = {
   email: string;
   fullName: string;
   message?: string;

@@ -13,7 +13,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: 'UA-101945546-1',
+        trackingId: process.env.GUA_TRACKING_ID,
         head: true,
       },
     },
@@ -55,7 +55,7 @@ module.exports = {
         projectId: 'jibd5p3x',
         dataset: 'production',
         // Dev: get updates without having to manually restart the build process
-        watchMode: true,
+        watchMode: process.env.NODE_ENV !== 'production',
       },
     },
     // Sitemap
