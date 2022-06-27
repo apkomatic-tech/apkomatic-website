@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
@@ -27,11 +27,21 @@ import {
 import { MESSAGE_THRESHOLD, CONTACT_FORM_NAME } from '../config/site';
 import Alert from '../components/Alert';
 
+type FormInputs = {
+  email: string;
+  fullName: string;
+  message: string;
+};
+
 const ContactPage = () => {
   const [requestState, setRequestState] = useState(
     requestStates.INITIAL_REQUEST_STATE
   );
-  const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInputs>();
   const formNode = useRef(null);
 
   function resetRequestState() {
@@ -118,11 +128,8 @@ const ContactPage = () => {
               <StyledFormInput
                 id="email"
                 type="text"
-                name="email"
                 className={errors.email ? 'hasError' : ''}
-                ref={register({
-                  validate: validateEmail,
-                })}
+                {...register('email', { validate: validateEmail })}
               />
               {errors.email && (
                 <StyledFormError>Please enter a valid email</StyledFormError>
@@ -135,8 +142,7 @@ const ContactPage = () => {
                 id="full-name"
                 type="text"
                 className={errors.fullName ? 'hasError' : ''}
-                name="fullName"
-                ref={register({
+                {...register('fullName', {
                   validate: validateName,
                   minLength: {
                     value: 2,
@@ -158,12 +164,11 @@ const ContactPage = () => {
               <StyledFormTextArea
                 className={errors.message ? 'hasError' : ''}
                 id="inspirations"
-                name="message"
                 rows={13}
-                ref={register({
+                {...register('message', {
                   maxLength: {
                     value: MESSAGE_THRESHOLD,
-                    message: `Please enter no more than ${MESSAGE_THRESHOLD} characters.`,
+                    message: `Message cannot exceed ${MESSAGE_THRESHOLD} characters.`,
                   },
                 })}
               />

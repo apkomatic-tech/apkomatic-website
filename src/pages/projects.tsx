@@ -1,85 +1,113 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { graphql, PageProps } from 'gatsby';
+import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
-import SplashBanner from '../components/SplashBanner';
 import Wrapper from '../components/Wrapper';
 import SEO from '../components/Seo';
+import { StyledPrimaryButtonWithArrow } from '../components/Button';
+import { HiOutlineChevronRight } from 'react-icons/hi';
+import SplashHeader from '../components/SplashHeader';
+import porfolioBackgroundImg from '../images/portfolio/portfolio-background-optimized.jpg';
 
 const StyledProjectGrid = styled.section`
+  background: #fff;
+  padding: 4rem 4rem 0 4rem;
+  position: relative;
+  top: -160px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 3rem;
-  row-gap: 2rem;
-  @media screen and (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media screen and (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-rows: 1fr;
+  grid-gap: 4rem;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.06);
 `;
 const StyledProjectCard = styled.article`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-
-  * {
-    box-sizing: inherit;
+  border-bottom: 1px solid var(--grey);
+  padding-bottom: 4rem;
+  display: grid;
+  grid-gap: 5rem;
+  &:last-of-type {
+    border-bottom: 0;
   }
-  .header {
-    h2 {
-      font-size: 2rem;
-      margin: 0;
-    }
-    margin-bottom: 2rem;
-  }
-  .img-wrapper {
-    overflow: hidden;
-    object-fit: contain;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    margin-bottom: 3rem;
-    cursor: pointer;
-    a:focus {
-      outline: 1;
-    }
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: 1fr 500px;
   }
 `;
+const StyledProjectTitle = styled.div`
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  font-family: var(--headingFont);
+`;
 
-const ProjectPage = ({ data }) => {
+const StyledProjectImageContainer = styled.div``;
+
+type DataProps = {
+  allSanityProject: {
+    nodes: {
+      name: string;
+      url: string;
+      client: string;
+      description?: string;
+      _id: number | string;
+      stack: {
+        name: string;
+        _id: number | string;
+      }[];
+      thumb: {
+        asset: IGatsbyImageData;
+      };
+      slug: {
+        current: string;
+      };
+    }[];
+  };
+};
+const ProjectPage = ({ data }: PageProps<DataProps>) => {
   const { nodes: projectData } = data.allSanityProject;
   return (
     <div id="project-page">
       <SEO title="Projects" />
-      <SplashBanner title="Projects" />
-      <Wrapper
-        style={{
-          marginTop: '7rem',
-          marginBottom: '7rem',
-        }}
-      >
+      <SplashHeader
+        headingText="Projects"
+        backgroundImage={porfolioBackgroundImg}
+      />
+      <Wrapper wide>
         <StyledProjectGrid>
           {projectData.map(project => {
-            const { _id, name, slug, thumb } = project;
-            const projectImage = getImage(thumb.asset);
+            const { _id, name, url, thumb, description, stack } = project;
+            const stackList = stack?.length
+              ? stack
+                  .map(s => {
+                    return s.name;
+                  })
+                  .join(', ')
+              : null;
+            const projectImage = getImage(thumb.asset) as IGatsbyImageData;
 
             return (
               <StyledProjectCard key={_id}>
-                <header className="header">
-                  <h2>{name}</h2>
-                </header>
-                {thumb && (
-                  <div className="img-wrapper">
-                    <Link
-                      to={`/projects/${slug.current}/`}
-                      role="navigation"
-                      tabIndex={0}
-                      aria-label="Project Details"
-                    >
-                      <GatsbyImage image={projectImage} alt={name} />
-                    </Link>
-                  </div>
-                )}
+                <div>
+                  <StyledProjectTitle>{name}</StyledProjectTitle>
+                  {description && <p>{description}</p>}
+                  {stackList && (
+                    <p>
+                      Built with: <em>{stackList}</em>
+                    </p>
+                  )}
+                  <StyledPrimaryButtonWithArrow
+                    as="a"
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    See Project
+                    <HiOutlineChevronRight />
+                  </StyledPrimaryButtonWithArrow>
+                </div>
+                <StyledProjectImageContainer>
+                  <GatsbyImage image={projectImage} alt={name} />
+                </StyledProjectImageContainer>
               </StyledProjectCard>
             );
           })}
@@ -96,6 +124,7 @@ export const query = graphql`
         name
         url
         client
+        description
         _id
         stack {
           name
