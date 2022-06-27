@@ -27,7 +27,8 @@ const processContactRequest = async (data: EmailRequestProps) => {
     });
 
     return response;
-  } catch (e) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (e: any) {
     console.log('error', e.message);
     throw new Error(e);
   }

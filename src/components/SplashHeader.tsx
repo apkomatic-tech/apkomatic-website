@@ -16,7 +16,7 @@ const SplashHeader: React.FC<SplashHeaderProps> = ({
   backgroundImage,
 }) => {
   return (
-    <StyledSplashHeader background={backgroundImage} tight={!subheadingText}>
+    <StyledSplashHeader background={backgroundImage}>
       <StyledSplashHeaderWrapper>
         <h1 className="splash-heading">{headingText}</h1>
         {subheadingText && <p className="splash-text">{subheadingText}</p>}

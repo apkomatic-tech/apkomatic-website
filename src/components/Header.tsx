@@ -37,7 +37,7 @@ const pageLinks = [
   },
 ];
 
-function renderLinks(clickHandler?: Function) {
+function renderLinks(clickHandler?: () => void) {
   return pageLinks.map(link => {
     return (
       <li key={link.title}>

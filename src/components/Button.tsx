@@ -10,8 +10,8 @@ export const withBaseStyles = css`
   color: var(--baseTextColor);
   cursor: pointer;
   display: inline-block;
-  font-family: var(--headingFont);
-  font-size: 1.7rem;
+  font-family: inherit;
+  font-size: inherit;
   font-weight: 400;
   line-height: 1;
   opacity: 0.9;
@@ -19,7 +19,6 @@ export const withBaseStyles = css`
   text-align: center;
   text-decoration: none;
   transition: 300ms ease;
-  font-weight: bold;
   &:hover {
     opacity: 1;
   }
