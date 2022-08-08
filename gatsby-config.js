@@ -61,11 +61,11 @@ module.exports = {
     // Sitemap
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-image`,
-    {
-      resolve: `gatsby-source-instagram-all`,
-      options: {
-        access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-instagram-all`,
+    //   options: {
+    //     access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
+    //   },
+    // },
   ],
 };
