@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const StyledHero = styled.div`
@@ -7,7 +6,7 @@ export const StyledHero = styled.div`
   border-bottom: 1px solid var(--grey);
   @media screen and (min-width: 767px) {
     padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-bottom: 16rem;
   }
   .pattern-box {
     display: none;
@@ -87,12 +86,8 @@ export const StyledHeroContainer = styled.div`
   margin: auto;
   position: relative;
   z-index: 1;
-  @media screen and (min-width: 960px) {
-    padding-top: 15rem;
-    padding-bottom: 15rem;
-  }
 `;
-export const StyledHeroCopy = styled(motion.div)`
+export const StyledHeroCopy = styled.section`
   width: 100%;
   text-align: center;
   white-space: pre-wrap;
