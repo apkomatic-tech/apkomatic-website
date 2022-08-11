@@ -10,7 +10,6 @@ import {
 // interfaces
 interface AccordionProps {
   items: AccordionItem[];
-  customStyles: any | undefined | null;
 }
 interface AccordionItem {
   id: number | string;
@@ -23,7 +22,7 @@ interface AccordionItem {
 function useAccordion(items: AccordionItem[]) {
   const [accItems, setAccItems] = useState(items);
 
-  const toggleVisibility = id => {
+  const toggleVisibility = (id: number | string) => {
     const index = accItems.findIndex(item => item.id === id);
     if (index > -1) {
       const updatedArrayOfAccItems = [
@@ -44,26 +43,25 @@ function useAccordion(items: AccordionItem[]) {
   };
 }
 
-const Accordion = ({ items, customStyles }: AccordionProps) => {
+const Accordion = ({ items }: AccordionProps) => {
   const { accItems, toggleVisibility } = useAccordion(items);
 
   // id, heading, content, collapsed
   return (
-    <div style={customStyles}>
+    <div
+      style={{
+        marginTop: '2rem',
+      }}
+    >
       {accItems.map(({ id, heading, content, collapsed }) => {
         return (
           <StyledAccordion key={id} data-testid="accordion-item">
             <StyledAccordionHeading
               isActive={!collapsed}
-              role="button"
               tabIndex={0}
               onClick={() => toggleVisibility(id)}
-              onKeyPress={event => {
-                const { key } = event;
-                if (key === 'Enter') {
-                  toggleVisibility(id);
-                }
-              }}
+              aria-expanded={!collapsed}
+              aria-controls={`accordion_item_${id}`}
             >
               <span>{heading}</span>
               <StyledAccordionToggle
@@ -82,8 +80,8 @@ const Accordion = ({ items, customStyles }: AccordionProps) => {
               </StyledAccordionToggle>
             </StyledAccordionHeading>
             <StyledAccordionContent
+              id={`accordion_item_${id}`}
               data-testid="accordion-content"
-              aria-expanded={!collapsed}
               initial={false}
               transition={{
                 easings: 'linear',

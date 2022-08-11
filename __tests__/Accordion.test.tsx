@@ -39,25 +39,23 @@ const mockAccordionItems = [
 
 describe('Accordion', () => {
   test('render accordion with 5 items', () => {
-    render(<Accordion items={mockAccordionItems} customStyles={{}} />);
+    render(<Accordion items={mockAccordionItems} />);
     const accordionItemElements = screen.getAllByTestId('accordion-item');
     expect(accordionItemElements.length).toBe(5);
   });
 
   test('expands accordion content when clicked', () => {
-    render(<Accordion items={mockAccordionItems} customStyles={{}} />);
-    const contentElements = screen.getAllByTestId('accordion-content');
+    render(<Accordion items={mockAccordionItems} />);
     const toggleButtonElements = screen.getAllByRole('button');
     fireEvent.click(toggleButtonElements[0]);
-    expect(contentElements[0].getAttribute('aria-expanded')).toBeTruthy();
+    expect(toggleButtonElements[0].getAttribute('aria-expanded')).toBeTruthy();
   });
 
   test('collapses accordion content when clicked', () => {
-    render(<Accordion items={mockAccordionItems} customStyles={{}} />);
-    const contentElements = screen.getAllByTestId('accordion-content');
+    render(<Accordion items={mockAccordionItems} />);
     const toggleButtonElements = screen.getAllByRole('button');
     fireEvent.click(toggleButtonElements[4]);
     fireEvent.click(toggleButtonElements[4]);
-    expect(contentElements[0].getAttribute('aria-expanded')).toBe('false');
+    expect(toggleButtonElements[0].getAttribute('aria-expanded')).toBe('false');
   });
 });

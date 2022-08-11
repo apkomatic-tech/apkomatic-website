@@ -18,10 +18,7 @@ const Hero = () => {
     <StyledHero>
       <StyledHeroContainer>
         <HeroImage width={1000} height={1000} />
-        <StyledHeroCopy
-          initial={{ y: 25, opacity: 0.25 }}
-          animate={{ y: 0, opacity: 1 }}
-        >
+        <StyledHeroCopy>
           <StyledHeroH1>We build smart and beautiful websites.</StyledHeroH1>
           <div>
             <StyledSecondaryButtonWithArrow

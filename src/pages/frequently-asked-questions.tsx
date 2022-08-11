@@ -29,12 +29,7 @@ const FaqPage = () => {
         >
           Frequently Asked Questions
         </h1>
-        <Accordion
-          items={faqJSON}
-          customStyles={{
-            marginTop: '2rem',
-          }}
-        />
+        <Accordion items={faqJSON} />
       </Wrapper>
     </div>
   );

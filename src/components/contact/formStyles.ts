@@ -43,7 +43,7 @@ export const StyledFormHeading = styled.div`
     margin: 0;
   }
   .subheading {
-    color: #888;
+    color: #555;
     margin: 1rem 0 0;
   }
 `;

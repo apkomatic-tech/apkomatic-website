@@ -12,7 +12,7 @@ const StyledAccordion = styled.div`
 type StyledHeadingProps = {
   isActive: boolean;
 };
-const StyledAccordionHeading = styled.div<StyledHeadingProps>`
+const StyledAccordionHeading = styled.button<StyledHeadingProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
