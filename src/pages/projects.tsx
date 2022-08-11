@@ -54,6 +54,7 @@ type DataProps = {
         name: string;
         _id: number | string;
       }[];
+      order: number;
       thumb: {
         asset: IGatsbyImageData;
       };
@@ -75,7 +76,8 @@ const ProjectPage = ({ data }: PageProps<DataProps>) => {
       <Wrapper wide>
         <StyledProjectGrid>
           {projectData.map(project => {
-            const { _id, name, url, thumb, description, stack } = project;
+            const { _id, name, url, thumb, description, stack, order } =
+              project;
             const stackList = stack?.length
               ? stack
                   .map(s => {
@@ -86,7 +88,7 @@ const ProjectPage = ({ data }: PageProps<DataProps>) => {
             const projectImage = getImage(thumb.asset) as IGatsbyImageData;
 
             return (
-              <StyledProjectCard key={_id}>
+              <StyledProjectCard key={_id} data-order={order}>
                 <div>
                   <StyledProjectTitle>{name}</StyledProjectTitle>
                   {description && <p>{description}</p>}
@@ -119,12 +121,13 @@ const ProjectPage = ({ data }: PageProps<DataProps>) => {
 
 export const query = graphql`
   query ProjectQuery {
-    allSanityProject {
+    allSanityProject(sort: { fields: order, order: ASC }) {
       nodes {
         name
         url
         client
         description
+        order
         _id
         stack {
           name
