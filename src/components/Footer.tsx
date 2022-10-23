@@ -28,7 +28,7 @@ const Footer: React.FC<FooterProps> = ({ siteTitle = 'Apkomatic' }) => {
               <a
                 href="https://instagram.com/apkomatic"
                 target="_blank"
-                rel="noreferrer"
+                rel="noreferrer noopener"
                 aria-label="Instagram"
               >
                 <TiSocialInstagram />
